@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Models\User;
 use Illuminate\Console\Command;
 
 class MakeAdminUser extends Command
@@ -27,14 +26,14 @@ class MakeAdminUser extends Command
      */
     public function handle(): int
     {
-        $userCreator = new CreateNewUser();
+        $userCreator = new CreateNewUser;
 
         $userCreator->create([
             'name' => 'Admin User',
             'email' => 'admin@clubhouse.test',
             'password' => '12345678',
             'password_confirmation' => '12345678',
-            'terms' => 'accepted'
+            'terms' => 'accepted',
         ]);
 
         return self::SUCCESS;

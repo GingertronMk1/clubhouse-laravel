@@ -7,6 +7,9 @@ use Inertia\Inertia;
 
 abstract class Controller
 {
+    /**
+     * @param  array<string, mixed>|Arrayable<string, mixed>  $props
+     */
     protected function inertia(
         string $component,
         array|Arrayable $props = []

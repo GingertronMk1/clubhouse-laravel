@@ -33,20 +33,27 @@ class Person extends Model
     protected $casts = [
         'name' => 'string',
         'bio' => 'string',
-        'dob' => 'immutable_date'
+        'dob' => 'immutable_date',
     ];
 
+    /**
+     * @return Attribute<int, void>
+     */
     protected function age(): Attribute
     {
         return Attribute::make(
             get: function () {
                 $dateValue = Carbon::parse($this->dob);
                 $diff = $dateValue->diff(Carbon::now());
+
                 return floor($diff->totalYears);
             }
         );
     }
 
+    /**
+     * @return BelongsTo<User, Person>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
