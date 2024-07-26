@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
+use App\Models\User;
+use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
 class PersonController extends Controller
@@ -23,9 +25,12 @@ class PersonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create(): \Inertia\Response
     {
-        //
+        return $this->inertia(
+            component: 'Person/Create',
+            props: ['users' => User::all()]
+        );
     }
 
     /**
@@ -33,7 +38,11 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request): Response
     {
-        //
+        $person = new Person($request->validated());
+        $person->user_id = $request->validated('user_id', null);
+        if ($person->save()) {
+            return to_route('person.index');
+        }
     }
 
     /**

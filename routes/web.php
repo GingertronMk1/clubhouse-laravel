@@ -22,6 +22,6 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::resources([
-        'person' => \App\Http\Controllers\PersonController::class
+        'person' => \App\Http\Controllers\PersonController::class,
     ]);
 });

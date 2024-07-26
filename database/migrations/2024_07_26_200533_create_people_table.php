@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('people', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('bio')->nullable();
+            $table->text('bio')->nullable();
             $table->date('dob')->nullable();
             $table->foreignIdFor(User::class)->nullable()->constrained();
             $table->timestamps();

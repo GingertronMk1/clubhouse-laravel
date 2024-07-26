@@ -36,6 +36,14 @@ class Person extends Model
         'dob' => 'immutable_date',
     ];
 
+    protected $appends = [
+        'age'
+    ];
+
+    protected $with = [
+        'user',
+    ];
+
     /**
      * @return Attribute<int, void>
      */

@@ -1,7 +1,9 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 
-const props = defineProps(['people']);
+const props = defineProps({
+    people: Array
+});
 
 </script>
 
@@ -11,6 +13,11 @@ const props = defineProps(['people']);
             <h2>People</h2>
         </template>
     <div class="container">
+        <a :href="route('person.create')" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i>
+            Add
+        </a>
+
         <table class="table">
             <tr v-for="person in people" :key="person.id">
                 <td v-text="person.name" />
