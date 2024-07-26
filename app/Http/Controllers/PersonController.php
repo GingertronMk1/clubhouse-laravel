@@ -5,21 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
+use \Symfony\Component\HttpFoundation\Response;
 
 class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
-        //
+        return $this->inertia(
+            component: 'Person/Index',
+            props: ['people' => Person::all()]
+        );
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
         //
     }
@@ -27,7 +31,7 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonRequest $request)
+    public function store(StorePersonRequest $request): Response
     {
         //
     }
@@ -35,7 +39,7 @@ class PersonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Person $person)
+    public function show(Person $person): Response
     {
         //
     }
@@ -43,7 +47,7 @@ class PersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Person $person)
+    public function edit(Person $person): Response
     {
         //
     }
@@ -51,7 +55,7 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePersonRequest $request, Person $person)
+    public function update(UpdatePersonRequest $request, Person $person): Response
     {
         //
     }
@@ -59,7 +63,7 @@ class PersonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Person $person)
+    public function destroy(Person $person): Response
     {
         //
     }
