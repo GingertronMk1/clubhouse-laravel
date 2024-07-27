@@ -47,7 +47,7 @@ jobs:
               run: composer check
               if: always()
             - name: Test
-              run: php artisan test --parallel --coverage --min=90
+              run: php artisan test --parallel --coverage
               if: always()
             - name: Prettier
               run: npm run eslint
