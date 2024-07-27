@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from "vue";
-import { useForm } from "@inertiajs/vue3";
 import ActionMessage from "@/Components/ActionMessage.vue";
 import ActionSection from "@/Components/ActionSection.vue";
 import Checkbox from "@/Components/Checkbox.vue";
@@ -14,11 +12,22 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import SectionBorder from "@/Components/SectionBorder.vue";
 import TextInput from "@/Components/TextInput.vue";
+import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    tokens: Array,
-    availablePermissions: Array,
-    defaultPermissions: Array,
+    availablePermissions: {
+        default: () => [],
+        type: Array,
+    },
+    defaultPermissions: {
+        default: () => [],
+        type: Array,
+    },
+    tokens: {
+        default: () => [],
+        type: Array,
+    },
 });
 const createApiTokenForm = useForm({
     name: "",
@@ -33,11 +42,11 @@ const managingPermissionsFor = ref(null);
 const apiTokenBeingDeleted = ref(null);
 const createApiToken = () => {
     createApiTokenForm.post(route("api-tokens.store"), {
-        preserveScroll: true,
         onSuccess: () => {
             displayingToken.value = true;
             createApiTokenForm.reset();
         },
+        preserveScroll: true,
     });
 };
 const manageApiTokenPermissions = (token) => {
@@ -48,9 +57,9 @@ const updateApiToken = () => {
     updateApiTokenForm.put(
         route("api-tokens.update", managingPermissionsFor.value),
         {
+            onSuccess: () => (managingPermissionsFor.value = null),
             preserveScroll: true,
             preserveState: true,
-            onSuccess: () => (managingPermissionsFor.value = null),
         },
     );
 };
@@ -61,9 +70,9 @@ const deleteApiToken = () => {
     deleteApiTokenForm.delete(
         route("api-tokens.destroy", apiTokenBeingDeleted.value),
         {
+            onSuccess: () => (apiTokenBeingDeleted.value = null),
             preserveScroll: true,
             preserveState: true,
-            onSuccess: () => (apiTokenBeingDeleted.value = null),
         },
     );
 };

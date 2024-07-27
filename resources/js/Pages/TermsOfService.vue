@@ -1,4 +1,5 @@
 <script setup>
+/* eslint vue/no-v-html: 0 */
 import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 import { Head } from "@inertiajs/vue3";
 

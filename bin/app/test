@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+rm database/testing.sqlite*
+./bin/app/artisan test --parallel --coverage --min=90 "$@"

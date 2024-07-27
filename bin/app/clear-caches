@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+./bin/app/artisan view:clear \
+    && ./bin/app/artisan route:clear \
+    && ./bin/app/artisan cache:clear

@@ -2,22 +2,24 @@
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
 const props = defineProps({
-    show: {
+    closeable: {
+        default: true,
         type: Boolean,
-        default: false,
     },
     maxWidth: {
-        type: String,
         default: "2xl",
+        type: String,
     },
-    closeable: {
+    show: {
+        default: false,
         type: Boolean,
-        default: true,
     },
 });
 const emit = defineEmits(["close"]);
 const dialog = ref();
 const showSlot = ref(props.show);
+
+const timeout = 200;
 
 watch(
     () => props.show,
@@ -31,7 +33,7 @@ watch(
             setTimeout(() => {
                 dialog.value?.close();
                 showSlot.value = false;
-            }, 200);
+            }, timeout);
         }
     },
 );
@@ -41,9 +43,9 @@ const close = () => {
         emit("close");
     }
 };
-const closeOnEscape = (e) => {
-    if (e.key === "Escape") {
-        e.preventDefault();
+const closeOnEscape = (event) => {
+    if (event.key === "Escape") {
+        event.preventDefault();
 
         if (props.show) {
             close();
@@ -60,11 +62,11 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
     return {
-        sm: "sm:max-w-sm",
-        md: "sm:max-w-md",
-        lg: "sm:max-w-lg",
-        xl: "sm:max-w-xl",
         "2xl": "sm:max-w-2xl",
+        lg: "sm:max-w-lg",
+        md: "sm:max-w-md",
+        sm: "sm:max-w-sm",
+        xl: "sm:max-w-xl",
     }[props.maxWidth];
 });
 </script>

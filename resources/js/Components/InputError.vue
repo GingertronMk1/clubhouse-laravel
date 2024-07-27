@@ -1,6 +1,9 @@
 <script setup>
 defineProps({
-    message: String,
+    message: {
+        default: "",
+        type: String,
+    },
 });
 </script>
 

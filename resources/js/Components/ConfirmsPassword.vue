@@ -9,37 +9,42 @@ import TextInput from "./TextInput.vue";
 const emit = defineEmits(["confirmed"]);
 
 defineProps({
-    title: {
+    button: {
+        default: "Confirm",
         type: String,
-        default: "Confirm Password",
     },
     content: {
-        type: String,
         default: "For your security, please confirm your password to continue.",
-    },
-    button: {
         type: String,
-        default: "Confirm",
+    },
+    title: {
+        default: "Confirm Password",
+        type: String,
     },
 });
 
 const confirmingPassword = ref(false);
 const form = reactive({
-    password: "",
     error: "",
+    password: "",
     processing: false,
 });
 const passwordInput = ref(null);
 const startConfirmingPassword = () => {
-    axios.get(route("password.confirmation")).then((response) => {
-        if (response.data.confirmed) {
+    axios.get(route("password.confirmation")).then(({ data: confirmed }) => {
+        if (confirmed) {
             emit("confirmed");
         } else {
             confirmingPassword.value = true;
-
-            setTimeout(() => passwordInput.value.focus(), 250);
+            const timeout = 250;
+            setTimeout(() => passwordInput.value.focus(), timeout);
         }
     });
+};
+const closeModal = () => {
+    confirmingPassword.value = false;
+    form.password = "";
+    form.error = "";
 };
 const confirmPassword = () => {
     form.processing = true;
@@ -54,16 +59,17 @@ const confirmPassword = () => {
             closeModal();
             nextTick().then(() => emit("confirmed"));
         })
-        .catch((error) => {
-            form.processing = false;
-            form.error = error.response.data.errors.password[0];
-            passwordInput.value.focus();
-        });
-};
-const closeModal = () => {
-    confirmingPassword.value = false;
-    form.password = "";
-    form.error = "";
+        .catch(
+            ({
+                response: {
+                    data: { errors: password },
+                },
+            }) => {
+                form.processing = false;
+                [form.error] = password;
+                passwordInput.value.focus();
+            },
+        );
 };
 </script>
 

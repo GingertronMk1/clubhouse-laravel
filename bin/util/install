@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+echo "touching db files" \
+&& touch "$(pwd)/database/database.sqlite" "$(pwd)/database/testing.sqlite" \
+&& echo "Going up and building" \
+&& docker compose up -d --build --remove-orphans \
+&& echo "Composer installing" \
+&& ./bin/app/composer install \
+&& echo "Setting up DB" \
+&& ./bin/app/recreate-db \
+&& echo "NPM installing" \
+&& ./bin/node/npm install \
+&& echo "NPM building" \
+&& ./bin/node/npm run build \
+&& echo "Stopping docker" \
+&& docker compose stop

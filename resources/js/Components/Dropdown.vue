@@ -3,21 +3,21 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 
 const props = defineProps({
     align: {
-        type: String,
         default: "right",
-    },
-    width: {
         type: String,
-        default: "48",
     },
     contentClasses: {
-        type: Array,
         default: () => ["py-1", "bg-white"],
+        type: Array,
+    },
+    width: {
+        default: "48",
+        type: String,
     },
 });
 const open = ref(false);
-const closeOnEscape = (e) => {
-    if (open.value && e.key === "Escape") {
+const closeOnEscape = ({ key }) => {
+    if (open.value && key === "Escape") {
         open.value = false;
     }
 };

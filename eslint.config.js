@@ -21,16 +21,16 @@ export default [
             }
         },
         rules: {
-            'vue/multi-word-component-names': 'off',
-            'no-useless-assignment': 'off',
             'camelcase': 'off',
+            'max-lines': 'off',
             'no-ternary': 'off',
+            'no-useless-assignment': 'off',
             'one-var': ['error', {
                 'const': 'never',
                 'let': 'never',
                 'var': 'never',
-
-            }]
+            }],
+            'vue/multi-word-component-names': 'off',
         },
     },
 ];

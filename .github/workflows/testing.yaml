@@ -1,0 +1,53 @@
+name: Testing
+
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+jobs:
+    testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Cache Composer
+              id: cache-composer
+              uses: actions/cache@v3
+              with:
+                path: vendor
+                key: ${{ hashFiles('composer.lock') }}
+            - name: Cache NPM
+              id: cache-npm
+              uses: actions/cache@v3
+              with:
+                path: node_modules
+                key: ${{ hashFiles('package-lock.json') }}
+            - name: Setup PHP with tools
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: '8.3'
+                extensions: xdebug pcov
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 21
+            - name: Install
+              run: |
+                cp .env.example .env
+                composer install
+                npm install
+                npm run build
+                touch database/database.sqlite
+                php artisan migrate:fresh
+            - name: PHP Style
+              run: composer check
+              if: always()
+            - name: Test
+              run: php artisan test --parallel --coverage --min=90
+              if: always()
+            - name: Prettier
+              run: npm run eslint
+              if: always()
