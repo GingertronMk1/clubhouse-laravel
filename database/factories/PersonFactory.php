@@ -17,7 +17,9 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'dob' => fake()->date(),
+            'bio' => fake()->paragraphs(5, true),
         ];
     }
 }

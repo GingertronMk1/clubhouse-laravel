@@ -40,6 +40,7 @@ class PersonController extends Controller
     public function store(StorePersonRequest $request): Response|Responsable
     {
         Person::create($request->validated());
+
         return to_route('person.index');
     }
 

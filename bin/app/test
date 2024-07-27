@@ -1,4 +1,3 @@
 #!/usr/bin/env sh
 
-rm database/database.sqlite_test*
 ./bin/app/artisan test --parallel --coverage "$@"
