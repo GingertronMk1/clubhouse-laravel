@@ -36,7 +36,7 @@ class DefaultLogin
     public function loginFormField(string $name, string $envValue = '', string $value = ''): string
     {
         $inputValue = $value;
-        if (!empty($envValue) && isset($_ENV[$envValue])) {
+        if (! empty($envValue) && isset($_ENV[$envValue])) {
             $inputValue = $_ENV[$envValue];
         }
 
@@ -55,4 +55,4 @@ class DefaultLogin
     }
 }
 
-return new DefaultLogin();
+return new DefaultLogin;

@@ -6,7 +6,8 @@ use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
 use App\Models\User;
-use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PersonController extends Controller
@@ -38,42 +39,62 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request): Response
     {
-        $person = new Person($request->validated());
-        $person->user_id = $request->validated('user_id', null);
-        if ($person->save()) {
-            return to_route('person.index');
-        }
+        Person::create($request->validated());
+        return to_route('person.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Person $person): Response
+    public function show(Person $person): \Inertia\Response
     {
-        //
+        return $this->inertia(
+            'Person/Show',
+            ['person' => $person]
+        );
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Person $person): Response
+    public function edit(Person $person): \Inertia\Response
     {
-        //
+        return $this->inertia(
+            component: 'Person/Edit',
+            props: [
+                'users' => User::all(),
+                'person' => $person,
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePersonRequest $request, Person $person): Response
+    public function update(UpdatePersonRequest $request, Person $person): RedirectResponse|\Inertia\Response
     {
-        //
+        if ($person->update($request->validated())) {
+            return to_route('person.index');
+        }
+
+        return $this->inertia(
+            component: 'Person/Edit',
+            props: [
+                'users' => User::all(),
+                'person' => $person,
+            ]
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Person $person): Response
+    public function destroy(Request $request, Person $person): Response
     {
-        //
+        if (! $person->delete()) {
+            $request->session()->flash('error', 'There was an error deleting that person');
+        }
+
+        return to_route('person.index');
     }
 }

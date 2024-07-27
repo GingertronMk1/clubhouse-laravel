@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $bio
  * @property Carbon $dob
  * @property User $user
+ * @property int $user_id
  */
 class Person extends Model
 {
@@ -28,6 +29,7 @@ class Person extends Model
         'name',
         'bio',
         'dob',
+        'user_id',
     ];
 
     protected $casts = [
@@ -37,7 +39,7 @@ class Person extends Model
     ];
 
     protected $appends = [
-        'age'
+        'age',
     ];
 
     protected $with = [
