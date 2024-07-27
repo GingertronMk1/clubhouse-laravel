@@ -37,8 +37,8 @@ jobs:
             - name: Install
               run: |
                 cp .env.example .env
-                php artisan key:generate
                 composer install
+                php artisan key:generate
                 npm install
                 npm run build
                 touch database/database.sqlite
