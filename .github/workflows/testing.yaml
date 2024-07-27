@@ -46,8 +46,8 @@ jobs:
             - name: PHP Style
               run: composer check
               if: always()
-            - name: Test
-              run: php artisan test --parallel --coverage
+            - name: Test, and fail on <85% code coverage
+              run: php artisan test --parallel --coverage --min=85
               if: always()
             - name: Prettier
               run: npm run eslint
