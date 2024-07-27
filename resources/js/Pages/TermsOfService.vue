@@ -1,9 +1,13 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
+/* eslint vue/no-v-html: 0 */
+import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
+import { Head } from "@inertiajs/vue3";
 
 defineProps({
-    terms: String,
+    terms: {
+        default: "Please agree to these",
+        type: String,
+    },
 });
 </script>
 
@@ -17,7 +21,10 @@ defineProps({
                     <AuthenticationCardLogo />
                 </div>
 
-                <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose" v-html="terms" />
+                <div
+                    class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose"
+                    v-html="terms"
+                />
             </div>
         </div>
     </div>

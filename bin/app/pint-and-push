@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+commitmessage=${@:-"Code style"}
+
+./bin/app/composer pint \
+    && git add . \
+    && git commit -m "$commitmessage" \
+    && git push
