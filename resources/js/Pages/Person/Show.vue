@@ -5,10 +5,8 @@ defineProps({
     person: {
         required: true,
         type: Object,
-    }
+    },
 });
-
-const submit = () => form.put(route("person.update", {person: form.id}));
 </script>
 
 <template>

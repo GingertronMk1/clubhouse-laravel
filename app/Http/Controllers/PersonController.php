@@ -6,7 +6,7 @@ use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,7 +15,7 @@ class PersonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
+    public function index(): Response|Responsable
     {
         return $this->inertia(
             component: 'Person/Index',
@@ -26,7 +26,7 @@ class PersonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): \Inertia\Response
+    public function create(): Response|Responsable
     {
         return $this->inertia(
             component: 'Person/Create',
@@ -37,7 +37,7 @@ class PersonController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePersonRequest $request): Response
+    public function store(StorePersonRequest $request): Response|Responsable
     {
         Person::create($request->validated());
         return to_route('person.index');
@@ -46,7 +46,7 @@ class PersonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Person $person): \Inertia\Response
+    public function show(Person $person): Response|Responsable
     {
         return $this->inertia(
             'Person/Show',
@@ -57,7 +57,7 @@ class PersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Person $person): \Inertia\Response
+    public function edit(Person $person): Response|Responsable
     {
         return $this->inertia(
             component: 'Person/Edit',
@@ -71,7 +71,7 @@ class PersonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePersonRequest $request, Person $person): RedirectResponse|\Inertia\Response
+    public function update(UpdatePersonRequest $request, Person $person): Response|Responsable
     {
         if ($person->update($request->validated())) {
             return to_route('person.index');
@@ -89,7 +89,7 @@ class PersonController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Person $person): Response
+    public function destroy(Request $request, Person $person): Response|Responsable
     {
         if (! $person->delete()) {
             $request->session()->flash('error', 'There was an error deleting that person');

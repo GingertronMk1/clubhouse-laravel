@@ -3,19 +3,19 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
+    person: {
+        required: true,
+        type: Object,
+    },
     users: {
         default: () => [],
         type: Array,
     },
-    person: {
-        required: true,
-        type: Object,
-    }
 });
 
 const form = useForm(props.person);
 
-const submit = () => form.put(route("person.update", {person: form.id}));
+const submit = () => form.put(route("person.update", { person: form.id }));
 </script>
 
 <template>
