@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-./bin/app/artisan migrate:fresh --seed "$@"
+./bin/app/artisan migrate:fresh --seed "$@" \
+    && ./bin/app/artisan app:make-admin-user

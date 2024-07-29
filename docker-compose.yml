@@ -50,6 +50,7 @@ services:
       - .env
     environment:
       ADMINER_DESIGN: 'flat'
+      DB_DATABASE: 'database.sqlite'
     volumes:
       - './_docker/plugins:/var/www/html/plugins-enabled:delegated'
       - './database/database.sqlite:/var/www/html/database.sqlite:rw'

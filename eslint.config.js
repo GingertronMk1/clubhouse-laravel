@@ -11,8 +11,9 @@ export default [
             '**/*.{js,vue}',
         ],
         ignores: [
-            'vendor',
-            'node_modules'
+            './vendor/',
+            './node_modules/',
+            './bootstrap/',
         ],
         languageOptions: {
             globals: {

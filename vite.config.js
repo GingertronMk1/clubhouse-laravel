@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import eslint from 'vite-plugin-eslint';
 
 export default defineConfig({
     server: {
@@ -21,5 +22,9 @@ export default defineConfig({
                 },
             },
         }),
+        eslint({
+            fix: true,
+            include: ['resources/**/*.{vue,js,ts,jsx,tsx}'],
+        })
     ],
 });

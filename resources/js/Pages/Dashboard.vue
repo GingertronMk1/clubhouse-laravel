@@ -1,5 +1,44 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import { Link } from "@inertiajs/vue3";
+const props = defineProps({
+    matchCount: {
+        default: 0,
+        type: Number,
+    },
+    peopleCount: {
+        default: 0,
+        type: Number,
+    },
+    sportCount: {
+        default: 0,
+        type: Number,
+    },
+    teamCount: {
+        default: 0,
+        type: Number,
+    },
+});
+
+const counts = [
+    {
+        count: props.peopleCount,
+        href: route("person.index"),
+        text: "People",
+    },
+    {
+        count: props.sportCount,
+        text: "Sports",
+    },
+    {
+        count: props.matchCount,
+        text: "Matches",
+    },
+    {
+        count: props.teamCount,
+        text: "Teams",
+    },
+];
 </script>
 
 <template>
@@ -10,12 +49,17 @@ import AppLayout from "@/Layouts/AppLayout.vue";
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    awooga
-                </div>
-            </div>
+        <div class="my-3 grid text-center" style="--bs-gap: 1rem">
+            <Link
+                v-for="count in counts"
+                :key="JSON.stringify(count)"
+                class="card g-col-6 p-4"
+                style="min-height: 3rem"
+                :href="count.href ?? '#'"
+            >
+                <h3 v-text="count.count" />
+                <span v-text="count.text" />
+            </Link>
         </div>
     </AppLayout>
 </template>

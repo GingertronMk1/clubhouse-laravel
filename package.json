@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build && vite build --ssr",
-        "eslint": "eslint resources/js/**/*",
+        "eslint": "eslint resources/js/**/*.{vue,js,ts,jsx,tsz}",
         "eslint:fix": "npm run eslint -- --fix"
     },
     "devDependencies": {
@@ -26,6 +26,7 @@
         "sass": "^1.77.8",
         "tailwindcss": "^3.4.0",
         "vite": "^5.0",
+        "vite-plugin-eslint": "^1.8.1",
         "vue": "^3.3.13"
     },
     "dependencies": {
