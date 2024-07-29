@@ -2,6 +2,8 @@
 
 echo "touching db files" \
 && touch "$(pwd)/database/database.sqlite" "$(pwd)/database/testing.sqlite" \
+&& echo "Copying .env" \
+&& cp .env.example .env \
 && echo "Going up and building" \
 && docker compose up -d --build --remove-orphans \
 && echo "Composer installing" \
@@ -12,5 +14,9 @@ echo "touching db files" \
 && ./bin/node/npm install \
 && echo "NPM building" \
 && ./bin/node/npm run build \
+&& echo "Generating app key" \
+&& ./bin/app/artisan key:generate \
+&& echo "Generating admin user" \
+&& ./bin/app/artisan app:make-admin-user \
 && echo "Stopping docker" \
 && docker compose stop
