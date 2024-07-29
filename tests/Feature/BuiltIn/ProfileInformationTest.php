@@ -4,6 +4,7 @@ namespace Feature\BuiltIn;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class ProfileInformationTest extends TestCase
@@ -17,6 +18,7 @@ class ProfileInformationTest extends TestCase
         $this->put('/user/profile-information', [
             'name' => 'Test Name',
             'email' => 'test@example.com',
+            'photo' => UploadedFile::fake()->image('test.png')
         ]);
 
         $this->assertEquals('Test Name', $user->fresh()->name);

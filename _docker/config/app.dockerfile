@@ -9,10 +9,16 @@ RUN apk add --no-cache \
     icu-dev \
     postgresql-dev \
     $PHPIZE_DEPS \
-    linux-headers
+    linux-headers \
+    libpng-dev \
+    zlib
 
 RUN pecl install -f xdebug pcov && \
     docker-php-ext-enable xdebug
 
 RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl opcache pdo_pgsql
+RUN docker-php-ext-install \
+    intl \
+    opcache \
+    pdo_pgsql \
+    gd
