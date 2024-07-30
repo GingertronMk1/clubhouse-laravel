@@ -69,7 +69,6 @@ const proxyValue = computed({
             v-if="type === 'textarea'"
             :id="inputId"
             v-model="proxyValue"
-            :value="proxyValue"
             class="form-control"
             :cols="cols"
             :rows="rows"
@@ -78,7 +77,6 @@ const proxyValue = computed({
             v-else-if="type === 'select'"
             :id="inputId"
             v-model="proxyValue"
-            :value="proxyValue"
             class="form-select"
         >
             <option v-if="nullable" :value="null" v-text="`---`" />
@@ -93,7 +91,6 @@ const proxyValue = computed({
             v-else
             :id="inputId"
             v-model="proxyValue"
-            :value="proxyValue"
             :type="type"
             class="form-control"
         />
