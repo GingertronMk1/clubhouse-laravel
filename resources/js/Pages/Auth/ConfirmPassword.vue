@@ -2,10 +2,7 @@
 import { Head, useForm } from "@inertiajs/vue3";
 import AuthenticationCard from "@/Components/BuiltIn/AuthenticationCard.vue";
 import AuthenticationCardLogo from "@/Components/BuiltIn/AuthenticationCardLogo.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
+import Input from "@/Components/Input.vue";
 import { ref } from "vue";
 
 const form = useForm({
@@ -37,29 +34,22 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    ref="passwordInput"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="current-password"
-                    autofocus
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
+            <Input
+                v-model="form.password"
+                type="password"
+                label="Password"
+                required
+                autocomplete="current-password"
+                autofocus
+            />
             <div class="flex justify-end mt-4">
-                <PrimaryButton
-                    class="ms-4"
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Confirm
-                </PrimaryButton>
+                </button>
             </div>
         </form>
     </AuthenticationCard>

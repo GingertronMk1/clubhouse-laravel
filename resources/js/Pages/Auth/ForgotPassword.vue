@@ -2,10 +2,6 @@
 import { Head, useForm } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Input from "@/Components/Input.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
 
 defineProps({
     status: {
@@ -39,26 +35,16 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <Input v-model="form.email" label="Email" type="email" />
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <PrimaryButton
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Email Password Reset Link
-                </PrimaryButton>
+                </button>
             </div>
         </form>
     </AppLayout>

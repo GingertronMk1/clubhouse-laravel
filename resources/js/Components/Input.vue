@@ -79,6 +79,7 @@ const proxyValue = computed({
 <template>
     <div class="mb-3" :class="{ 'form-check': type === 'checkbox' }">
         <label
+            v-if="label.length || hasSlot('default')"
             :for="inputId"
             :class="{
                 'form-label': type !== 'checkbox',
