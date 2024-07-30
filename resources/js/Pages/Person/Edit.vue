@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import Input from "@/Components/Input.vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -23,25 +24,19 @@ const submit = () => form.put(route("person.update", { person: form.id }));
         <template #header>
             <h2>Create new Person</h2>
         </template>
-        <form method="POST" class="card" @submit.prevent="submit">
-            <input id="name" v-model="form.name" type="text" name="name" />
-            <textarea
-                id="bio"
-                v-model="form.bio"
-                name="bio"
-                cols="30"
-                rows="10"
-            />
-            <input id="dob" v-model="form.dob" type="date" name="dob" />
-            <select id="user_id" v-model="form.user_id" name="user_id">
-                <option
-                    v-for="user in users"
-                    :key="user.id"
-                    :value="user.id"
-                    v-text="user.name"
+        <form method="POST" class="card mt-3" @submit.prevent="submit">
+            <div class="card-body">
+                <Input v-model="form.name" type="text" label="Name" />
+                <Input v-model="form.bio" type="textarea" label="Bio" />
+                <Input v-model="form.dob" type="date" label="Date of Birth" />
+                <Input
+                    v-model="form.user_id"
+                    type="select"
+                    :options="users"
+                    label="User"
                 />
-            </select>
-            <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </AppLayout>
 </template>

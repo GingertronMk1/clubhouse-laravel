@@ -1,10 +1,10 @@
 <script setup>
-import ActionSection from "@/Components/ActionSection.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import DialogModal from "@/Components/DialogModal.vue";
-import InputError from "@/Components/InputError.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
+import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
+import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
+import InputError from "@/Components/BuiltIn/InputError.vue";
+import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
+import TextInput from "@/Components/BuiltIn/TextInput.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 

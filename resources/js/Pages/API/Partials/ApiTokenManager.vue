@@ -1,17 +1,17 @@
 <script setup>
-import ActionMessage from "@/Components/ActionMessage.vue";
-import ActionSection from "@/Components/ActionSection.vue";
-import Checkbox from "@/Components/Checkbox.vue";
-import ConfirmationModal from "@/Components/ConfirmationModal.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import DialogModal from "@/Components/DialogModal.vue";
-import FormSection from "@/Components/FormSection.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import SectionBorder from "@/Components/SectionBorder.vue";
-import TextInput from "@/Components/TextInput.vue";
+import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
+import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
+import Checkbox from "@/Components/BuiltIn/Checkbox.vue";
+import ConfirmationModal from "@/Components/BuiltIn/ConfirmationModal.vue";
+import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
+import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
+import FormSection from "@/Components/BuiltIn/FormSection.vue";
+import InputError from "@/Components/BuiltIn/InputError.vue";
+import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
+import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
+import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
+import SectionBorder from "@/Components/BuiltIn/SectionBorder.vue";
+import TextInput from "@/Components/BuiltIn/TextInput.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 

@@ -1,6 +1,6 @@
 <script setup>
 /* eslint vue/no-v-html: 0 */
-import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
+import AuthenticationCardLogo from "@/Components/BuiltIn/AuthenticationCardLogo.vue";
 import { Head } from "@inertiajs/vue3";
 
 defineProps({
