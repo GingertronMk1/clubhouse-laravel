@@ -56,7 +56,7 @@ const logout = () => router.post(route("logout"));
                 {{ $page.props.auth.user.name }}
                 <div
                     class="card position-absolute end-0 mt-3 text-nowrap"
-                    :class="{ 'd-none': showProfile }"
+                    :class="{ 'd-none': !showProfile }"
                 >
                     <ul class="list-group list-group-flush">
                         <Link
