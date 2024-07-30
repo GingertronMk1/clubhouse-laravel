@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build && vite build --ssr",
-        "eslint": "eslint resources/js/**/*.{vue,js,ts,jsx,tsz}",
+        "eslint": "eslint resources/js/**/*.{vue,js,ts,jsx,tsx}",
         "eslint:fix": "npm run eslint -- --fix"
     },
     "devDependencies": {

@@ -1,7 +1,6 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
-import { router } from "@inertiajs/vue3";
 
 const navLinks = [
     {

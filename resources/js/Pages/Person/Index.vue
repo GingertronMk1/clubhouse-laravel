@@ -42,7 +42,7 @@ defineProps({
                             :href="route('person.edit', { person: person.id })"
                         >
                             Edit
-                        </Link >
+                        </Link>
                     </td>
                 </tr>
             </table>

@@ -22,7 +22,7 @@ const submit = () => form.put(route("person.update", { person: form.id }));
 <template>
     <AppLayout title="People">
         <template #header>
-            <h2>Create new Person</h2>
+            <h2 v-text="`Update ${person.name}`" />
         </template>
         <form method="POST" class="card mt-3" @submit.prevent="submit">
             <div class="card-body">
