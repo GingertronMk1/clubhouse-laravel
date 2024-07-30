@@ -1,11 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Checkbox from "@/Components/BuiltIn/Checkbox.vue";
+import Input from "@/Components/Input.vue";
 import InputError from "@/Components/BuiltIn/InputError.vue";
-import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -40,12 +37,9 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
+                <Input
                     v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
+                    label="Email"
                     required
                     autofocus
                     autocomplete="username"
@@ -54,12 +48,10 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
+                <Input
                     v-model="form.password"
+                    label="Password"
                     type="password"
-                    class="mt-1 block w-full"
                     required
                     autocomplete="current-password"
                 />
@@ -67,10 +59,11 @@ const submit = () => {
             </div>
 
             <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
-                </label>
+                <Input
+                    v-model="form.remember"
+                    type="checkbox"
+                    label="Remember me"
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -82,13 +75,13 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <PrimaryButton
-                    class="ms-4"
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
-                </PrimaryButton>
+                    Log In
+                </button>
             </div>
         </form>
     </AppLayout>

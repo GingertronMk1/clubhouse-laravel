@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
-import AuthenticationCard from "@/Components/BuiltIn/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/BuiltIn/AuthenticationCardLogo.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import Checkbox from "@/Components/BuiltIn/Checkbox.vue";
+import Input from "@/Components/Input.vue";
 import InputError from "@/Components/BuiltIn/InputError.vue";
 import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
 import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
@@ -20,16 +20,14 @@ const submit = () => {
         onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
+
+const openInNewTab = (url) => window.open(url, "_blank").focus();
 </script>
 
 <template>
     <Head title="Register" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
+    <AppLayout>
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
@@ -96,6 +94,29 @@ const submit = () => {
             >
                 <InputLabel for="terms">
                     <div class="flex items-center">
+                        <Input v-model="form.terms" type="checkbox">
+                            I agree to the
+                            <a
+                                :href="route('terms.show')"
+                                target="_blank"
+                                @click.prevent="
+                                    openInNewTab(route('terms.show'))
+                                "
+                            >
+                                Terms of Service
+                            </a>
+                            and
+                            <a
+                                :href="route('policy.show')"
+                                target="_blank"
+                                @click.prevent="
+                                    openInNewTab(route('policy.show'))
+                                "
+                            >
+                                Privacy Policy
+                            </a>
+                            .
+                        </Input>
                         <Checkbox
                             id="terms"
                             v-model:checked="form.terms"
@@ -141,5 +162,5 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
-    </AuthenticationCard>
+    </AppLayout>
 </template>
