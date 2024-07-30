@@ -35,7 +35,7 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <form class="my-3" @submit.prevent="submit">
             <div>
                 <Input
                     v-model="form.email"

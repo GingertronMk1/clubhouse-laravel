@@ -7,6 +7,7 @@ import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
 import TextInput from "@/Components/BuiltIn/TextInput.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
+import Input from "@/Components/Input.vue";
 
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
@@ -45,6 +46,7 @@ const updatePassword = () => {
 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
+                <Input v-model="form.current_password" label="Current Password" type="password" />
                 <InputLabel for="current_password" value="Current Password" />
                 <TextInput
                     id="current_password"
