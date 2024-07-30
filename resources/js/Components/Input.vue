@@ -71,15 +71,7 @@ const proxyValue = computed({
         }
     },
     set(val) {
-        console.log(val);
-        switch (props.type) {
-            case "checkbox":
-                emit("update:modelValue", val);
-                break;
-            default:
-                emit("update:modelValue", val);
-                break;
-        }
+        emit("update:modelValue", val);
     },
 });
 </script>

@@ -1,12 +1,7 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import Checkbox from "@/Components/BuiltIn/Checkbox.vue";
 import Input from "@/Components/Input.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
 
 const form = useForm({
     email: "",
@@ -28,139 +23,68 @@ const openInNewTab = (url) => window.open(url, "_blank").focus();
     <Head title="Register" />
 
     <AppLayout>
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
+        <form class="my-3" @submit.prevent="submit">
+            <Input v-model="form.name" label="Name" required autofocus />
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+            <Input
+                v-model="form.email"
+                type="email"
+                required
+                autocomplete="username"
+                label="Email"
+            />
+            <Input
+                v-model="form.password"
+                label="Password"
+                type="password"
+                required
+                autocomplete="new-password"
+            />
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError
-                    class="mt-2"
-                    :message="form.errors.password_confirmation"
-                />
-            </div>
+            <Input
+                v-model="form.password_confirmation"
+                label="Confirm Password"
+                type="password"
+                required
+                autocomplete="new-password"
+            />
 
             <div
                 v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature"
                 class="mt-4"
             >
-                <InputLabel for="terms">
-                    <div class="flex items-center">
-                        <Input v-model="form.terms" type="checkbox">
-                            I agree to the
-                            <a
-                                :href="route('terms.show')"
-                                target="_blank"
-                                @click.prevent="
-                                    openInNewTab(route('terms.show'))
-                                "
-                            >
-                                Terms of Service
-                            </a>
-                            and
-                            <a
-                                :href="route('policy.show')"
-                                target="_blank"
-                                @click.prevent="
-                                    openInNewTab(route('policy.show'))
-                                "
-                            >
-                                Privacy Policy
-                            </a>
-                            .
-                        </Input>
-                        <Checkbox
-                            id="terms"
-                            v-model:checked="form.terms"
-                            name="terms"
-                            required
-                        />
-
-                        <div class="ms-2">
-                            I agree to the
-                            <a
-                                target="_blank"
-                                :href="route('terms.show')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >Terms of Service</a
-                            >
-                            and
-                            <a
-                                target="_blank"
-                                :href="route('policy.show')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >Privacy Policy</a
-                            >
-                        </div>
-                    </div>
-                    <InputError class="mt-2" :message="form.errors.terms" />
-                </InputLabel>
+                <Input v-model="form.terms" type="checkbox">
+                    I agree to the
+                    <a
+                        :href="route('terms.show')"
+                        target="_blank"
+                        @click.prevent="openInNewTab(route('terms.show'))"
+                    >
+                        Terms of Service
+                    </a>
+                    and
+                    <a
+                        :href="route('policy.show')"
+                        target="_blank"
+                        @click.prevent="openInNewTab(route('policy.show'))"
+                    >
+                        Privacy Policy
+                    </a>
+                    .
+                </Input>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    :href="route('login')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    Already registered?
-                </Link>
+            <Link :href="route('login')" class="btn btn-outline-info me-3">
+                Already registered?
+            </Link>
 
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Register
-                </PrimaryButton>
-            </div>
+            <button
+                class="btn btn-primary"
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+            >
+                Register
+            </button>
         </form>
     </AppLayout>
 </template>
