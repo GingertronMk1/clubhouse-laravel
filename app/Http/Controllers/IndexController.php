@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function __invoke(Request $request): Response
     {
         return $this->inertia('Dashboard', [
-            'peopleCount' => Person::count()
+            'peopleCount' => Person::count(),
         ]);
     }
 }

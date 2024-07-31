@@ -8,8 +8,11 @@ use Illuminate\Console\Command;
 class MakeAdminUser extends Command
 {
     private const ADMIN_USER_NAME = 'Admin User';
+
     private const ADMIN_USER_EMAIL = 'admin@clubhouse.test';
+
     private const ADMIN_USER_PASSWORD = '12345678';
+
     /**
      * The name and signature of the console command.
      *
@@ -36,7 +39,7 @@ class MakeAdminUser extends Command
             'email' => self::ADMIN_USER_EMAIL,
             'password' => self::ADMIN_USER_PASSWORD,
             'password_confirmation' => self::ADMIN_USER_PASSWORD,
-            'terms' => true,
+            'terms' => 'true',
         ]);
 
         return self::SUCCESS;
