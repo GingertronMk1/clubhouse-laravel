@@ -1,9 +1,9 @@
 <script setup>
 import Input from "@/Components/Input.vue";
-import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    form: {
+    model: {
         required: true,
         type: Object,
     },
@@ -13,7 +13,7 @@ const props = defineProps({
     },
 });
 
-const proxyForm = ref(props.form);
+const proxyForm = useForm(props.model);
 </script>
 
 <template>

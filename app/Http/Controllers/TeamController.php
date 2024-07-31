@@ -10,12 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeamController extends Controller
 {
+    private $delete;
+
     /**
      * Display a listing of the resource.
      */
     public function index(): Response|Responsable
     {
-        return $this->inertia('Forms/Index', ['teams' => Team::all()]);
+        return $this->inertia('Team/Index', ['teams' => Team::all()]);
     }
 
     /**
@@ -23,7 +25,7 @@ class TeamController extends Controller
      */
     public function create(): Response|Responsable
     {
-        return $this->inertia('Forms/Create', []);
+        return $this->inertia('Team/Create', []);
     }
 
     /**
@@ -41,7 +43,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): Response|Responsable
     {
-        return $this->inertia('Forms/Show', []);
+        return $this->inertia('Team/Show', []);
     }
 
     /**
@@ -49,7 +51,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team): Response|Responsable
     {
-        return $this->inertia('Forms/Edit', ['team' => $team]);
+        return $this->inertia('Team/Edit', ['team' => $team]);
     }
 
     /**
@@ -67,7 +69,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team): Response|Responsable
     {
-        $team->delete();
+        $this->delete = $team->delete();
         return to_route('team.index');
     }
 }

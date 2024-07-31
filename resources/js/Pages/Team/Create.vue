@@ -1,19 +1,21 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TeamForm from "@/Components/Forms/TeamForm.vue";
-import { useForm } from "@inertiajs/vue3";
 
-const form = useForm({
+const team = {
     address: "",
     description: "",
     name: "",
-});
+};
 
 const submitForm = (argForm) => argForm.post(route("team.store"));
 </script>
 
 <template>
     <AppLayout>
-        <TeamForm :submit-fn="submitForm" :form="form" />
+        <template #header>
+            <h2>Create Team</h2>
+        </template>
+        <TeamForm :submit-fn="submitForm" :model="team" />
     </AppLayout>
 </template>
