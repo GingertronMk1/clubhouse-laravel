@@ -7,6 +7,9 @@ use Illuminate\Console\Command;
 
 class MakeAdminUser extends Command
 {
+    private const ADMIN_USER_NAME = 'Admin User';
+    private const ADMIN_USER_EMAIL = 'admin@clubhouse.test';
+    private const ADMIN_USER_PASSWORD = '12345678';
     /**
      * The name and signature of the console command.
      *
@@ -29,11 +32,11 @@ class MakeAdminUser extends Command
         $userCreator = new CreateNewUser;
 
         $userCreator->create([
-            'name' => 'Admin User',
-            'email' => 'admin@clubhouse.test',
-            'password' => '12345678',
-            'password_confirmation' => '12345678',
-            'terms' => 'accepted',
+            'name' => self::ADMIN_USER_NAME,
+            'email' => self::ADMIN_USER_EMAIL,
+            'password' => self::ADMIN_USER_PASSWORD,
+            'password_confirmation' => self::ADMIN_USER_PASSWORD,
+            'terms' => true,
         ]);
 
         return self::SUCCESS;
