@@ -1,7 +1,6 @@
 <script setup>
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
-import Checkbox from "@/Components/BuiltIn/Checkbox.vue";
 import ConfirmationModal from "@/Components/BuiltIn/ConfirmationModal.vue";
 import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
@@ -104,15 +103,17 @@ const deleteApiToken = () => {
                             :key="permission"
                         >
                             <label class="flex items-center">
-                                <Checkbox
+                                <Input
                                     v-model:checked="
                                         createApiTokenForm.permissions
                                     "
                                     :value="permission"
+                                    type="checkbox"
                                 />
-                                <span class="ms-2 text-sm text-gray-600">{{
-                                    permission
-                                }}</span>
+                                <span
+                                    class="ms-2 text-sm text-gray-600"
+                                    v-text="permission"
+                                />
                             </label>
                         </div>
                     </div>
@@ -232,9 +233,10 @@ const deleteApiToken = () => {
                         :key="permission"
                     >
                         <label class="flex items-center">
-                            <Checkbox
+                            <Input
                                 v-model:checked="updateApiTokenForm.permissions"
                                 :value="permission"
+                                type="checkbox"
                             />
                             <span
                                 class="ms-2 text-sm text-gray-600"

@@ -11,6 +11,10 @@ const hasSlot = (name) => {
 };
 
 const props = defineProps({
+    checked: {
+        default: false,
+        type: [Array, Boolean],
+    },
     cols: {
         default: 30,
         type: Number,
@@ -21,7 +25,7 @@ const props = defineProps({
     },
     modelValue: {
         default: "",
-        type: [String, Boolean],
+        type: [String, Boolean, Array],
     },
     nullable: {
         default: true,
@@ -59,6 +63,8 @@ const emit = defineEmits(["update:modelValue", "update:checked"]);
 const proxyValue = computed({
     get() {
         switch (props.type) {
+            case "checkbox":
+                return props.checked;
             case "date":
             case "datetime-local": {
                 const parsedDate = Date.parse(props.modelValue);
@@ -71,7 +77,11 @@ const proxyValue = computed({
         }
     },
     set(val) {
-        emit("update:modelValue", val);
+        if (props.type === "checkbox") {
+            emit("update:checked", val);
+        } else {
+            emit("update:modelValue", val);
+        }
     },
 });
 </script>
