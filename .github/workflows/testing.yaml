@@ -28,6 +28,8 @@ jobs:
                 key: ${{ hashFiles('package-lock.json') }}
             - name: Install
               run: ./bin/util/install
+            - name: Start it again
+              run: ./bin/start
             - name: PHP Style
               run: ./bin/app/composer check
               if: always()
