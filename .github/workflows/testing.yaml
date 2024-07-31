@@ -35,7 +35,10 @@ jobs:
             - name: Start it again
               run: ./bin/start
             - name: PHP Style
-              run: ./bin/app/composer check
+              run: ./bin/app/composer pint -- --test
+              if: always()
+            - name: Static Analysis
+              run: ./bin/app/composer stan
               if: always()
             - name: Test, and fail on <85% code coverage
               run: ./bin/app/test

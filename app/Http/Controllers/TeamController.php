@@ -68,6 +68,7 @@ class TeamController extends Controller
     public function destroy(Team $team): Response|Responsable
     {
         $team->delete();
+
         return to_route('team.index');
     }
 }
