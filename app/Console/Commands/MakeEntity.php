@@ -64,9 +64,13 @@ class MakeEntity extends Command
                 "{$pagesPath}/{$fileName}.vue",
                 <<<VUE
 <script setup>
+import AppLayout from "@/Layouts/AppLayout.vue";
 </script>
 
 <template>
+    <AppLayout>
+
+    </AppLayout>
 </template>
 VUE
 );
