@@ -1,11 +1,8 @@
 <script setup>
-import ActionMessage from "@/Components/ActionMessage.vue";
-import ActionSection from "@/Components/ActionSection.vue";
-import DialogModal from "@/Components/DialogModal.vue";
-import InputError from "@/Components/InputError.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
+import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
+import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
+import Input from "@/Components/Input.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -69,37 +66,14 @@ const logoutOtherBrowserSessions = () => {
                     class="flex items-center"
                 >
                     <div>
-                        <svg
-                            v-if="session.agent.is_desktop"
-                            class="w-8 h-8 text-gray-500"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"
-                            />
-                        </svg>
-
-                        <svg
-                            v-else
-                            class="w-8 h-8 text-gray-500"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
-                            />
-                        </svg>
+                        <i
+                            class="fa-solid fa-desktop"
+                            :class="{
+                                'fa-desktop': session.agent.is_desktop,
+                                'fa-mobile-screen-button':
+                                    !session.agent.is_desktop,
+                            }"
+                        />
                     </div>
 
                     <div class="ms-3">
@@ -136,9 +110,9 @@ const logoutOtherBrowserSessions = () => {
             </div>
 
             <div class="flex items-center mt-5">
-                <PrimaryButton @click="confirmLogout">
+                <button class="btn btn-danger" @click="confirmLogout">
                     Log Out Other Browser Sessions
-                </PrimaryButton>
+                </button>
 
                 <ActionMessage :on="form.recentlySuccessful" class="ms-3">
                     Done.
@@ -154,37 +128,28 @@ const logoutOtherBrowserSessions = () => {
                     out of your other browser sessions across all of your
                     devices.
 
-                    <div class="mt-4">
-                        <TextInput
-                            ref="passwordInput"
-                            v-model="form.password"
-                            type="password"
-                            class="mt-1 block w-3/4"
-                            placeholder="Password"
-                            autocomplete="current-password"
-                            @keyup.enter="logoutOtherBrowserSessions"
-                        />
-
-                        <InputError
-                            :message="form.errors.password"
-                            class="mt-2"
-                        />
-                    </div>
+                    <Input
+                        v-model="form.password"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        @keyup.enter="logoutOtherBrowserSessions"
+                    />
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <button class="btn btn-secondary" @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </button>
 
-                    <PrimaryButton
-                        class="ms-3"
+                    <button
+                        class="btn btn-primary"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
                     >
                         Log Out Other Browser Sessions
-                    </PrimaryButton>
+                    </button>
                 </template>
             </DialogModal>
         </template>

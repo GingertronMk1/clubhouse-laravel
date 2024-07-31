@@ -2,14 +2,9 @@
 /* eslint vue/no-v-html: 0 */
 import { computed, ref, watch } from "vue";
 import { router, useForm, usePage } from "@inertiajs/vue3";
-import ActionSection from "@/Components/ActionSection.vue";
-import ConfirmsPassword from "@/Components/ConfirmsPassword.vue";
-import DangerButton from "@/Components/DangerButton.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
+import ConfirmsPassword from "@/Components/BuiltIn/ConfirmsPassword.vue";
+import Input from "@/Components/Input.vue";
 
 const props = defineProps({
     requiresConfirmation: Boolean,
@@ -170,26 +165,14 @@ const disableTwoFactorAuthentication = () => {
                         </p>
                     </div>
 
-                    <div v-if="confirming" class="mt-4">
-                        <InputLabel for="code" value="Code" />
-
-                        <TextInput
-                            id="code"
-                            v-model="confirmationForm.code"
-                            type="text"
-                            name="code"
-                            class="block mt-1 w-1/2"
-                            inputmode="numeric"
-                            autofocus
-                            autocomplete="one-time-code"
-                            @keyup.enter="confirmTwoFactorAuthentication"
-                        />
-
-                        <InputError
-                            :message="confirmationForm.errors.code"
-                            class="mt-2"
-                        />
-                    </div>
+                    <Input
+                        v-if="confirming"
+                        v-model="confirmationForm.code"
+                        inputmode="numeric"
+                        autofocus
+                        autocomplete="one-time-code"
+                        @keyup.enter="confirmTwoFactorAuthentication"
+                    />
                 </div>
 
                 <div v-if="recoveryCodes.length > 0 && !confirming">
@@ -217,13 +200,13 @@ const disableTwoFactorAuthentication = () => {
                     <ConfirmsPassword
                         @confirmed="enableTwoFactorAuthentication"
                     >
-                        <PrimaryButton
-                            type="button"
+                        <button
+                            class="btn btn-primary"
                             :class="{ 'opacity-25': enabling }"
                             :disabled="enabling"
                         >
                             Enable
-                        </PrimaryButton>
+                        </button>
                     </ConfirmsPassword>
                 </div>
 
@@ -231,57 +214,59 @@ const disableTwoFactorAuthentication = () => {
                     <ConfirmsPassword
                         @confirmed="confirmTwoFactorAuthentication"
                     >
-                        <PrimaryButton
+                        <button
                             v-if="confirming"
                             type="button"
-                            class="me-3"
+                            class="btn btn-primary"
                             :class="{ 'opacity-25': enabling }"
                             :disabled="enabling"
                         >
                             Confirm
-                        </PrimaryButton>
+                        </button>
                     </ConfirmsPassword>
 
                     <ConfirmsPassword @confirmed="regenerateRecoveryCodes">
-                        <SecondaryButton
+                        <button
                             v-if="recoveryCodes.length > 0 && !confirming"
-                            class="me-3"
+                            class="btn btn-secondary"
                         >
                             Regenerate Recovery Codes
-                        </SecondaryButton>
+                        </button>
                     </ConfirmsPassword>
 
                     <ConfirmsPassword @confirmed="showRecoveryCodes">
-                        <SecondaryButton
+                        <button
                             v-if="recoveryCodes.length === 0 && !confirming"
-                            class="me-3"
+                            class="btn btn-secondary"
                         >
                             Show Recovery Codes
-                        </SecondaryButton>
+                        </button>
                     </ConfirmsPassword>
 
                     <ConfirmsPassword
                         @confirmed="disableTwoFactorAuthentication"
                     >
-                        <SecondaryButton
+                        <button
                             v-if="confirming"
+                            class="btn btn-secondary"
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
                             Cancel
-                        </SecondaryButton>
+                        </button>
                     </ConfirmsPassword>
 
                     <ConfirmsPassword
                         @confirmed="disableTwoFactorAuthentication"
                     >
-                        <DangerButton
+                        <button
                             v-if="!confirming"
+                            class="btn btn-danger"
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
                             Disable
-                        </DangerButton>
+                        </button>
                     </ConfirmsPassword>
                 </div>
             </div>

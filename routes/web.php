@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::middleware([
     'auth:sanctum',
@@ -13,4 +11,8 @@ Route::middleware([
     Route::resources([
         'person' => \App\Http\Controllers\PersonController::class,
     ]);
+
+    if (\Illuminate\Support\Facades\App::environment('local')) {
+        Route::get('/dev-services', \App\Http\Controllers\DevServicesController::class)->name('dev-services');
+    }
 });

@@ -23,17 +23,18 @@ class PersonControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('person.index'));
 
         $response->assertStatus(200);
-        $response->assertInertia(function (AssertableInertia $page) use ($people) {
+        $response->assertInertia(fn (AssertableInertia $page) =>
             $page->component('Person/Index')
-                ->has('people', $people->count(), function (AssertableInertia $page) use ($people) {
-                    $firstPerson = $people->first();
+                ->has(
+                    'people',
+                    $people->count(),
+                    fn (AssertableInertia $page) =>
                     $page
-                        ->where('name', $firstPerson->name)
-                        ->where('bio', $firstPerson->bio)
-                        ->where('dob', $firstPerson->dob->jsonSerialize())
-                        ->etc();
-                });
-        });
+                        ->where('name', $people->first()->name)
+                        ->where('bio', $people->first()->bio)
+                        ->where('dob', $people->first()->dob->jsonSerialize())
+                        ->etc()
+        ));
     }
 
     public function test_create(): void

@@ -1,12 +1,10 @@
 <script setup>
 import { Link, router, useForm } from "@inertiajs/vue3";
-import ActionMessage from "@/Components/ActionMessage.vue";
-import FormSection from "@/Components/FormSection.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
+import FormSection from "@/Components/BuiltIn/FormSection.vue";
+import Input from "@/Components/Input.vue";
+import InputError from "@/Components/BuiltIn/InputError.vue";
+import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -124,52 +122,39 @@ const deletePhoto = () => {
                     />
                 </div>
 
-                <SecondaryButton
-                    class="mt-2 me-2"
+                <button
+                    class="btn btn-secondary"
                     type="button"
                     @click.prevent="selectNewPhoto"
                 >
                     Select A New Photo
-                </SecondaryButton>
+                </button>
 
-                <SecondaryButton
+                <button
                     v-if="user.profile_photo_path"
                     type="button"
-                    class="mt-2"
+                    class="btn btn-secondary"
                     @click.prevent="deletePhoto"
                 >
                     Remove Photo
-                </SecondaryButton>
+                </button>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="name"
-                />
-                <InputError :message="form.errors.name" class="mt-2" />
+                <Input v-model="form.name" required autocomplete="name" />
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
+                <Input
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
                     required
                     autocomplete="username"
                 />
-                <InputError :message="form.errors.email" class="mt-2" />
 
                 <div
                     v-if="
@@ -207,12 +192,13 @@ const deletePhoto = () => {
                 Saved.
             </ActionMessage>
 
-            <PrimaryButton
+            <button
+                class="btn btn-primary"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
                 Save
-            </PrimaryButton>
+            </button>
         </template>
     </FormSection>
 </template>

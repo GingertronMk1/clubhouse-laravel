@@ -18,7 +18,7 @@ class ProfileInformationTest extends TestCase
         $this->put('/user/profile-information', [
             'name' => 'Test Name',
             'email' => 'test@example.com',
-            'photo' => UploadedFile::fake()->image('test.png')
+            'photo' => UploadedFile::fake()->image('test.png'),
         ]);
 
         $this->assertEquals('Test Name', $user->fresh()->name);

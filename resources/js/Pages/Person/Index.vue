@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
+import { Link } from "@inertiajs/vue3";
 
 defineProps({
     people: {
@@ -27,6 +28,7 @@ defineProps({
                         <th>Bio</th>
                         <th>User Name</th>
                         <th>Age</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tr v-for="person in people" :key="person.id">
@@ -34,6 +36,14 @@ defineProps({
                     <td v-text="person.bio" />
                     <td v-text="person.user?.name" />
                     <td v-text="person.age" />
+                    <td>
+                        <Link
+                            class="btn btn-primary"
+                            :href="route('person.edit', { person: person.id })"
+                        >
+                            Edit
+                        </Link>
+                    </td>
                 </tr>
             </table>
         </div>

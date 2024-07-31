@@ -1,10 +1,8 @@
 <script setup>
 import { nextTick, reactive, ref } from "vue";
 import DialogModal from "./DialogModal.vue";
+import Input from "@/Components/Input.vue";
 import InputError from "./InputError.vue";
-import PrimaryButton from "./PrimaryButton.vue";
-import SecondaryButton from "./SecondaryButton.vue";
-import TextInput from "./TextInput.vue";
 
 const emit = defineEmits(["confirmed"]);
 
@@ -88,31 +86,29 @@ const confirmPassword = () => {
                 {{ content }}
 
                 <div class="mt-4">
-                    <TextInput
-                        ref="passwordInput"
+                    <Input
                         v-model="form.password"
                         type="password"
-                        class="mt-1 block w-3/4"
                         placeholder="Password"
                         autocomplete="current-password"
                         @keyup.enter="confirmPassword"
                     />
-
                     <InputError :message="form.error" class="mt-2" />
                 </div>
             </template>
 
             <template #footer>
-                <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
+                <button class="btn btn-secondary" @click="closeModal">
+                    Cancel
+                </button>
 
-                <PrimaryButton
-                    class="ms-3"
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="confirmPassword"
-                >
-                    {{ button }}
-                </PrimaryButton>
+                    v-text="button"
+                />
             </template>
         </DialogModal>
     </span>

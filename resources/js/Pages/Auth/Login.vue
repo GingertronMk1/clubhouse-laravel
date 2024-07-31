@@ -1,12 +1,8 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
-import AuthenticationCard from "@/Components/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
-import Checkbox from "@/Components/Checkbox.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import Input from "@/Components/Input.vue";
+import InputError from "@/Components/BuiltIn/InputError.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -34,23 +30,16 @@ const submit = () => {
 <template>
     <Head title="Log in" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
+    <AppLayout>
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <form class="my-3" @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
+                <Input
                     v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
+                    label="Email"
                     required
                     autofocus
                     autocomplete="username"
@@ -59,12 +48,10 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
+                <Input
                     v-model="form.password"
+                    label="Password"
                     type="password"
-                    class="mt-1 block w-full"
                     required
                     autocomplete="current-password"
                 />
@@ -72,10 +59,11 @@ const submit = () => {
             </div>
 
             <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
-                </label>
+                <Input
+                    v-model="form.remember"
+                    type="checkbox"
+                    label="Remember me"
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -87,14 +75,14 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
-                <PrimaryButton
-                    class="ms-4"
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
-                </PrimaryButton>
+                    Log In
+                </button>
             </div>
         </form>
-    </AuthenticationCard>
+    </AppLayout>
 </template>
