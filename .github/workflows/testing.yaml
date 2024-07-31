@@ -29,11 +29,11 @@ jobs:
             - name: Install
               run: ./bin/util/install
             - name: PHP Style
-              run: composer check
+              run: ./bin/app/composer check
               if: always()
             - name: Test, and fail on <85% code coverage
-              run: php artisan test --parallel --coverage --min=85
+              run: ./bin/app/test
               if: always()
             - name: Prettier
-              run: npm run eslint
+              run: ./bin/node/npm run eslint
               if: always()
