@@ -70,6 +70,9 @@ class Person extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsToMany<Team>
+     */
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class);

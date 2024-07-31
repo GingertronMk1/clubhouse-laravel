@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index(): Response|Responsable
     {
-        return $this->inertia('Team/Index', ['teams' => Team::all()]);
+        return $this->inertia('Forms/Index', ['teams' => Team::all()]);
     }
 
     /**
@@ -23,7 +23,7 @@ class TeamController extends Controller
      */
     public function create(): Response|Responsable
     {
-        return $this->inertia('Team/Create', []);
+        return $this->inertia('Forms/Create', []);
     }
 
     /**
@@ -31,6 +31,9 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request): Response|Responsable
     {
+        Team::create($request->validated());
+
+        return to_route('team.index');
     }
 
     /**
@@ -38,7 +41,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): Response|Responsable
     {
-        return $this->inertia('Team/Show', []);
+        return $this->inertia('Forms/Show', []);
     }
 
     /**
@@ -46,7 +49,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team): Response|Responsable
     {
-        return $this->inertia('Team/Edit', []);
+        return $this->inertia('Forms/Edit', ['team' => $team]);
     }
 
     /**
@@ -54,7 +57,9 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team): Response|Responsable
     {
-        //
+        $team->update($request->validated());
+
+        return to_route('team.index');
     }
 
     /**
@@ -62,6 +67,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team): Response|Responsable
     {
-        //
+        $team->delete();
+        return to_route('team.index');
     }
 }

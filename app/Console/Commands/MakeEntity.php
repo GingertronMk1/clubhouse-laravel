@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class MakeEntity extends Command
 {
@@ -30,9 +28,9 @@ class MakeEntity extends Command
     {
         $entityName = $this->argument('entityName');
         $this->runCommand(
-            "make:model",
+            'make:model',
             [
-                'name' => 'Team',
+                'name' => 'Forms',
                 '--migration' => true,
                 '--factory' => true,
                 '--policy' => true,
@@ -43,26 +41,26 @@ class MakeEntity extends Command
             $this->output
         );
         $this->runCommand(
-            "make:test",
+            'make:test',
             [
                 'name' => "Application/{$entityName}ControllerTest",
-                '--phpunit' => true
+                '--phpunit' => true,
             ],
             $this->output
         );
 
         $pagesPath = resource_path("/js/Pages/{$entityName}");
-        $fs = new Filesystem();
+        $fs = new Filesystem;
         $fs->ensureDirectoryExists($pagesPath);
         foreach ([
             'Index',
             'Create',
             'Edit',
-            'Show'
-                 ] as $fileName) {
+            'Show',
+        ] as $fileName) {
             $fs->put(
                 "{$pagesPath}/{$fileName}.vue",
-                <<<VUE
+                <<<'VUE'
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 </script>
@@ -73,9 +71,35 @@ import AppLayout from "@/Layouts/AppLayout.vue";
     </AppLayout>
 </template>
 VUE
-);
+            );
             $this->output->info("Created {$fileName}.vue");
         }
+
+        $fs->put(
+            resource_path("/js/Components/Forms/{$entityName}Form.vue"),
+            <<<'VUE'
+<script setup>
+import { ref } from "vue";
+
+const props = defineProps({
+    form: {
+        required: true,
+        type: Object,
+    },
+    submitFn: {
+        required: true,
+        type: Function,
+    },
+});
+
+const proxyForm = ref(props.form);
+</script>
+<template>
+    <form @submit.prevent="submitFn(proxyForm)"> </form>
+</template>
+VUE
+
+        );
 
         return Command::SUCCESS;
     }

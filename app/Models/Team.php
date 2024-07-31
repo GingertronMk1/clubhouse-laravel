@@ -12,19 +12,24 @@ class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [
         'name',
         'description',
-        'address'
+        'address',
     ];
+
     protected $casts = [];
 
     protected $with = [
-        'people'
+        'people',
     ];
 
+    /**
+     * @return BelongsToMany<Person>
+     */
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class);
