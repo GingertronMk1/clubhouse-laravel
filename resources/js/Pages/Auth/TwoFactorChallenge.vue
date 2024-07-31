@@ -1,8 +1,7 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
 import { nextTick, ref } from "vue";
-import AuthenticationCard from "@/Components/BuiltIn/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/BuiltIn/AuthenticationCardLogo.vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import Input from "@/Components/Input.vue";
 
 const recovery = ref(false);
@@ -33,11 +32,7 @@ const submit = () => {
 <template>
     <Head title="Two-factor Confirmation" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
+    <AppLayout>
         <div class="mb-4 text-sm text-gray-600">
             <template v-if="!recovery">
                 Please confirm access to your account by entering the
@@ -83,5 +78,5 @@ const submit = () => {
                 </button>
             </div>
         </form>
-    </AuthenticationCard>
+    </AppLayout>
 </template>
