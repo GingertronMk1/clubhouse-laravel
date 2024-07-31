@@ -41,7 +41,7 @@ jobs:
               run: ./bin/app/composer stan
               if: always()
             - name: Test, and fail on <85% code coverage
-              run: ./bin/app/test
+              run: ./bin/app/test --min=85
               if: always()
             - name: Prettier
               run: ./bin/node/npm run eslint
