@@ -1,17 +1,17 @@
-FROM php:8.3.0-fpm-alpine
+FROM php:8.3-fpm
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /var/www
 
-RUN apk add --no-cache \
-    bash \
-    icu-dev \
-    postgresql-dev \
+RUN apt-get update \
+    && apt-get install -y \
     $PHPIZE_DEPS \
-    linux-headers \
-    libpng-dev \
-    zlib
+    bash \
+    libfreetype-dev \
+    libjpeg62-turbo-dev \
+    libicu-dev \
+    libpng-dev
 
 RUN pecl install -f xdebug pcov && \
     docker-php-ext-enable xdebug
@@ -19,6 +19,9 @@ RUN pecl install -f xdebug pcov && \
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install \
     intl \
-    opcache \
-    pdo_pgsql \
-    gd
+    opcache
+
+# Install GD
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd
+
