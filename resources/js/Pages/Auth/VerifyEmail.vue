@@ -2,7 +2,6 @@
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AuthenticationCard from "@/Components/BuiltIn/AuthenticationCard.vue";
 import AuthenticationCardLogo from "@/Components/BuiltIn/AuthenticationCardLogo.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -44,12 +43,13 @@ const verificationLinkSent = computed(
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
-                <PrimaryButton
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Resend Verification Email
-                </PrimaryButton>
+                </button>
 
                 <div>
                     <Link

@@ -1,6 +1,5 @@
 <script setup>
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
-import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
 import Input from "@/Components/Input.vue";
 import { ref } from "vue";
@@ -46,9 +45,9 @@ const deleteUser = () => {
             </div>
 
             <div class="mt-5">
-                <DangerButton @click="confirmUserDeletion">
+                <button class="btn btn-danger" @click="confirmUserDeletion">
                     Delete Account
-                </DangerButton>
+                </button>
             </div>
 
             <!-- Delete Account Confirmation Modal -->

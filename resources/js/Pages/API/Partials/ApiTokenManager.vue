@@ -2,13 +2,10 @@
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import ConfirmationModal from "@/Components/BuiltIn/ConfirmationModal.vue";
-import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
 import FormSection from "@/Components/BuiltIn/FormSection.vue";
 import Input from "@/Components/Input.vue";
 import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
 import SectionBorder from "@/Components/BuiltIn/SectionBorder.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
@@ -128,12 +125,13 @@ const deleteApiToken = () => {
                     Created.
                 </ActionMessage>
 
-                <PrimaryButton
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': createApiTokenForm.processing }"
                     :disabled="createApiTokenForm.processing"
                 >
                     Create
-                </PrimaryButton>
+                </button>
             </template>
         </FormSection>
 
@@ -213,9 +211,12 @@ const deleteApiToken = () => {
             </template>
 
             <template #footer>
-                <SecondaryButton @click="displayingToken = false">
+                <button
+                    class="btn btn-secondary"
+                    @click="displayingToken = false"
+                >
                     Close
-                </SecondaryButton>
+                </button>
             </template>
         </DialogModal>
 
@@ -248,18 +249,21 @@ const deleteApiToken = () => {
             </template>
 
             <template #footer>
-                <SecondaryButton @click="managingPermissionsFor = null">
+                <button
+                    class="btn btn-secondary"
+                    @click="managingPermissionsFor = null"
+                >
                     Cancel
-                </SecondaryButton>
+                </button>
 
-                <PrimaryButton
-                    class="ms-3"
+                <button
+                    class="btn btn-primary"
                     :class="{ 'opacity-25': updateApiTokenForm.processing }"
                     :disabled="updateApiTokenForm.processing"
                     @click="updateApiToken"
                 >
                     Save
-                </PrimaryButton>
+                </button>
             </template>
         </DialogModal>
 
@@ -275,18 +279,21 @@ const deleteApiToken = () => {
             </template>
 
             <template #footer>
-                <SecondaryButton @click="apiTokenBeingDeleted = null">
+                <button
+                    class="btn-secondary"
+                    @click="apiTokenBeingDeleted = null"
+                >
                     Cancel
-                </SecondaryButton>
+                </button>
 
-                <DangerButton
-                    class="ms-3"
+                <button
+                    class="btn btn-danger"
                     :class="{ 'opacity-25': deleteApiTokenForm.processing }"
                     :disabled="deleteApiTokenForm.processing"
                     @click="deleteApiToken"
                 >
                     Delete
-                </DangerButton>
+                </button>
             </template>
         </ConfirmationModal>
     </div>

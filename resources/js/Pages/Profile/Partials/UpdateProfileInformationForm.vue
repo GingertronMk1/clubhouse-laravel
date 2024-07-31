@@ -5,7 +5,6 @@ import FormSection from "@/Components/BuiltIn/FormSection.vue";
 import Input from "@/Components/Input.vue";
 import InputError from "@/Components/BuiltIn/InputError.vue";
 import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -123,22 +122,22 @@ const deletePhoto = () => {
                     />
                 </div>
 
-                <SecondaryButton
-                    class="mt-2 me-2"
+                <button
+                    class="btn btn-secondary"
                     type="button"
                     @click.prevent="selectNewPhoto"
                 >
                     Select A New Photo
-                </SecondaryButton>
+                </button>
 
-                <SecondaryButton
+                <button
                     v-if="user.profile_photo_path"
                     type="button"
-                    class="mt-2"
+                    class="btn btn-secondary"
                     @click.prevent="deletePhoto"
                 >
                     Remove Photo
-                </SecondaryButton>
+                </button>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>
