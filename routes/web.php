@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -11,4 +12,8 @@ Route::middleware([
     Route::resources([
         'person' => \App\Http\Controllers\PersonController::class,
     ]);
+
+    if (\Illuminate\Support\Facades\App::environment('local')) {
+        Route::get('/dev-services', \App\Http\Controllers\DevServicesController::class)->name('dev-services');
+    }
 });

@@ -71,6 +71,13 @@ const logout = () => router.post(route("logout"));
                         >
                             Manage API Tokens
                         </Link>
+                        <Link
+                            v-if="route().has('dev-services')"
+                            class="list-group-item list-group-item-action"
+                            :href="route('dev-services')"
+                        >
+                            Developer Services
+                        </Link>
                         <li
                             class="list-group-item list-group-item-action"
                             @click="logout"
