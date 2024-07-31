@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index(): Response|Responsable
     {
-        return $this->inertia('Team/Index', []);
+        return $this->inertia('Team/Index', ['teams' => Team::all()]);
     }
 
     /**

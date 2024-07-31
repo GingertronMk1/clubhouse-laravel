@@ -21,6 +21,10 @@ class Team extends Model
     ];
     protected $casts = [];
 
+    protected $with = [
+        'people'
+    ];
+
     public function people(): BelongsToMany
     {
         return $this->belongsToMany(Person::class);
