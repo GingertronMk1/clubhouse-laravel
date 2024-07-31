@@ -2,9 +2,7 @@
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
+import Input from "@/Components/Input.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -63,37 +61,28 @@ const deleteUser = () => {
                     permanently deleted. Please enter your password to confirm
                     you would like to permanently delete your account.
 
-                    <div class="mt-4">
-                        <TextInput
-                            ref="passwordInput"
-                            v-model="form.password"
-                            type="password"
-                            class="mt-1 block w-3/4"
-                            placeholder="Password"
-                            autocomplete="current-password"
-                            @keyup.enter="deleteUser"
-                        />
-
-                        <InputError
-                            :message="form.errors.password"
-                            class="mt-2"
-                        />
-                    </div>
+                    <Input
+                        v-model="form.password"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        @keyup.enter="deleteUser"
+                    />
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <button class="btn btn-secondary" @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </button>
 
-                    <DangerButton
-                        class="ms-3"
+                    <button
+                        class="btn btn-danger"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"
                     >
                         Delete Account
-                    </DangerButton>
+                    </button>
                 </template>
             </DialogModal>
         </template>

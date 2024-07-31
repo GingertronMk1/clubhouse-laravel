@@ -2,10 +2,6 @@
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import FormSection from "@/Components/BuiltIn/FormSection.vue";
 import Input from "@/Components/Input.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -51,49 +47,21 @@ const updatePassword = () => {
                     label="Current Password"
                     type="password"
                 />
-                <InputLabel for="current_password" value="Current Password" />
-                <TextInput
-                    id="current_password"
-                    ref="currentPasswordInput"
-                    v-model="form.current_password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    autocomplete="current-password"
-                />
-                <InputError
-                    :message="form.errors.current_password"
-                    class="mt-2"
-                />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="password" value="New Password" />
-                <TextInput
-                    id="password"
-                    ref="passwordInput"
+                <Input
                     v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
                     autocomplete="new-password"
+                    type="password"
                 />
-                <InputError :message="form.errors.password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-                <TextInput
-                    id="password_confirmation"
+                <Input
                     v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
                     autocomplete="new-password"
-                />
-                <InputError
-                    :message="form.errors.password_confirmation"
-                    class="mt-2"
+                    type="password"
                 />
             </div>
         </template>
@@ -103,12 +71,13 @@ const updatePassword = () => {
                 Saved.
             </ActionMessage>
 
-            <PrimaryButton
+            <button
+                class="btn btn-primary"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
             >
                 Save
-            </PrimaryButton>
+            </button>
         </template>
     </FormSection>
 </template>

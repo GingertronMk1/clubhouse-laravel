@@ -6,12 +6,11 @@ import ConfirmationModal from "@/Components/BuiltIn/ConfirmationModal.vue";
 import DangerButton from "@/Components/BuiltIn/DangerButton.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
 import FormSection from "@/Components/BuiltIn/FormSection.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
+import Input from "@/Components/Input.vue";
 import InputLabel from "@/Components/BuiltIn/InputLabel.vue";
 import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
 import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
 import SectionBorder from "@/Components/BuiltIn/SectionBorder.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -92,18 +91,7 @@ const deleteApiToken = () => {
             <template #form>
                 <!-- Token Name -->
                 <div class="col-span-6 sm:col-span-4">
-                    <InputLabel for="name" value="Name" />
-                    <TextInput
-                        id="name"
-                        v-model="createApiTokenForm.name"
-                        type="text"
-                        class="mt-1 block w-full"
-                        autofocus
-                    />
-                    <InputError
-                        :message="createApiTokenForm.errors.name"
-                        class="mt-2"
-                    />
+                    <Input v-model="createApiTokenForm.name" autofocus />
                 </div>
 
                 <!-- Token Permissions -->
@@ -248,9 +236,10 @@ const deleteApiToken = () => {
                                 v-model:checked="updateApiTokenForm.permissions"
                                 :value="permission"
                             />
-                            <span class="ms-2 text-sm text-gray-600">{{
-                                permission
-                            }}</span>
+                            <span
+                                class="ms-2 text-sm text-gray-600"
+                                v-text="permission"
+                            />
                         </label>
                     </div>
                 </div>

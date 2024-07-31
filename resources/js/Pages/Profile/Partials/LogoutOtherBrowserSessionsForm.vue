@@ -2,10 +2,7 @@
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
-import InputError from "@/Components/BuiltIn/InputError.vue";
-import PrimaryButton from "@/Components/BuiltIn/PrimaryButton.vue";
-import SecondaryButton from "@/Components/BuiltIn/SecondaryButton.vue";
-import TextInput from "@/Components/BuiltIn/TextInput.vue";
+import Input from "@/Components/Input.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
@@ -131,37 +128,28 @@ const logoutOtherBrowserSessions = () => {
                     out of your other browser sessions across all of your
                     devices.
 
-                    <div class="mt-4">
-                        <TextInput
-                            ref="passwordInput"
-                            v-model="form.password"
-                            type="password"
-                            class="mt-1 block w-3/4"
-                            placeholder="Password"
-                            autocomplete="current-password"
-                            @keyup.enter="logoutOtherBrowserSessions"
-                        />
-
-                        <InputError
-                            :message="form.errors.password"
-                            class="mt-2"
-                        />
-                    </div>
+                    <Input
+                        v-model="form.password"
+                        type="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        @keyup.enter="logoutOtherBrowserSessions"
+                    />
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <button class="btn btn-secondary" @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </button>
 
-                    <PrimaryButton
-                        class="ms-3"
+                    <button
+                        class="btn btn-primary"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
                     >
                         Log Out Other Browser Sessions
-                    </PrimaryButton>
+                    </button>
                 </template>
             </DialogModal>
         </template>
