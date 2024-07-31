@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TeamController extends Controller
 {
-    private $delete;
-
     /**
      * Display a listing of the resource.
      */
@@ -69,7 +67,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team): Response|Responsable
     {
-        $this->delete = $team->delete();
+        $team->delete();
         return to_route('team.index');
     }
 }
