@@ -13,18 +13,14 @@ const props = defineProps({
     },
 });
 
-const proxyForm = useForm(props.model);
+const form = useForm(props.model);
 </script>
 
 <template>
-    <form @submit.prevent="submitFn(proxyForm)">
-        <Input v-model="proxyForm.name" type="text" label="Name" required />
-        <Input
-            v-model="proxyForm.description"
-            type="textarea"
-            label="Description"
-        />
-        <Input v-model="proxyForm.address" type="textarea" label="Address" />
+    <form @submit.prevent="submitFn(form)">
+        <Input v-model="form.name" type="text" label="Name" required />
+        <Input v-model="form.description" type="textarea" label="Description" />
+        <Input v-model="form.address" type="textarea" label="Address" />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>

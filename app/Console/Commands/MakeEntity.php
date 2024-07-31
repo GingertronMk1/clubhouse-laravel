@@ -79,10 +79,10 @@ VUE
             resource_path("/js/Components/Forms/{$entityName}Form.vue"),
             <<<'VUE'
 <script setup>
-import { ref } from "vue";
+import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    form: {
+    model: {
         required: true,
         type: Object,
     },
@@ -92,10 +92,10 @@ const props = defineProps({
     },
 });
 
-const proxyForm = ref(props.form);
+const form = useForm(props.form);
 </script>
 <template>
-    <form @submit.prevent="submitFn(proxyForm)"> </form>
+    <form @submit.prevent="submitFn(form)"> </form>
 </template>
 VUE
 
