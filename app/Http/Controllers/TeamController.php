@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index(): Response|Responsable
     {
-        //
+        return $this->inertia('Team/Index', []);
     }
 
     /**
@@ -23,7 +23,7 @@ class TeamController extends Controller
      */
     public function create(): Response|Responsable
     {
-        //
+        return $this->inertia('Team/Create', []);
     }
 
     /**
@@ -31,7 +31,6 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request): Response|Responsable
     {
-        //
     }
 
     /**
@@ -39,7 +38,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): Response|Responsable
     {
-        //
+        return $this->inertia('Team/Show', []);
     }
 
     /**
@@ -47,7 +46,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team): Response|Responsable
     {
-        //
+        return $this->inertia('Team/Edit', []);
     }
 
     /**

@@ -10,6 +10,7 @@ Route::middleware([
     Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
     Route::resources([
         'person' => \App\Http\Controllers\PersonController::class,
+        'team' => \App\Http\Controllers\TeamController::class,
     ]);
 
     if (\Illuminate\Support\Facades\App::environment('local')) {
