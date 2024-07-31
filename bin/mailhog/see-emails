@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+./bin/util/exec mailhog sh -c "ls -la /maildir"
