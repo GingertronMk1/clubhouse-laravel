@@ -10,7 +10,7 @@ import SportForm from "@/Components/Forms/SportForm.vue";
         </template>
 
         <SportForm
-            :submit-fn="(form) => form.post(route('team.store'))"
+            :submit-fn="(form) => form.post(route('sport.store'))"
             :model="{ name: '', description: '', colour: '#FFFFFF' }"
         />
     </AppLayout>

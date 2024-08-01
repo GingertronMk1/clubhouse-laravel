@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Models\Sport;
 use App\Models\Team;
 use Illuminate\Contracts\Support\Responsable;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,9 @@ class TeamController extends Controller
      */
     public function create(): Response|Responsable
     {
-        return $this->inertia('Team/Create', []);
+        return $this->inertia('Team/Create', [
+            'sports' => Sport::all()
+        ]);
     }
 
     /**
@@ -49,7 +52,10 @@ class TeamController extends Controller
      */
     public function edit(Team $team): Response|Responsable
     {
-        return $this->inertia('Team/Edit', ['team' => $team]);
+        return $this->inertia('Team/Edit', [
+            'team' => $team,
+            'sports' => Sport::all()
+        ]);
     }
 
     /**

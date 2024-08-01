@@ -28,6 +28,7 @@ const counts = [
     },
     {
         count: props.sportCount,
+        href: route("sport.index"),
         text: "Sports",
     },
     {
