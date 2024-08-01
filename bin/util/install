@@ -17,4 +17,5 @@ echo "touching db files" \
 && echo "Generating app key" \
 && ./bin/app/artisan key:generate \
 && echo "Stopping docker" \
-&& docker compose stop
+&& docker compose stop \
+&& ./bin/util/edit-hosts

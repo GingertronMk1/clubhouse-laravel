@@ -17,15 +17,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $teamsProgressBar = new ProgressBar($this->command->getOutput());
-        foreach ($teamsProgressBar->iterate(range(1, 10, 2)) as $n) {
-            Team::factory()
-                ->has(
-                    Person::factory($n * 5)
-                        ->has(
-                            User::factory(),
-                        ),
-                )
-                ->create();
+        foreach ($teamsProgressBar->iterate(range(0, 10, 2)) as $n) {
+            $team = Team::factory()->create();
+            for ($i = 0; $i < ($n * 10) + 1; $i++) {
+                Person::factory()
+                    ->hasAttached($team)
+                    ->for(User::factory())
+                    ->create();
+            }
         }
     }
 }

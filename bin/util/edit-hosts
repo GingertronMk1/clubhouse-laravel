@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+if sh -c ": >/dev/tty" >/dev/null 2>/dev/null && [ -f /etc/hosts ]; then
+    while true; do
+        echo "Do you wish to alias 'clubhouse.test' to localhost? You will be asked for your password [yn]"
+        read -r option
+        case $option in
+            [Yy]* ) echo '127.0.0.1 clubhouse.test' | sudo tee -a /etc/hosts; break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+else
+    echo "Either not a TTY or no hosts file. Skipping."
+fi

@@ -1,5 +1,6 @@
 <script setup>
 import { computed, useSlots } from "vue";
+import { v7 as uuidv7 } from "uuid";
 
 defineOptions({
     inheritAttrs: false,
@@ -57,7 +58,7 @@ const props = defineProps({
     },
 });
 
-const inputId = crypto.randomUUID();
+const inputId = uuidv7();
 const emit = defineEmits(["update:modelValue", "update:checked"]);
 
 const proxyValue = computed({
