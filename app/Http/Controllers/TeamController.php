@@ -41,7 +41,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): Response|Responsable
     {
-        return $this->inertia('Team/Show', []);
+        return $this->inertia('Team/Show', ['team' => $team]);
     }
 
     /**

@@ -12,7 +12,7 @@ class MakeEntity extends Command
      *
      * @var string
      */
-    protected $signature = 'app:make-entity {entityName}';
+    protected $signature = 'app:make-entity {entityName?}';
 
     /**
      * The console command description.
@@ -27,6 +27,9 @@ class MakeEntity extends Command
     public function handle(): int
     {
         $entityName = $this->argument('entityName');
+        if (!$entityName) {
+            $entityName = $this->ask('What is the name of the entity?');
+        }
         $this->runCommand(
             'make:model',
             [

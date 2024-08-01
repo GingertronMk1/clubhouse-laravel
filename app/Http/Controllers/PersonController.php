@@ -74,28 +74,16 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person): Response|Responsable
     {
-        if ($person->update($request->validated())) {
-            return to_route('person.index');
-        }
-
-        return $this->inertia(
-            component: 'Person/Edit',
-            props: [
-                'users' => User::all(),
-                'person' => $person,
-            ],
-        );
+        $person->update($request->validated());
+        return to_route('person.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Person $person): Response|Responsable
+    public function destroy(Person $person): Response|Responsable
     {
-        if (! $person->delete()) {
-            $request->session()->flash('error', 'There was an error deleting that person');
-        }
-
+        $person->delete();
         return to_route('person.index');
     }
 }

@@ -22,10 +22,10 @@ class UpdatePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|required|max:255',
-            'bio' => 'string|nullable',
-            'dob' => 'date|nullable',
-            'user_id' => 'exists:users,id|nullable',
+            'name' => ['string','required','max:255'],
+            'bio' => ['string','nullable'],
+            'dob' => ['date','nullable'],
+            'user_id' => ['exists:users,id','nullable'],
         ];
     }
 }

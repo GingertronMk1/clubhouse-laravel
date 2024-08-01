@@ -13,7 +13,11 @@ Route::middleware([
         'team' => App\Http\Controllers\TeamController::class,
     ]);
 
-    if (Illuminate\Support\Facades\App::environment('local')) {
-        Route::get('/dev-services', App\Http\Controllers\DevServicesController::class)->name('dev-services');
+    if (Illuminate\Support\Facades\App::environment(['local', 'testing'])) {
+        Route::get(
+            '/dev-services',
+            App\Http\Controllers\DevServicesController::class
+        )
+            ->name('dev-services');
     }
 });
