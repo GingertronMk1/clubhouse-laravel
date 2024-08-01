@@ -19,7 +19,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             component: 'Person/Index',
-            props: ['people' => Person::all()]
+            props: ['people' => Person::all()],
         );
     }
 
@@ -30,7 +30,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             component: 'Person/Create',
-            props: ['users' => User::all()]
+            props: ['users' => User::all()],
         );
     }
 
@@ -51,7 +51,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             'Person/Show',
-            ['person' => $person]
+            ['person' => $person],
         );
     }
 
@@ -65,7 +65,7 @@ class PersonController extends Controller
             props: [
                 'users' => User::all(),
                 'person' => $person,
-            ]
+            ],
         );
     }
 
@@ -83,7 +83,7 @@ class PersonController extends Controller
             props: [
                 'users' => User::all(),
                 'person' => $person,
-            ]
+            ],
         );
     }
 

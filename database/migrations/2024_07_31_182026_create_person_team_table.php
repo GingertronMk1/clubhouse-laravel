@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('person_team', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Person::class)->constrained();
-            $table->foreignIdFor(\App\Models\Team::class)->constrained();
+            $table->foreignIdFor(App\Models\Person::class)->constrained();
+            $table->foreignIdFor(App\Models\Team::class)->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

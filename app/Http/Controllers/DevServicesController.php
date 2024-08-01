@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Inertia\Response;
+use Throwable;
 
 class DevServicesController extends Controller
 {
@@ -31,7 +32,7 @@ class DevServicesController extends Controller
                 if ($httpRequest->status() === 200) {
                     $services[$name] = "http://localhost:{$port}";
                 }
-            } catch (\Throwable) {
+            } catch (Throwable) {
                 // ignore
             }
         }

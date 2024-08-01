@@ -38,7 +38,7 @@ class MakeEntity extends Command
                 '--controller' => true,
                 '--requests' => true,
             ],
-            $this->output
+            $this->output,
         );
         $this->runCommand(
             'make:test',
@@ -46,7 +46,7 @@ class MakeEntity extends Command
                 'name' => "Application/{$entityName}ControllerTest",
                 '--phpunit' => true,
             ],
-            $this->output
+            $this->output,
         );
 
         $pagesPath = resource_path("/js/Pages/{$entityName}");
@@ -70,7 +70,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 
     </AppLayout>
 </template>
-VUE
+VUE,
             );
             $this->output->info("Created {$fileName}.vue");
         }
@@ -97,8 +97,7 @@ const form = useForm(props.form);
 <template>
     <form @submit.prevent="submitFn(form)"> </form>
 </template>
-VUE
-
+VUE,
         );
 
         return Command::SUCCESS;

@@ -5,7 +5,7 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
-use Illuminate\Contracts\Support\Responsable;
+use \Illuminate\Contracts\Support\Responsable;
 use Symfony\Component\HttpFoundation\Response;
 
 class {{ class }} extends Controller

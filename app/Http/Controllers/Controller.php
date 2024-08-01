@@ -12,7 +12,7 @@ abstract class Controller
      */
     protected function inertia(
         string $component,
-        array|Arrayable $props = []
+        array|Arrayable $props = [],
     ): \Inertia\Response {
         return Inertia::render($component, $props);
     }

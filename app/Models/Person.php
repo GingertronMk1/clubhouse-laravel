@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Database\Factories\PersonFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,7 @@ class Person extends Model
     /** @use HasFactory<PersonFactory> */
     use HasFactory;
 
+    use HasVersion7Uuids;
     use SoftDeletes;
 
     protected $fillable = [
@@ -58,7 +60,7 @@ class Person extends Model
                 $diff = $dateValue->diff(Carbon::now());
 
                 return floor($diff->totalYears);
-            }
+            },
         );
     }
 
