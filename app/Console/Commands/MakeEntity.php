@@ -3,18 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use \Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class MakeEntity extends Command
 {
-    public function __construct(
-        private readonly Filesystem $filesystem
-    )
-    {
-        parent::__construct();
-    }
-
     /**
      * The name and signature of the console command.
      *
@@ -38,7 +32,7 @@ class MakeEntity extends Command
         if (! $entityName) {
             $entityName = $this->ask('What is the name of the entity?');
         }
-        $this->runCommand(
+        Artisan::call(
             'make:model',
             [
                 'name' => $entityName,
@@ -49,26 +43,24 @@ class MakeEntity extends Command
                 '--controller' => true,
                 '--requests' => true,
             ],
-            $this->output,
         );
-        $this->runCommand(
+        Artisan::call(
             'make:test',
             [
                 'name' => "Application/{$entityName}ControllerTest",
                 '--phpunit' => true,
             ],
-            $this->output,
         );
 
         $pagesPath = resource_path("/js/Pages/{$entityName}");
-        $this->filesystem->makeDirectory($pagesPath);
+        File::makeDirectory($pagesPath);
         foreach ([
             'Index',
             'Create',
             'Edit',
             'Show',
         ] as $fileName) {
-            $this->filesystem->put(
+            File::put(
                 "{$pagesPath}/{$fileName}.vue",
                 <<<'VUE'
 <script setup>
@@ -85,7 +77,7 @@ VUE,
             $this->output->info("Created {$fileName}.vue");
         }
 
-        $this->filesystem->put(
+        File::put(
             resource_path("/js/Components/Forms/{$entityName}Form.vue"),
             <<<'VUE'
 <script setup>
@@ -110,6 +102,6 @@ const form = useForm(props.form);
 VUE,
         );
 
-        return Command::SUCCESS;
+        return SymfonyCommand::SUCCESS;
     }
 }

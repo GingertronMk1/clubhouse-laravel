@@ -6,7 +6,10 @@ use App\Console\Commands\MakeAdminUser;
 use App\Console\Commands\MakeEntity;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use PHPStan\Command\Output;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tests\TestCase;
 
@@ -15,14 +18,15 @@ class MakeEntityTest extends TestCase
     /**
      * A basic unit test example.
      */
-    public function test_example(): void
+    public function test_command(): void
     {
-        $fileSystem = $this->createMock(Filesystem::class);
-
-        $command = new MakeEntity($fileSystem);
         $entityName = 'Test';
 
-        Artisan::shouldReceive('call')->once()->with(
+        $command = new MakeEntity();
+
+        Artisan::shouldReceive('call')
+            ->once()
+            ->with(
             'make:model',
             [
                 'name' => $entityName,
@@ -33,10 +37,32 @@ class MakeEntityTest extends TestCase
                 '--controller' => true,
                 '--requests' => true,
             ],
-            $this->createMock(OutputInterface::class)
         );
 
-        $commandResult = $command->handle();
-        $this->assertEquals(0, $commandResult);
+        Artisan::shouldReceive('call')
+            ->once()
+            ->with(
+            'make:test',
+            [
+                'name' => "Application/{$entityName}ControllerTest",
+                '--phpunit' => true,
+            ],
+        );
+
+        File::shouldReceive('makeDirectory')->once();
+        File::shouldReceive('put')->times(5);
+
+        $output = $this->createMock(OutputInterface::class);
+        $input = $this->createMock(InputInterface::class);
+
+        $input
+            ->expects($this->once())
+            ->method('getArgument')
+            ->with('entityName')
+            ->willReturn($entityName);
+
+        $command->setLaravel($this->app);
+
+        $command->run($input, $output);
     }
 }
