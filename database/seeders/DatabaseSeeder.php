@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Team::factory(5)->has(Person::factory(25)->has(User::factory()))->create();
+        $teamsProgressBar = new ProgressBar($this->command->getOutput());
+        foreach($teamsProgressBar->iterate(range(1, 10, 2)) as $n) {
+            Team::factory()
+                ->has(
+                    Person::factory($n * 5)
+                        ->has(
+                            User::factory()
+                        )
+                )
+                ->create();
+        }
     }
 }
