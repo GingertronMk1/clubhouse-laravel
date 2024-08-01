@@ -2,9 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Console\Command;
-use Illuminate\Console\GeneratorCommand;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class MakeAdminUser extends Command
@@ -17,8 +15,7 @@ class MakeAdminUser extends Command
 
     public function __construct(
         private readonly CreatesNewUsers $userCreator
-    )
-    {
+    ) {
         parent::__construct();
     }
 
