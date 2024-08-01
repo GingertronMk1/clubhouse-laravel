@@ -7,7 +7,7 @@ defineProps({
         required: true,
         type: Array,
     },
-})
+});
 
 const team = {
     address: "",

@@ -22,6 +22,6 @@ const submitForm = (argForm) =>
         <template #header>
             <h2>Edit {{ team.name }}</h2>
         </template>
-        <TeamForm :model="team" :submit-fn="submitForm" :sports="sports"/>
+        <TeamForm :model="team" :submit-fn="submitForm" :sports="sports" />
     </AppLayout>
 </template>
