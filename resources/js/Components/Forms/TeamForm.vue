@@ -42,12 +42,18 @@ const form = useForm(props.model);
             type="textarea"
         />
         <Input
-            v-model="form.sport_id"
-            :error="form.errors.sport_id"
-            label="Sport"
+            v-model="form.sport"
+            :error="form.errors.sport"
             type="select"
             :options="sports"
-        />
+            :option-value-getter="(sport) => sport"
+        >
+            Sport
+            <i
+                class="fa-solid fa-circle"
+                :style="{ color: form.sport?.colour ?? 'rgba(0, 0, 0, 0)' }"
+            />
+        </Input>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </template>

@@ -14,7 +14,9 @@ defineProps({
 });
 
 const submitForm = (argForm) =>
-    argForm.put(route("team.update", { team: argForm.id }));
+    argForm
+        .transform((data) => ({ ...data, sport_id: data.sport.id }))
+        .post(route("team.update", { team: argForm.id }));
 </script>
 
 <template>

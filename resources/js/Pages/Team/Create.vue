@@ -13,9 +13,13 @@ const team = {
     address: "",
     description: "",
     name: "",
+    sport: null,
 };
 
-const submitForm = (argForm) => argForm.post(route("team.store"));
+const submitForm = (argForm) =>
+    argForm
+        .transform((data) => ({ ...data, sport_id: data.sport.id }))
+        .post(route("team.store"));
 </script>
 
 <template>
