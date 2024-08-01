@@ -29,14 +29,16 @@ const personOrPeople = ({ people }) =>
                     v-text="`${team.people.length} ${personOrPeople(team)}`"
                 />
             </div>
-            <div v-if="team.description" class="card-body">
-                <p
-                    v-for="paragraph in team.description.split('\n')"
-                    :key="paragraph"
-                    v-text="paragraph"
-                />
-            </div>
-            <div v-if="team.address" class="card-body" v-text="team.address" />
+            <div
+                v-if="team.description"
+                class="card-body preserve-newlines"
+                v-text="team.description"
+            />
+            <div
+                v-if="team.address"
+                class="card-body preserve-newlines"
+                v-text="team.address"
+            />
             <div class="card-footer">
                 <Link
                     :href="route('team.edit', { team: team.id })"

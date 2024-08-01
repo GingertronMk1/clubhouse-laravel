@@ -8,3 +8,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 $enable-grid-classes: false;
 $enable-cssgrid: true;
 @import "bootstrap/scss/bootstrap";
+
+.preserve-newlines {
+    white-space: preserve-breaks;
+}
