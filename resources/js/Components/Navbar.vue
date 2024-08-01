@@ -8,6 +8,10 @@ const navLinks = [
         text: "Home",
     },
     {
+        href: route("team.index"),
+        text: "Teams",
+    },
+    {
         href: route("person.index"),
         text: "People",
     },
