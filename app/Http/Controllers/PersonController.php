@@ -7,7 +7,6 @@ use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PersonController extends Controller
@@ -75,6 +74,7 @@ class PersonController extends Controller
     public function update(UpdatePersonRequest $request, Person $person): Response|Responsable
     {
         $person->update($request->validated());
+
         return to_route('person.index');
     }
 
@@ -84,6 +84,7 @@ class PersonController extends Controller
     public function destroy(Person $person): Response|Responsable
     {
         $person->delete();
+
         return to_route('person.index');
     }
 }

@@ -27,7 +27,7 @@ class MakeEntity extends Command
     public function handle(): int
     {
         $entityName = $this->argument('entityName');
-        if (!$entityName) {
+        if (! $entityName) {
             $entityName = $this->ask('What is the name of the entity?');
         }
         $this->runCommand(
