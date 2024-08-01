@@ -15,7 +15,7 @@ class SportController extends Controller
      */
     public function index(): Response|Responsable
     {
-        return $this->inertia('Sport/Index', []);
+        return $this->inertia('Sport/Index', ['sports' => Sport::all()]);
     }
 
     /**
@@ -31,6 +31,8 @@ class SportController extends Controller
      */
     public function store(StoreSportRequest $request): Response|Responsable
     {
+        Sport::create($request->validated());
+        return to_route('sport.index');
     }
 
     /**
@@ -38,7 +40,7 @@ class SportController extends Controller
      */
     public function show(Sport $sport): Response|Responsable
     {
-        return $this->inertia('Sport/Show', []);
+        return $this->inertia('Sport/Show', ['sport' => $sport]);
     }
 
     /**
@@ -46,7 +48,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport): Response|Responsable
     {
-        return $this->inertia('Sport/Edit', []);
+        return $this->inertia('Sport/Edit', ['sport' => $sport]);
     }
 
     /**
@@ -54,6 +56,8 @@ class SportController extends Controller
      */
     public function update(UpdateSportRequest $request, Sport $sport): Response|Responsable
     {
+        $sport->update($request->validated());
+        return to_route('sport.index');
     }
 
     /**
@@ -61,6 +65,7 @@ class SportController extends Controller
      */
     public function destroy(Sport $sport): Response|Responsable
     {
-        //
+        $sport->delete();
+        return to_route('sport.index');
     }
 }

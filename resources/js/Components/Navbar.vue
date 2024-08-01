@@ -15,6 +15,10 @@ const navLinks = [
         href: route("person.index"),
         text: "People",
     },
+    {
+        href: route("sport.index"),
+        text: "Sports",
+    },
 ];
 
 const showProfile = ref(false);

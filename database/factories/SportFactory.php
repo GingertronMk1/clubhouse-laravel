@@ -17,7 +17,9 @@ class SportFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word() . ' ball',
+            'description' => $this->faker->text(),
+            'colour' => $this->faker->hexColor(),
         ];
     }
 }

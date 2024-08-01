@@ -22,7 +22,9 @@ class UpdateSportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'colour' => ['required', 'string', 'hex_color']
         ];
     }
 }

@@ -144,6 +144,14 @@ const proxyValue = computed({
             class="form-check-input"
         />
         <input
+            v-else-if="type === 'color'"
+            v-bind="$attrs"
+            :id="inputId"
+            v-model="proxyValue"
+            type="color"
+            class="form-control form-control-color"
+        />
+        <input
             v-else
             :id="inputId"
             v-model="proxyValue"
