@@ -25,7 +25,7 @@ class UpdatePersonRequest extends FormRequest
             'name' => 'string|required|max:255',
             'bio' => 'string|nullable',
             'dob' => 'date|nullable',
-            'user_id' => 'integer|exists:users,id|nullable',
+            'user_id' => 'exists:users,id|nullable',
         ];
     }
 }

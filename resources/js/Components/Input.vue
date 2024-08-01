@@ -20,6 +20,10 @@ const props = defineProps({
         default: 30,
         type: Number,
     },
+    error: {
+        default: null,
+        type: [String, null],
+    },
     label: {
         default: "",
         type: String,
@@ -68,8 +72,12 @@ const proxyValue = computed({
                 return props.checked;
             case "date":
             case "datetime-local": {
-                const parsedDate = Date.parse(props.modelValue);
-                const dateObject = new Date(parsedDate);
+                let dateObject = new Date();
+                const intModelValue = parseInt(props.modelValue, 10);
+                if (!isNaN(intModelValue)) {
+                    const parsedDate = Date.parse(props.modelValue);
+                    dateObject = new Date(parsedDate);
+                }
                 const [returnValue] = dateObject.toISOString().split("T");
                 return returnValue;
             }
@@ -102,6 +110,7 @@ const proxyValue = computed({
             </template>
             <template v-else><slot></slot></template>
         </label>
+        <div v-if="error" class="text-danger" v-text="error" />
         <textarea
             v-if="type === 'textarea'"
             :id="inputId"
