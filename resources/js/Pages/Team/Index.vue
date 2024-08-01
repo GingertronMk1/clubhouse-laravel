@@ -26,7 +26,9 @@ const personOrPeople = ({ people }) =>
             <div class="card-header d-flex justify-content-between">
                 <span v-text="team.name" />
                 <span
-                    v-text="`${team.people.length} ${personOrPeople(team)}`"
+                    v-text="
+                        `${team.sport.name}, ${team.people.length} ${personOrPeople(team)}`
+                    "
                 />
             </div>
             <div

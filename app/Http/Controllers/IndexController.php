@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
+use App\Models\Sport;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -17,6 +18,7 @@ class IndexController extends Controller
         return $this->inertia('Dashboard', [
             'peopleCount' => Person::count(),
             'teamCount' => Team::count(),
+            'sportCount' => Sport::count(),
         ]);
     }
 }

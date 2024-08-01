@@ -94,10 +94,12 @@ const props = defineProps({
     },
 });
 
-const form = useForm(props.form);
+const form = useForm(props.model);
 </script>
 <template>
-    <form @submit.prevent="submitFn(form)"> </form>
+    <form @submit.prevent="submitFn(form)">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </template>
 VUE,
         );

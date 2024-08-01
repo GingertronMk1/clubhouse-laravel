@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class TeamFactory extends Factory
             'name' => $this->faker->company(),
             'description' => $this->faker->paragraphs(5, true),
             'address' => $this->faker->address(),
+            'sport_id' => Sport::factory(),
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Person;
+use App\Models\Sport;
 use App\Models\Team;
 use App\Models\User;
 // use \Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $teamsProgressBar = new ProgressBar($this->command->getOutput());
         foreach ($teamsProgressBar->iterate(range(0, 10, 2)) as $n) {
-            $team = Team::factory()->create();
+            $team = Team::factory()->for(Sport::factory())->create();
             for ($i = 0; $i < ($n * 10) + 1; $i++) {
                 Person::factory()
                     ->hasAttached($team)
