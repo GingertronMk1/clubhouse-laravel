@@ -25,6 +25,7 @@ class StoreTeamRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'address' => ['nullable', 'string'],
+            'sport_id' => ['required', 'exists:sports,id'],
         ];
     }
 }
