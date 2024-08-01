@@ -22,14 +22,14 @@ class Team extends Model
         'name',
         'description',
         'address',
-        'sport_id'
+        'sport_id',
     ];
 
     protected $casts = [];
 
     protected $with = [
         'people',
-        'sport'
+        'sport',
     ];
 
     /**
@@ -41,7 +41,7 @@ class Team extends Model
     }
 
     /**
-     * @return BelongsTo<Sport>
+     * @return BelongsTo<Sport, Team>
      */
     public function sport(): BelongsTo
     {

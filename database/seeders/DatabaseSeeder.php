@@ -7,7 +7,6 @@ use App\Models\Sport;
 use App\Models\Team;
 use App\Models\User;
 // use \Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\SportFactory;
 use Illuminate\Database\Seeder;
 use Symfony\Component\Console\Helper\ProgressBar;
 

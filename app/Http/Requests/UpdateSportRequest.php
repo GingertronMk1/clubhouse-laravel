@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use \Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSportRequest extends FormRequest
 {
@@ -24,7 +24,7 @@ class UpdateSportRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'colour' => ['required', 'string', 'hex_color']
+            'colour' => ['required', 'string', 'hex_color'],
         ];
     }
 }

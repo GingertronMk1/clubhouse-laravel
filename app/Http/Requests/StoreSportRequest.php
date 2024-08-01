@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use \Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSportRequest extends FormRequest
 {
@@ -24,7 +24,7 @@ class StoreSportRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'unique:sports,name'],
             'description' => ['nullable', 'string'],
-            'colour' => ['required', 'string', 'hex_color']
+            'colour' => ['required', 'string', 'hex_color'],
         ];
     }
 }

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSportRequest;
 use App\Http\Requests\UpdateSportRequest;
 use App\Models\Sport;
+use Illuminate\Contracts\Support\Responsable;
 use Symfony\Component\HttpFoundation\Response;
-use \Illuminate\Contracts\Support\Responsable;
 
 class SportController extends Controller
 {
@@ -32,6 +32,7 @@ class SportController extends Controller
     public function store(StoreSportRequest $request): Response|Responsable
     {
         Sport::create($request->validated());
+
         return to_route('sport.index');
     }
 
@@ -57,6 +58,7 @@ class SportController extends Controller
     public function update(UpdateSportRequest $request, Sport $sport): Response|Responsable
     {
         $sport->update($request->validated());
+
         return to_route('sport.index');
     }
 
@@ -66,6 +68,7 @@ class SportController extends Controller
     public function destroy(Sport $sport): Response|Responsable
     {
         $sport->delete();
+
         return to_route('sport.index');
     }
 }

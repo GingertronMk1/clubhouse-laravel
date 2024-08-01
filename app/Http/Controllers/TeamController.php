@@ -25,7 +25,7 @@ class TeamController extends Controller
     public function create(): Response|Responsable
     {
         return $this->inertia('Team/Create', [
-            'sports' => Sport::all()
+            'sports' => Sport::all(),
         ]);
     }
 
@@ -54,7 +54,7 @@ class TeamController extends Controller
     {
         return $this->inertia('Team/Edit', [
             'team' => $team,
-            'sports' => Sport::all()
+            'sports' => Sport::all(),
         ]);
     }
 

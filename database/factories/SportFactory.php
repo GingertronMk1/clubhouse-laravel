@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use \Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sport>
@@ -17,7 +17,7 @@ class SportFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word() . ' ball',
+            'name' => $this->faker->word().' ball',
             'description' => $this->faker->text(),
             'colour' => $this->faker->hexColor(),
         ];

@@ -11,6 +11,7 @@ use Tests\TestCase;
 class TeamControllerTest extends TestCase
 {
     protected User $user;
+
     protected Sport $sport;
 
     protected function setUp(): void

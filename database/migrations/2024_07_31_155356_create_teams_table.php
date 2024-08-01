@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('address')->nullable();
-            $table->foreignIdFor(\App\Models\Sport::class)->constrained();
+            $table->foreignIdFor(App\Models\Sport::class)->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
