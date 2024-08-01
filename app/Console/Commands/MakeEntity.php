@@ -3,10 +3,18 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
+use \Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Artisan;
 
 class MakeEntity extends Command
 {
+    public function __construct(
+        private readonly Filesystem $filesystem
+    )
+    {
+        parent::__construct();
+    }
+
     /**
      * The name and signature of the console command.
      *
@@ -33,7 +41,7 @@ class MakeEntity extends Command
         $this->runCommand(
             'make:model',
             [
-                'name' => 'Forms',
+                'name' => $entityName,
                 '--migration' => true,
                 '--factory' => true,
                 '--policy' => true,
@@ -53,15 +61,14 @@ class MakeEntity extends Command
         );
 
         $pagesPath = resource_path("/js/Pages/{$entityName}");
-        $fs = new Filesystem;
-        $fs->ensureDirectoryExists($pagesPath);
+        $this->filesystem->makeDirectory($pagesPath);
         foreach ([
             'Index',
             'Create',
             'Edit',
             'Show',
         ] as $fileName) {
-            $fs->put(
+            $this->filesystem->put(
                 "{$pagesPath}/{$fileName}.vue",
                 <<<'VUE'
 <script setup>
@@ -78,7 +85,7 @@ VUE,
             $this->output->info("Created {$fileName}.vue");
         }
 
-        $fs->put(
+        $this->filesystem->put(
             resource_path("/js/Components/Forms/{$entityName}Form.vue"),
             <<<'VUE'
 <script setup>
