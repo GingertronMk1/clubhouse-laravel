@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\BuiltIn;
+namespace Tests\Feature\BuiltIn;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;

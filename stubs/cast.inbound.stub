@@ -2,8 +2,8 @@
 
 namespace {{ namespace }};
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
+use \Illuminate\Database\Eloquent\Model;
+use \Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes;
 
 class {{ class }} implements CastsInboundAttributes
 {

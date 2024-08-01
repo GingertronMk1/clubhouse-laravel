@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Console\Command;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class MakeAdminUser extends Command
 {
@@ -12,6 +12,12 @@ class MakeAdminUser extends Command
     private const ADMIN_USER_EMAIL = 'admin@clubhouse.test';
 
     private const ADMIN_USER_PASSWORD = '12345678';
+
+    public function __construct(
+        private readonly CreatesNewUsers $userCreator
+    ) {
+        parent::__construct();
+    }
 
     /**
      * The name and signature of the console command.
@@ -32,9 +38,7 @@ class MakeAdminUser extends Command
      */
     public function handle(): int
     {
-        $userCreator = new CreateNewUser;
-
-        $userCreator->create([
+        $this->userCreator->create([
             'name' => self::ADMIN_USER_NAME,
             'email' => self::ADMIN_USER_EMAIL,
             'password' => self::ADMIN_USER_PASSWORD,

@@ -16,7 +16,6 @@ echo "touching db files" \
 && ./bin/node/npm run build \
 && echo "Generating app key" \
 && ./bin/app/artisan key:generate \
-&& echo "Generating admin user" \
-&& ./bin/app/artisan app:make-admin-user \
 && echo "Stopping docker" \
-&& docker compose stop
+&& docker compose stop \
+&& ./bin/util/edit-hosts

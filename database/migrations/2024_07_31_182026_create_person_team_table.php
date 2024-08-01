@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('team_user', function (Blueprint $table) {
+        Schema::create('person_team', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id');
-            $table->foreignId('user_id');
-            $table->string('role')->nullable();
+            $table->foreignIdFor(App\Models\Person::class)->constrained();
+            $table->foreignIdFor(App\Models\Team::class)->constrained();
             $table->timestamps();
-
-            $table->unique(['team_id', 'user_id']);
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('team_user');
+        Schema::dropIfExists('person_team');
     }
 };

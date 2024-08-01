@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-./bin/app/composer fix
-./bin/node/npm run prettier:write
+./bin/node/npm run eslint:fix
+./bin/app/composer check

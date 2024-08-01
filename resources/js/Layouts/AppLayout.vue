@@ -19,12 +19,12 @@ defineProps({
         <div>
             <Navbar />
 
-            <header v-if="$slots.header" class="bg-white shadow p-3">
+            <header v-if="$slots.header" class="shadow p-3">
                 <slot name="header" />
             </header>
 
             <!-- Page Content -->
-            <main class="container">
+            <main class="container py-3">
                 <slot />
             </main>
         </div>

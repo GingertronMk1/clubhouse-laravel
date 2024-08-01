@@ -1,5 +1,6 @@
 <script setup>
 import { computed, useSlots } from "vue";
+import { v7 as uuidv7 } from "uuid";
 
 defineOptions({
     inheritAttrs: false,
@@ -18,6 +19,10 @@ const props = defineProps({
     cols: {
         default: 30,
         type: Number,
+    },
+    error: {
+        default: null,
+        type: [String, null],
     },
     label: {
         default: "",
@@ -57,7 +62,7 @@ const props = defineProps({
     },
 });
 
-const inputId = crypto.randomUUID();
+const inputId = uuidv7();
 const emit = defineEmits(["update:modelValue", "update:checked"]);
 
 const proxyValue = computed({
@@ -67,8 +72,12 @@ const proxyValue = computed({
                 return props.checked;
             case "date":
             case "datetime-local": {
-                const parsedDate = Date.parse(props.modelValue);
-                const dateObject = new Date(parsedDate);
+                let dateObject = new Date();
+                const intModelValue = parseInt(props.modelValue, 10);
+                if (!isNaN(intModelValue)) {
+                    const parsedDate = Date.parse(props.modelValue);
+                    dateObject = new Date(parsedDate);
+                }
                 const [returnValue] = dateObject.toISOString().split("T");
                 return returnValue;
             }
@@ -101,6 +110,7 @@ const proxyValue = computed({
             </template>
             <template v-else><slot></slot></template>
         </label>
+        <div v-if="error" class="text-danger" v-text="error" />
         <textarea
             v-if="type === 'textarea'"
             :id="inputId"

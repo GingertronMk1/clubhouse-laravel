@@ -36,6 +36,7 @@ const counts = [
     },
     {
         count: props.teamCount,
+        href: route("team.index"),
         text: "Teams",
     },
 ];

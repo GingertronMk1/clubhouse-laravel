@@ -11,7 +11,9 @@ RUN apt-get update \
     libfreetype-dev \
     libjpeg62-turbo-dev \
     libicu-dev \
-    libpng-dev
+    libpng-dev \
+    libzip-dev \
+    zip
 
 RUN pecl install -f xdebug pcov && \
     docker-php-ext-enable xdebug
@@ -24,4 +26,7 @@ RUN docker-php-ext-install \
 # Install GD
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd
+
+# Install zip
+RUN docker-php-ext-install zip
 

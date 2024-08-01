@@ -5,7 +5,7 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
-use Illuminate\Contracts\Support\Responsable;
+use \Illuminate\Contracts\Support\Responsable;
 use Symfony\Component\HttpFoundation\Response;
 
 class {{ class }} extends Controller
@@ -15,7 +15,7 @@ class {{ class }} extends Controller
      */
     public function index(): Response|Responsable
     {
-        //
+        return $this->inertia('{{ model }}/Index', []);
     }
 
     /**
@@ -23,7 +23,7 @@ class {{ class }} extends Controller
      */
     public function create(): Response|Responsable
     {
-        //
+        return $this->inertia('{{ model }}/Create', []);
     }
 
     /**
@@ -31,7 +31,6 @@ class {{ class }} extends Controller
      */
     public function store({{ storeRequest }} $request): Response|Responsable
     {
-        //
     }
 
     /**
@@ -39,7 +38,7 @@ class {{ class }} extends Controller
      */
     public function show({{ model }} ${{ modelVariable }}): Response|Responsable
     {
-        //
+        return $this->inertia('{{ model }}/Show', []);
     }
 
     /**
@@ -47,7 +46,7 @@ class {{ class }} extends Controller
      */
     public function edit({{ model }} ${{ modelVariable }}): Response|Responsable
     {
-        //
+        return $this->inertia('{{ model }}/Edit', []);
     }
 
     /**
@@ -55,7 +54,6 @@ class {{ class }} extends Controller
      */
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): Response|Responsable
     {
-        //
     }
 
     /**

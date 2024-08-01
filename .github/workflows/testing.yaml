@@ -14,6 +14,10 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+            - name: Quickly Adjust Xdebug
+              run: >
+                mv _docker/config/app/php.ini _docker/config/app/php.ini.disabled
+                && mv _docker/config/app/php.ini.testing _docker/config/app/php.ini
             - name: Cache Composer
               id: cache-composer
               uses: actions/cache@v3
@@ -26,29 +30,19 @@ jobs:
               with:
                 path: node_modules
                 key: ${{ hashFiles('package-lock.json') }}
-            - name: Setup PHP with tools
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: '8.3'
-                extensions: xdebug pcov
-            - uses: actions/setup-node@v4
-              with:
-                node-version: 21
             - name: Install
-              run: |
-                cp .env.example .env
-                composer install
-                php artisan key:generate
-                npm install
-                npm run build
-                touch database/database.sqlite
-                php artisan migrate:fresh
+              run: ./bin/util/install
+            - name: Start it again
+              run: ./bin/start
             - name: PHP Style
-              run: composer check
+              run: ./bin/app/composer pint -- --test
+              if: always()
+            - name: Static Analysis
+              run: ./bin/app/composer stan
               if: always()
             - name: Test, and fail on <85% code coverage
-              run: php artisan test --parallel --coverage --min=85
+              run: ./bin/app/test --min=85
               if: always()
             - name: Prettier
-              run: npm run eslint
+              run: ./bin/node/npm run eslint
               if: always()

@@ -26,13 +26,13 @@ class StorePersonRequestTest extends TestCase
     public function test_rules(): void
     {
         $this->assertEquals(
-
-            ['name' => 'string|required|max:255',
-                'bio' => 'string|nullable',
-                'dob' => 'date|nullable',
-                'user_id' => 'integer|exists:users,id|nullable',
+            [
+                'name' => ['string', 'required', 'max:255'],
+                'bio' => ['string', 'nullable'],
+                'dob' => ['date', 'nullable'],
+                'user_id' => ['exists:users,id', 'nullable'],
             ],
-            $this->request->rules()
+            $this->request->rules(),
         );
     }
 }

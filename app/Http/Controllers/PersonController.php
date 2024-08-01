@@ -7,7 +7,6 @@ use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
 use App\Models\User;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PersonController extends Controller
@@ -19,7 +18,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             component: 'Person/Index',
-            props: ['people' => Person::all()]
+            props: ['people' => Person::all()],
         );
     }
 
@@ -30,7 +29,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             component: 'Person/Create',
-            props: ['users' => User::all()]
+            props: ['users' => User::all()],
         );
     }
 
@@ -51,7 +50,7 @@ class PersonController extends Controller
     {
         return $this->inertia(
             'Person/Show',
-            ['person' => $person]
+            ['person' => $person],
         );
     }
 
@@ -65,7 +64,7 @@ class PersonController extends Controller
             props: [
                 'users' => User::all(),
                 'person' => $person,
-            ]
+            ],
         );
     }
 
@@ -74,27 +73,17 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person): Response|Responsable
     {
-        if ($person->update($request->validated())) {
-            return to_route('person.index');
-        }
+        $person->update($request->validated());
 
-        return $this->inertia(
-            component: 'Person/Edit',
-            props: [
-                'users' => User::all(),
-                'person' => $person,
-            ]
-        );
+        return to_route('person.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Person $person): Response|Responsable
+    public function destroy(Person $person): Response|Responsable
     {
-        if (! $person->delete()) {
-            $request->session()->flash('error', 'There was an error deleting that person');
-        }
+        $person->delete();
 
         return to_route('person.index');
     }

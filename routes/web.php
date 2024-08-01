@@ -7,12 +7,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
+    Route::get('/', App\Http\Controllers\IndexController::class)->name('index');
     Route::resources([
-        'person' => \App\Http\Controllers\PersonController::class,
+        'person' => App\Http\Controllers\PersonController::class,
+        'team' => App\Http\Controllers\TeamController::class,
     ]);
 
-    if (\Illuminate\Support\Facades\App::environment('local')) {
-        Route::get('/dev-services', \App\Http\Controllers\DevServicesController::class)->name('dev-services');
+    if (Illuminate\Support\Facades\App::environment(['local', 'testing'])) {
+        Route::get(
+            '/dev-services',
+            App\Http\Controllers\DevServicesController::class
+        )
+            ->name('dev-services');
     }
 });

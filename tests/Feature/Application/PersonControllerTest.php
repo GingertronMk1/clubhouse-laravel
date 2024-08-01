@@ -23,18 +23,16 @@ class PersonControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('person.index'));
 
         $response->assertStatus(200);
-        $response->assertInertia(fn (AssertableInertia $page) =>
-            $page->component('Person/Index')
-                ->has(
-                    'people',
-                    $people->count(),
-                    fn (AssertableInertia $page) =>
-                    $page
-                        ->where('name', $people->first()->name)
-                        ->where('bio', $people->first()->bio)
-                        ->where('dob', $people->first()->dob->jsonSerialize())
-                        ->etc()
-        ));
+        $response->assertInertia(fn (AssertableInertia $page) => $page->component('Person/Index')
+            ->has(
+                'people',
+                $people->count(),
+                fn (AssertableInertia $page) => $page
+                    ->where('name', $people->first()->name)
+                    ->where('bio', $people->first()->bio)
+                    ->where('dob', $people->first()->dob->jsonSerialize())
+                    ->etc(),
+            ));
     }
 
     public function test_create(): void
@@ -43,12 +41,16 @@ class PersonControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('person.create'));
 
         $response->assertStatus(200);
-        $response->assertInertia(fn (AssertableInertia $page) => $page
-            ->component('Person/Create')
-            ->has('users', $users->count(), fn (AssertableInertia $page) => $page
-                ->where('name', $users->first()->name)
-                ->etc()
-            )
+        $response->assertInertia(
+            fn (AssertableInertia $page) => $page
+                ->component('Person/Create')
+                ->has(
+                    'users',
+                    $users->count(),
+                    fn (AssertableInertia $page) => $page
+                        ->where('name', $users->first()->name)
+                        ->etc(),
+                ),
         );
     }
 
@@ -68,14 +70,15 @@ class PersonControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('person.show', ['person' => $person]));
 
         $response->assertStatus(200);
-        $response->assertInertia(fn (AssertableInertia $page) => $page
-            ->component('Person/Show')
-            ->has(
-                'person',
-                fn (AssertableInertia $page) => $page
-                    ->where('id', $person->id)
-                    ->etc()
-            )
+        $response->assertInertia(
+            fn (AssertableInertia $page) => $page
+                ->component('Person/Show')
+                ->has(
+                    'person',
+                    fn (AssertableInertia $page) => $page
+                        ->where('id', $person->id)
+                        ->etc(),
+                ),
         );
     }
 
@@ -86,21 +89,22 @@ class PersonControllerTest extends TestCase
         $response = $this->actingAs($this->user)->get(route('person.edit', ['person' => $person]));
 
         $response->assertStatus(200);
-        $response->assertInertia(fn (AssertableInertia $page) => $page
-            ->component('Person/Edit')
-            ->has(
-                'person',
-                fn (AssertableInertia $page) => $page
-                    ->where('id', $person->id)
-                    ->etc()
-            )
-            ->has(
-                'users',
-                $users->count(),
-                fn (AssertableInertia $page) => $page
-                    ->where('name', $users->first()->name)
-                    ->etc()
-            )
+        $response->assertInertia(
+            fn (AssertableInertia $page) => $page
+                ->component('Person/Edit')
+                ->has(
+                    'person',
+                    fn (AssertableInertia $page) => $page
+                        ->where('id', $person->id)
+                        ->etc(),
+                )
+                ->has(
+                    'users',
+                    $users->count(),
+                    fn (AssertableInertia $page) => $page
+                        ->where('name', $users->first()->name)
+                        ->etc(),
+                ),
         );
     }
 
@@ -113,13 +117,15 @@ class PersonControllerTest extends TestCase
             ->put(
                 route(
                     'person.update',
-                    ['person' => $person]
-                ), [
+                    ['person' => $person],
+                ),
+                [
                     'name' => $newName,
                     'bio' => null,
                     'dob' => null,
                     'user_id' => null,
-                ]);
+                ],
+            );
         $response->assertRedirectToRoute('person.index');
         $person->refresh();
         $this->assertEquals($newName, $person->name);
