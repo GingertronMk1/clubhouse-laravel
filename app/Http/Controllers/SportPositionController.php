@@ -7,7 +7,7 @@ use App\Http\Requests\UpdatePositionRequest;
 use App\Models\Position;
 use App\Models\Sport;
 use Illuminate\Contracts\Support\Responsable;
-use Inertia\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class SportPositionController extends Controller
 {
@@ -50,10 +50,10 @@ class SportPositionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sport $sport, Position $position): Response|Responsable
-    {
-        //
-    }
+    //    public function show(Sport $sport, Position $position): Response|Responsable
+    //    {
+    //        //
+    //    }
 
     /**
      * Show the form for editing the specified resource.
@@ -81,6 +81,8 @@ class SportPositionController extends Controller
      */
     public function destroy(Sport $sport, Position $position): Response|Responsable
     {
-        //
+        $position->delete();
+
+        return to_route('sport.position.index', ['sport' => $sport]);
     }
 }

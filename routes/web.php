@@ -12,7 +12,6 @@ Route::middleware([
         'person' => App\Http\Controllers\PersonController::class,
         'team' => App\Http\Controllers\TeamController::class,
         'sport' => App\Http\Controllers\SportController::class,
-        'position' => App\Http\Controllers\PositionController::class,
         'sport.position' => App\Http\Controllers\SportPositionController::class,
     ]);
 
