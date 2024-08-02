@@ -19,10 +19,6 @@ const navLinks = [
         href: route("sport.index"),
         text: "Sports",
     },
-    {
-        href: route("position.index"),
-        text: "Positions",
-    },
 ];
 
 const showProfile = ref(false);

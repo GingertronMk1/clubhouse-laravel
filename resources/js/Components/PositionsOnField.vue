@@ -24,6 +24,7 @@ defineProps({
                 :style="{
                     top: `${100 - position.preview_position_y}%`,
                     left: `${position.preview_position_x}%`,
+                    'font-size': position.current ? '2rem' : null,
                 }"
                 :title="position.name"
             >

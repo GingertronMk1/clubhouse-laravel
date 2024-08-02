@@ -25,31 +25,37 @@ defineProps({
         >
             Add
         </Link>
-        <div class="grid mt-3">
-            <div class="g-col-2" v-text="'Name'" />
-            <div class="g-col-6" v-text="'Description'" />
-            <div class="g-col-1" v-text="'Default Number'" />
-            <div class="g-col-1" v-text="'Sort Order'" />
-            <div class="g-col"></div>
-            <template v-for="position in sport.positions" :key="position.id">
-                <div class="g-col-2" v-text="position.name" />
-                <div class="g-col-6" v-text="position.description" />
-                <div class="g-col-1" v-text="position.default_number" />
-                <div class="g-col-1" v-text="position.sort_order" />
-                <div class="g-col">
-                    <Link
-                        :href="
-                            route('sport.position.edit', {
-                                position: position.id,
-                                sport: sport.id,
-                            })
-                        "
-                        class="btn btn-outline-primary"
-                    >
-                        Edit
-                    </Link>
-                </div>
-            </template>
-        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Default Number</th>
+                    <th>Sort Order</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="position in sport.positions" :key="position.id">
+                    <td style="width: 10%" v-text="position.name" />
+                    <td style="width: 55%" v-text="position.description" />
+                    <td style="width: 12.5%" v-text="position.default_number" />
+                    <td style="width: 12.5%" v-text="position.sort_order" />
+                    <td style="width: 10%">
+                        <Link
+                            :href="
+                                route('sport.position.edit', {
+                                    position: position.id,
+                                    sport: sport.id,
+                                })
+                            "
+                            class="btn btn-outline-primary"
+                        >
+                            Edit
+                        </Link>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </AppLayout>
 </template>

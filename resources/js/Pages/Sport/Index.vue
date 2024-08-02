@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
+import PositionsOnField from "@/Components/PositionsOnField.vue";
 
 defineProps({
     sports: {
@@ -24,10 +25,13 @@ defineProps({
                     :style="{ color: sport.colour }"
                 />
             </div>
-            <div
-                class="card-body preserve-newlines"
-                v-text="sport.description"
-            />
+            <div class="d-flex flex-row">
+                <span
+                    class="card-body preserve-newlines"
+                    v-text="sport.description"
+                />
+                <PositionsOnField :positions="sport.positions" />
+            </div>
 
             <div class="card-footer">
                 <Link

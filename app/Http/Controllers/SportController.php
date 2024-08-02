@@ -15,7 +15,7 @@ class SportController extends Controller
      */
     public function index(): Response|Responsable
     {
-        return $this->inertia('Sport/Index', ['sports' => Sport::all()]);
+        return $this->inertia('Sport/Index', ['sports' => Sport::with('positions')->get()]);
     }
 
     /**
