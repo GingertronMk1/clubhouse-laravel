@@ -9,6 +9,25 @@ defineProps({
         type: Boolean,
     },
 });
+
+const dragStart = (event, item) => console.log(event, item);
+
+const maxPercent = 100;
+
+const dragOver = (event) => {
+    console.log(event.clientX, event.clientY, event.layerX, event.layerY);
+    console.log(event);
+    console.table({
+        dragX: parseInt(
+            maxPercent * (event.layerX / event.target.offsetWidth),
+            10,
+        ),
+        dragY: parseInt(
+            maxPercent * (event.layerY / event.target.offsetHeight),
+            10,
+        ),
+    });
+};
 </script>
 
 <template>
@@ -16,7 +35,7 @@ defineProps({
         class="card bg-green p-5"
         style="min-height: 20rem; background-color: green; aspect-ratio: 16/9"
     >
-        <div class="position-relative card-body">
+        <div class="position-relative card-body" @dragover="dragOver">
             <div
                 v-for="position in positions"
                 :key="position.id"
@@ -26,6 +45,8 @@ defineProps({
                     left: `${position.preview_position_x}%`,
                 }"
                 :title="position.name"
+                draggable="true"
+                @dragstart="dragStart"
             >
                 <i
                     :class="
