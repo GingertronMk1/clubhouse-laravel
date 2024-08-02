@@ -38,7 +38,7 @@ class PersonControllerTest extends TestCase
                 ->component('Person/Create')
                 ->has(
                     'users',
-                    $users->count(),
+                    User::count(),
                     fn (AssertableInertia $page) => $page
                         ->where('name', $users->first()->name)
                         ->etc(),
@@ -92,7 +92,7 @@ class PersonControllerTest extends TestCase
                 )
                 ->has(
                     'users',
-                    $users->count(),
+                    User::count(),
                     fn (AssertableInertia $page) => $page
                         ->where('name', $users->first()->name)
                         ->etc(),
