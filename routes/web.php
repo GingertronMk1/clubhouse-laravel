@@ -12,6 +12,7 @@ Route::middleware([
         'person' => App\Http\Controllers\PersonController::class,
         'team' => App\Http\Controllers\TeamController::class,
         'sport' => App\Http\Controllers\SportController::class,
+        'sport.position' => App\Http\Controllers\SportPositionController::class,
     ]);
 
     if (Illuminate\Support\Facades\App::environment(['local', 'testing'])) {

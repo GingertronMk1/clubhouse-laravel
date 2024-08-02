@@ -30,7 +30,7 @@ const props = defineProps({
     },
     modelValue: {
         default: "",
-        type: [String, Boolean, Array],
+        type: [Object, Array, Number, String, Boolean],
     },
     nullable: {
         default: true,
@@ -86,10 +86,16 @@ const proxyValue = computed({
         }
     },
     set(val) {
-        if (props.type === "checkbox") {
-            emit("update:checked", val);
-        } else {
-            emit("update:modelValue", val);
+        switch (props.type) {
+            case "checkbox":
+                emit("update:checked", val);
+                break;
+            case "number":
+            case "range":
+                emit("update:modelValue", parseInt(val, 10));
+                break;
+            default:
+                emit("update:modelValue", val);
         }
     },
 });
@@ -150,6 +156,14 @@ const proxyValue = computed({
             v-model="proxyValue"
             type="color"
             class="form-control form-control-color"
+        />
+        <input
+            v-else-if="type === 'range'"
+            v-bind="$attrs"
+            :id="inputId"
+            v-model="proxyValue"
+            type="range"
+            class="form-range"
         />
         <input
             v-else

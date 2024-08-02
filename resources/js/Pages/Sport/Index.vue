@@ -37,6 +37,18 @@ defineProps({
                     Edit
                     <i class="fa-solid fa-pen-to-square" />
                 </Link>
+                <Link
+                    :href="route('sport.position.index', { sport: sport.id })"
+                    class="btn btn-primary ms-3"
+                >
+                    View Positions
+                </Link>
+                <Link
+                    :href="route('sport.position.create', { sport: sport.id })"
+                    class="btn btn-primary ms-3"
+                >
+                    Add Position
+                </Link>
             </div>
         </div>
     </AppLayout>
