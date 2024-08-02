@@ -27,6 +27,10 @@ class Position extends Model
 
     protected $casts = [];
 
+    protected $with = [
+        'sport'
+    ];
+
     /**
      * @return BelongsTo<Sport, Position>
      */

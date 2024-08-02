@@ -30,7 +30,7 @@ const props = defineProps({
     },
     modelValue: {
         default: "",
-        type: [String, Boolean, Array],
+        type: [Array, Boolean, Number, Object, String],
     },
     nullable: {
         default: true,
@@ -150,6 +150,14 @@ const proxyValue = computed({
             v-model="proxyValue"
             type="color"
             class="form-control form-control-color"
+        />
+        <input
+            v-else-if="type === 'range'"
+            v-bind="$attrs"
+            :id="inputId"
+            v-model="proxyValue"
+            type="range"
+            class="form-range"
         />
         <input
             v-else

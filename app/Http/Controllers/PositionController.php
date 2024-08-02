@@ -25,7 +25,7 @@ class PositionController extends Controller
     public function create(): Response|Responsable
     {
         return $this->inertia('Position/Create', [
-            'sports' => Sport::all(),
+            'sports' => Sport::with('positions')->get()->all(),
         ]);
     }
 
@@ -54,7 +54,7 @@ class PositionController extends Controller
     {
         return $this->inertia('Position/Edit', [
             'position' => $position,
-            'sports' => Sport::all(),
+            'sports' => Sport::with('positions')->get()->all(),
         ]);
     }
 

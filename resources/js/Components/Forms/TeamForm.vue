@@ -47,6 +47,7 @@ const form = useForm(props.model);
             type="select"
             :options="sports"
             :option-value-getter="(sport) => sport"
+            :readonly="form.id ? 'readonly' : null"
         >
             Sport
             <i
