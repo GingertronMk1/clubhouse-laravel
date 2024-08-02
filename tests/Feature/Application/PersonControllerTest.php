@@ -40,7 +40,7 @@ class PersonControllerTest extends TestCase
                     'users',
                     User::count(),
                     fn (AssertableInertia $page) => $page
-                        ->where('name', $users->first()->name)
+                        ->where('name', User::first()->name)
                         ->etc(),
                 ),
         );
@@ -94,7 +94,7 @@ class PersonControllerTest extends TestCase
                     'users',
                     User::count(),
                     fn (AssertableInertia $page) => $page
-                        ->where('name', $users->first()->name)
+                        ->where('name', User::first()->name)
                         ->etc(),
                 ),
         );
