@@ -25,6 +25,8 @@ class StorePositionRequest extends FormRequest
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
             'sport_id' => ['exists:sports,id'],
+            'sort_order' => ['nullable', 'integer'],
+            'default_number' => ['nullable', 'integer'],
             'preview_position_x' => ['integer', 'between:0,100'],
             'preview_position_y' => ['integer', 'between:0,100'],
         ];

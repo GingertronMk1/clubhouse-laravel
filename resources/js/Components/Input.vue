@@ -30,7 +30,7 @@ const props = defineProps({
     },
     modelValue: {
         default: "",
-        type: [Array, Boolean, Number, Object, String],
+        type: [Object, Array, Number, String, Boolean],
     },
     nullable: {
         default: true,
@@ -86,10 +86,16 @@ const proxyValue = computed({
         }
     },
     set(val) {
-        if (props.type === "checkbox") {
-            emit("update:checked", val);
-        } else {
-            emit("update:modelValue", val);
+        switch (props.type) {
+            case "checkbox":
+                emit("update:checked", val);
+                break;
+            case "number":
+            case "range":
+                emit("update:modelValue", parseInt(val, 10));
+                break;
+            default:
+                emit("update:modelValue", val);
         }
     },
 });

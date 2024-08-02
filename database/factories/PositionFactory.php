@@ -21,6 +21,7 @@ class PositionFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->text(),
             'sport_id' => Sport::factory(),
+            'sort_order' => $this->faker->numberBetween(0, 100),
             'preview_position_x' => $this->faker->numberBetween(0, 100),
             'preview_position_y' => $this->faker->numberBetween(0, 100),
         ];

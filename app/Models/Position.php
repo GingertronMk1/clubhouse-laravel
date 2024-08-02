@@ -23,12 +23,14 @@ class Position extends Model
         'sport_id',
         'preview_position_x',
         'preview_position_y',
+        'sort_order',
+        'default_number',
     ];
 
     protected $casts = [];
 
     protected $with = [
-        'sport'
+        'sport',
     ];
 
     /**

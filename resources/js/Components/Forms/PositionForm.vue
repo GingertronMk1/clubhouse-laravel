@@ -1,5 +1,7 @@
 <script setup>
 import Input from "@/Components/Input.vue";
+import PositionsOnField from "@/Components/PositionsOnField.vue";
+import { computed } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
@@ -7,9 +9,9 @@ const props = defineProps({
         required: true,
         type: Object,
     },
-    sports: {
+    sport: {
         required: true,
-        type: Array,
+        type: Object,
     },
     submitFn: {
         required: true,
@@ -17,56 +19,77 @@ const props = defineProps({
     },
 });
 
-const form = useForm(props.model);
+const positions = (props.sport?.positions ?? [])
+    .filter(({ id }) => id !== props.model.id)
+    .map((position) => ({ ...position }));
+
+const form = useForm({
+    ...props.model,
+    current: true,
+});
+
+const positionsPlusThisOne = computed({
+    get() {
+        return [...positions, form].sort(
+            ({ sort_order: a_sort }, { sort_order: b_sort }) => a_sort - b_sort,
+        );
+    },
+});
 </script>
 <template>
     <form @submit.prevent="submitFn(form)">
         <div class="grid">
-            <div class="g-col-6">
-                <div
-                    class="card bg-green p-3"
-                    style="height: 20rem; background-color: green"
-                >
-                    <div class="position-relative h-100 w-100">
-                        <i
-                            v-for="position in form.sport?.positions?.filter(
-                                ({ id }) => id !== form.id,
-                            ) ?? []"
-                            :key="position.id"
-                            class="fa-solid fa-user position-absolute translate-middle"
-                            style="color: blue"
-                            :style="{
-                                top: `${100 - position.preview_position_y}%`,
-                                left: `${position.preview_position_x}%`,
-                            }"
+            <div class="g-col-12">
+                <div class="grid">
+                    <div class="g-col-9">
+                        <Input
+                            v-model="form.name"
+                            :error="form.errors.name"
+                            label="Name"
+                            required
                         />
-                        <i
-                            class="fa-solid fa-user-plus position-absolute translate-middle"
-                            :style="{
-                                top: `${100 - form.preview_position_y}%`,
-                                left: `${form.preview_position_x}%`,
-                            }"
+                    </div>
+                    <div class="g-col-3">
+                        <Input
+                            v-model="form.default_number"
+                            :error="form.errors.default_number"
+                            label="Default Number"
+                            type="number"
                         />
                     </div>
                 </div>
+                <Input
+                    v-model="form.description"
+                    :error="form.errors.description"
+                    type="textarea"
+                    label="Description"
+                />
             </div>
             <div class="g-col-6">
                 <Input
-                    v-model="form.sport"
-                    :error="form.errors.sport"
-                    type="select"
-                    :options="sports"
-                    :option-value-getter="(sport) => sport"
-                    :readonly="form.id ? 'readonly' : null"
+                    v-model="form.sort_order"
+                    type="range"
+                    :error="form.errors.sort_order"
+                    min="0"
+                    max="100"
+                    label="Sort Order"
                 >
-                    Sport
-                    <i
-                        class="fa-solid fa-circle"
-                        :style="{
-                            color: form.sport?.colour ?? 'rgba(0, 0, 0, 0)',
-                        }"
-                    />
+                    Sort Order: <span v-text="form.sort_order" />
                 </Input>
+
+                <ul class="list-group">
+                    <li
+                        v-for="position in positionsPlusThisOne"
+                        :key="position.id"
+                        class="list-group-item"
+                        :class="{
+                            active: position.current,
+                        }"
+                        v-text="`${position.sort_order} | ${position.name}`"
+                    />
+                </ul>
+            </div>
+            <div class="g-col-6">
                 <Input
                     v-model="form.preview_position_x"
                     type="range"
@@ -86,6 +109,8 @@ const form = useForm(props.model);
                 >
                     Preview Y: <span v-text="`${form.preview_position_y}%`" />
                 </Input>
+
+                <PositionsOnField :positions="positionsPlusThisOne" />
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

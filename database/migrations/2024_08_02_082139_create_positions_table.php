@@ -15,6 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->unsignedInteger('sort_order')->nullable()->index();
+            $table->unsignedInteger('default_number')->nullable();
             $table->foreignIdFor(App\Models\Sport::class)->constrained();
             $table->unsignedInteger('preview_position_x');
             $table->unsignedInteger('preview_position_y');
