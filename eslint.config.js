@@ -19,7 +19,7 @@ export default [
             camelcase: "off",
             "max-lines": "off",
             "no-console": "off",
-            "no-magic-numbers": ["error", { "ignore": [1] }],
+            "no-magic-numbers": "off",
             "no-ternary": "off",
             "no-useless-assignment": "off",
             "one-var": [
