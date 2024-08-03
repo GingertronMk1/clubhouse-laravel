@@ -28,6 +28,12 @@ const form = useForm({
     current: true,
 });
 
+const handleMove = ({ newX, newY }) => {
+    form.preview_position_x = Math.round(newX * 100);
+    // Need to invert y because of how CSS works...
+    form.preview_position_y = Math.round((1 - newY) * 100);
+};
+
 const positionsPlusThisOne = computed({
     get() {
         return [...positions, form].sort(
@@ -110,7 +116,10 @@ const positionsPlusThisOne = computed({
                     Preview Y: <span v-text="`${form.preview_position_y}%`" />
                 </Input>
 
-                <PositionsOnField :positions="positionsPlusThisOne" />
+                <PositionsOnField
+                    :positions="positionsPlusThisOne"
+                    @update:model-value="handleMove"
+                />
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

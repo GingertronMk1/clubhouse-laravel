@@ -9,6 +9,19 @@ defineProps({
         type: Boolean,
     },
 });
+
+const emit = defineEmits(["update:modelValue"]);
+
+const dragstart = (evt, tgt) => console.log(evt, tgt);
+const dragend = (evt, tgt) => {
+    console.log(tgt);
+    if (evt.originalTarget) {
+        const newX = evt.layerX / evt.originalTarget.clientWidth;
+        const newY = evt.layerY / evt.originalTarget.clientHeight;
+        console.table({ newX, newY });
+        emit("update:modelValue", { newX, newY });
+    }
+};
 </script>
 
 <template>
@@ -16,7 +29,11 @@ defineProps({
         class="card bg-green p-5"
         style="min-height: 20rem; background-color: green; aspect-ratio: 16/9"
     >
-        <div class="position-relative card-body">
+        <div
+            class="position-relative card-body"
+            @dragover.prevent
+            @drop="dragend"
+        >
             <div
                 v-for="position in positions"
                 :key="position.id"
@@ -27,6 +44,8 @@ defineProps({
                     'font-size': position.current ? '2rem' : null,
                 }"
                 :title="position.name"
+                :draggable="position.current"
+                @dragstart="dragstart"
             >
                 <i
                     :class="
