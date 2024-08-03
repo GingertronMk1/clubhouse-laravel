@@ -1,4 +1,6 @@
 <script setup>
+import { v7 as uuidv7 } from "uuid";
+
 defineProps({
     positions: {
         required: true,
@@ -12,14 +14,19 @@ defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const dragstart = (evt, tgt) => console.log(evt, tgt);
+const positionFieldId = uuidv7();
+
+const dragstart = (evt, tgt) => {
+    console.log(evt, tgt);
+};
 const dragend = (evt, tgt) => {
     console.log(tgt);
-    if (evt.originalTarget) {
-        const newX = evt.layerX / evt.originalTarget.clientWidth;
-        const newY = evt.layerY / evt.originalTarget.clientHeight;
-        console.table({ newX, newY });
-        emit("update:modelValue", { newX, newY });
+    if (evt.target && evt.target.id === positionFieldId) {
+        console.log(evt.target);
+        emit("update:modelValue", {
+            newX: evt.layerX / evt.target.clientWidth,
+            newY: evt.layerY / evt.target.clientHeight,
+        });
     }
 };
 </script>
@@ -30,6 +37,7 @@ const dragend = (evt, tgt) => {
         style="min-height: 20rem; background-color: green; aspect-ratio: 16/9"
     >
         <div
+            :id="positionFieldId"
             class="position-relative card-body"
             @dragover.prevent
             @drop="dragend"
@@ -37,6 +45,7 @@ const dragend = (evt, tgt) => {
             <div
                 v-for="position in positions"
                 :key="position.id"
+                :data-position-id="position.id"
                 class="position-absolute translate-middle text-center d-flex flex-column"
                 :style="{
                     top: `${100 - position.preview_position_y}%`,
