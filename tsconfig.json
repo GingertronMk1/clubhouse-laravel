@@ -4,5 +4,11 @@
         "resources/**/*.ts",
         "resources/**/*.d.ts",
         "resources/**/*.vue"
-    ]
+    ],
+    "compilerOptions": {
+        "types": [
+            "vite/client",
+            "./vendor/tightenco/ziggy"
+        ],
+    }
 }
