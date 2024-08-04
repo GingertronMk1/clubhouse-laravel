@@ -20,13 +20,13 @@ declare module "@inertiajs/core" {
     interface PageProps extends InertiaPageProps, AppPageProps {}
 }
 
-interface User {
+export interface User {
     id: string,
     name: string,
     email: string,
 }
 
-interface Person {
+export interface Person {
     id: string,
     name: string,
     bio: ?string,
@@ -35,7 +35,7 @@ interface Person {
     user: ?User
 }
 
-interface Team {
+export interface Team {
     id: string,
     name: string,
     description: ?string,
@@ -45,7 +45,7 @@ interface Team {
     people: ?Array<Person>
 }
 
-interface Sport {
+export interface Sport {
     id: string,
     name: string,
     description: ?string,
@@ -54,7 +54,7 @@ interface Sport {
     positions: ?Array<Position>,
 }
 
-interface Position {
+export interface Position {
     id: string,
     name: string,
     description: ?string,
