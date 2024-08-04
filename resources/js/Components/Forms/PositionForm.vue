@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import Input from "@/Components/Input.vue";
 import PositionsOnField from "@/Components/PositionsOnField.vue";
 import { computed } from "vue";

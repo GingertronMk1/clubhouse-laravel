@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
 

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import PersonForm from "@/Components/Forms/PersonForm.vue";
 

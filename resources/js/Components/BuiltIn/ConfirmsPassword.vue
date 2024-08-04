@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { nextTick, reactive, ref } from "vue";
 import DialogModal from "./DialogModal.vue";
 import Input from "@/Components/Input.vue";

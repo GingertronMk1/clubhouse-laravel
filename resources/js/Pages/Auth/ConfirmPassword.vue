@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Head, useForm } from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Input from "@/Components/Input.vue";

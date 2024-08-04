@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { v7 as uuidv7 } from "uuid";
 
 defineProps({
