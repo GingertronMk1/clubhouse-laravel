@@ -1,5 +1,5 @@
 import "./bootstrap";
-import "../css/app.css";
+import "../scss/app.scss";
 
 import { DefineComponent, createApp, h } from "vue";
 import { ZiggyVue } from "ziggy-js";
