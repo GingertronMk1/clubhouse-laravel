@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -20,7 +20,7 @@ const personOrPeople = ({ people }) =>
         </template>
 
         <Link :href="route('team.create')" class="btn btn-primary mb-3">
-            Add <i class="fa-solid fa-plus"></i>
+            Add <i class="fa-solid fa-plus" />
         </Link>
         <div v-for="team in teams" :key="team.id" class="card mb-3">
             <div class="card-header d-flex justify-content-between">

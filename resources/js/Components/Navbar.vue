@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Link, router } from "@inertiajs/vue3";
 import { ref } from "vue";
 
@@ -40,7 +40,7 @@ const logout = () => router.post(route("logout"));
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             >
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" />
             </button>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 /* eslint vue/no-v-html: 0 */
 import { Head } from "@inertiajs/vue3";
 
@@ -17,7 +17,7 @@ defineProps({
         <div class="pt-4 bg-gray-100">
             <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
                 <div>
-                    <i class="fa-solid fa-football"></i>
+                    <i class="fa-solid fa-football" />
                 </div>
 
                 <div

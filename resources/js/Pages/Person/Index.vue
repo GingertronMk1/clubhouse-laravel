@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 
@@ -17,7 +17,7 @@ defineProps({
         </template>
         <div class="container">
             <a :href="route('person.create')" class="btn btn-primary">
-                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-plus" />
                 Add
             </a>
 

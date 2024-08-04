@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TeamForm from "@/Components/Forms/TeamForm.vue";
 

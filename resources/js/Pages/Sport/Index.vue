@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import PositionsOnField from "@/Components/PositionsOnField.vue";
@@ -14,7 +14,7 @@ defineProps({
 <template>
     <AppLayout>
         <Link :href="route('sport.create')" class="btn btn-primary mb-3">
-            Add <i class="fa-solid fa-plus"></i>
+            Add <i class="fa-solid fa-plus" />
         </Link>
 
         <div v-for="sport in sports" :key="sport.id" class="card mb-3">

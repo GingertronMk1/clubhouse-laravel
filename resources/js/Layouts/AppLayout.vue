@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Banner from "@/Components/BuiltIn/Banner.vue";
 import { Head } from "@inertiajs/vue3";
 import Navbar from "@/Components/Navbar.vue";

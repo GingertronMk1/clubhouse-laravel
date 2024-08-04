@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed, useSlots } from "vue";
 import { v7 as uuidv7 } from "uuid";
 
@@ -114,7 +114,7 @@ const proxyValue = computed({
             <template v-if="label.length && !hasSlot('default')">
                 {{ label }}
             </template>
-            <template v-else><slot></slot></template>
+            <template v-else><slot /></template>
         </label>
         <div v-if="error" class="text-danger" v-text="error" />
         <textarea

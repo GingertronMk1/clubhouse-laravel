@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { Link } from "@inertiajs/vue3";
 import PositionsOnField from "@/Components/PositionsOnField.vue";
@@ -32,7 +32,7 @@ defineProps({
                     <th>Description</th>
                     <th>Default Number</th>
                     <th>Sort Order</th>
-                    <th></th>
+                    <th />
                 </tr>
             </thead>
             <tbody>
