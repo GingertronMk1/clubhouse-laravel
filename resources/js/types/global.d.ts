@@ -21,47 +21,47 @@ declare module "@inertiajs/core" {
 }
 
 export interface User {
-    id: string,
-    name: string,
-    email: string,
+    id: string;
+    name: string;
+    email: string;
 }
 
 export interface Person {
-    id: string,
-    name: string,
-    bio: ?string,
-    dob: ?string,
-    user_id: ?string,
-    user: ?User
+    id: string;
+    name: string;
+    bio: ?string;
+    dob: ?string;
+    user_id: ?string;
+    user: ?User;
 }
 
 export interface Team {
-    id: string,
-    name: string,
-    description: ?string,
-    address: ?string,
-    sport_id: string,
-    sport: Sport,
-    people: ?Array<Person>
+    id: string;
+    name: string;
+    description: ?string;
+    address: ?string;
+    sport_id: string;
+    sport: Sport;
+    people: ?Array<Person>;
 }
 
 export interface Sport {
-    id: string,
-    name: string,
-    description: ?string,
-    colour: ?string,
-    teams: ?Array<Team>
-    positions: ?Array<Position>,
+    id: string;
+    name: string;
+    description: ?string;
+    colour: ?string;
+    teams: ?Array<Team>;
+    positions: ?Array<Position>;
 }
 
 export interface Position {
-    id: string,
-    name: string,
-    description: ?string,
-    sort_order: bigint,
-    default_number: bigint,
-    sport_id: string,
-    sport: Sport,
-    preview_position_x: bigint,
-    preview_position_y: bigint,
+    id: string;
+    name: string;
+    description: ?string;
+    sort_order: bigint;
+    default_number: bigint;
+    sport_id: string;
+    sport: Sport;
+    preview_position_x: bigint;
+    preview_position_y: bigint;
 }
