@@ -16,13 +16,8 @@ const emit = defineEmits(["update:modelValue"]);
 
 const positionFieldId = uuidv7();
 
-const dragstart = (evt, tgt) => {
-    console.log(evt, tgt);
-};
-const dragend = (evt, tgt) => {
-    console.log(tgt);
+const dragend = (evt) => {
     if (evt.target && evt.target.id === positionFieldId) {
-        console.log(evt.target);
         emit("update:modelValue", {
             newX: evt.layerX / evt.target.clientWidth,
             newY: evt.layerY / evt.target.clientHeight,
@@ -54,7 +49,6 @@ const dragend = (evt, tgt) => {
                 }"
                 :title="position.name"
                 :draggable="position.current"
-                @dragstart="dragstart"
             >
                 <i
                     :class="

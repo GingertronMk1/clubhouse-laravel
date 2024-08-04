@@ -44,7 +44,7 @@ const positionsPlusThisOne = computed({
 </script>
 <template>
     <form @submit.prevent="submitFn(form)">
-        <div class="grid">
+        <div class="grid mb-3">
             <div class="g-col-12">
                 <div class="grid">
                     <div class="g-col-9">
