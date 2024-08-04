@@ -19,6 +19,12 @@ export default tseslint.config(
                 axios: "readonly",
                 route: "readonly",
             },
+            parserOptions: {
+                parser: tseslint.parser,
+                project: './tsconfig.json',
+                extraFileExtensions: ['.vue'],
+                sourceType: 'module',
+            },
         },
         rules: {
             camelcase: "off",
