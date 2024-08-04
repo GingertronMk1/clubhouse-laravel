@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 /* eslint vue/no-v-html: 0 */
 import { computed, ref, watch } from "vue";
 import { router, useForm, usePage } from "@inertiajs/vue3";
@@ -161,7 +161,7 @@ const disableTwoFactorAuthentication = () => {
                         class="mt-4 max-w-xl text-sm text-gray-600"
                     >
                         <p class="font-semibold">
-                            Setup Key: <span v-html="setupKey"></span>
+                            Setup Key: <span v-html="setupKey" />
                         </p>
                     </div>
 

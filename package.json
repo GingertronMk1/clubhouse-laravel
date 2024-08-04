@@ -3,17 +3,21 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && vite build --ssr",
+        "build": "npm run type-check && vite build && vite build --ssr",
         "eslint": "eslint resources/js/**/*.{vue,js,ts,jsx,tsx}",
-        "eslint:fix": "npm run eslint -- --fix"
+        "eslint:fix": "npm run eslint -- --fix",
+        "type-check": "vue-tsc --strict --noEmit",
+        "check": "npm run eslint:fix; npm run type-check"
     },
     "devDependencies": {
         "@eslint/js": "^9.8.0",
         "@inertiajs/vue3": "^1.0.14",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.10",
+        "@types/eslint__js": "^8.42.3",
         "@vitejs/plugin-vue": "^5.1.2",
         "@vue/server-renderer": "^3.4.35",
+        "@vue/tsconfig": "^0.5.1",
         "autoprefixer": "^10.4.16",
         "axios": "^1.7.3",
         "eslint": "^9.8.0",
@@ -25,13 +29,17 @@
         "prettier": "3.3.3",
         "sass": "^1.77.8",
         "tailwindcss": "^3.4.0",
+        "typescript": "^5.5.4",
+        "typescript-eslint": "^8.0.0",
         "vite": "^5.0",
         "vite-plugin-eslint": "^1.8.1",
-        "vue": "^3.3.13"
+        "vue": "^3.3.13",
+        "vue-tsc": "^2.0.29"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
         "bootstrap": "^5.3.3",
-        "uuid": "^10.0.0"
+        "uuid": "^10.0.0",
+        "ziggy-js": "^2.3.0"
     }
 }

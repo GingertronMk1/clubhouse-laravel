@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import FormSection from "@/Components/BuiltIn/FormSection.vue";
 import Input from "@/Components/Input.vue";

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Input from "@/Components/Input.vue";
 import PositionsOnField from "@/Components/PositionsOnField.vue";
 import { computed } from "vue";
@@ -44,7 +44,7 @@ const positionsPlusThisOne = computed({
 </script>
 <template>
     <form @submit.prevent="submitFn(form)">
-        <div class="grid">
+        <div class="grid mb-3">
             <div class="g-col-12">
                 <div class="grid">
                     <div class="g-col-9">

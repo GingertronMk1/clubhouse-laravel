@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
 ./bin/node/npm run eslint:fix
+./bin/node/npm run type-check
 ./bin/app/composer check

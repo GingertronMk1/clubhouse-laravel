@@ -1,5 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
+import { InertiaForm } from "@inertiajs/vue3";
+import type { Team } from "@/types/global";
 import TeamForm from "@/Components/Forms/TeamForm.vue";
 
 defineProps({
@@ -9,13 +11,18 @@ defineProps({
     },
     team: {
         required: true,
-        type: Object,
+        type: Object as () => Team,
     },
 });
 
-const submitForm = (argForm) =>
+const submitForm = (argForm: InertiaForm<Team>): void =>
     argForm
-        .transform((data) => ({ ...data, sport_id: data.sport.id }))
+        .transform(
+            (data: Team): Team => ({
+                ...data,
+                sport_id: data.sport.id,
+            }),
+        )
         .post(route("team.update", { team: argForm.id }));
 </script>
 

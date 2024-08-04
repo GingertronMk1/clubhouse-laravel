@@ -2,17 +2,28 @@ import js from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import recommendedConfig from "eslint-plugin-prettier/recommended";
 
-export default [
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+    eslint.configs.recommended,
+    ...tseslint.configs.recommended,
     js.configs.all,
     ...pluginVue.configs["flat/recommended"],
     recommendedConfig,
     {
-        files: ["**/*.{js,vue}"],
+        files: ["**/*.{ts,js,vue}"],
         ignores: ["./vendor/", "./node_modules/", "./bootstrap/"],
         languageOptions: {
             globals: {
                 axios: "readonly",
                 route: "readonly",
+            },
+            parserOptions: {
+                parser: tseslint.parser,
+                project: './tsconfig.json',
+                extraFileExtensions: ['.vue'],
+                sourceType: 'module',
             },
         },
         rules: {
@@ -21,6 +32,7 @@ export default [
             "no-console": "off",
             "no-magic-numbers": "off",
             "no-ternary": "off",
+            "no-use-before-define": "off",
             "no-useless-assignment": "off",
             "one-var": [
                 "error",
@@ -33,4 +45,4 @@ export default [
             "vue/multi-word-component-names": "off",
         },
     },
-];
+);

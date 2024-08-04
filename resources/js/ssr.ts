@@ -1,4 +1,4 @@
-import { createSSRApp, h } from "vue";
+import { DefineComponent, createSSRApp, h } from "vue";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import { createInertiaApp } from "@inertiajs/vue3";
 import createServer from "@inertiajs/vue3/server";
@@ -11,10 +11,10 @@ createServer((page) =>
     createInertiaApp({
         page,
         render: renderToString,
-        resolve: (name) =>
+        resolve: (name: string) =>
             resolvePageComponent(
                 `./Pages/${name}.vue`,
-                import.meta.glob("./Pages/**/*.vue"),
+                import.meta.glob<DefineComponent>("./Pages/**/*.vue"),
             ),
         setup({ App, props, plugin }) {
             return createSSRApp({ render: () => h(App, props) })
@@ -24,6 +24,7 @@ createServer((page) =>
                     location: new URL(page.props.ziggy.location),
                 });
         },
-        title: (title) => `${title} - ${appName}`,
+        title: (title: string): string =>
+            title.length > 0 ? `${title} - ${appName}` : appName,
     }),
 );
