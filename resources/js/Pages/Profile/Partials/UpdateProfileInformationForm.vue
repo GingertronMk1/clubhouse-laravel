@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { Link, router, useForm } from "@inertiajs/vue3";
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import FormSection from "@/Components/BuiltIn/FormSection.vue";

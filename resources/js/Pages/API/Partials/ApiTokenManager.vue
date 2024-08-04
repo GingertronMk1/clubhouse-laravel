@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ActionMessage from "@/Components/BuiltIn/ActionMessage.vue";
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import ConfirmationModal from "@/Components/BuiltIn/ConfirmationModal.vue";

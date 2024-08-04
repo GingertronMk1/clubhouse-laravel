@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 /* eslint vue/no-v-html: 0 */
 import { computed, ref, watch } from "vue";
 import { router, useForm, usePage } from "@inertiajs/vue3";

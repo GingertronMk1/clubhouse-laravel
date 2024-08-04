@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ActionSection from "@/Components/BuiltIn/ActionSection.vue";
 import DialogModal from "@/Components/BuiltIn/DialogModal.vue";
 import Input from "@/Components/Input.vue";

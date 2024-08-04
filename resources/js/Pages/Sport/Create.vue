@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 import SportForm from "@/Components/Forms/SportForm.vue";
 </script>

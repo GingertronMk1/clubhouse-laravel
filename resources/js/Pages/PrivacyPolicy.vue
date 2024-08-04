@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 /* eslint vue/no-v-html: 0 */
 import { Head } from "@inertiajs/vue3";
 

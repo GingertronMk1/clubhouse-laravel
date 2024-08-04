@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed, useSlots } from "vue";
 import { v7 as uuidv7 } from "uuid";
 

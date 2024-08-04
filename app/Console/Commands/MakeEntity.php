@@ -63,7 +63,7 @@ class MakeEntity extends Command
             File::put(
                 "{$pagesPath}/{$fileName}.vue",
                 <<<'VUE'
-<script setup>
+<script setup lang="ts">
 import AppLayout from "@/Layouts/AppLayout.vue";
 </script>
 
@@ -80,7 +80,7 @@ VUE,
         File::put(
             resource_path("/js/Components/Forms/{$entityName}Form.vue"),
             <<<'VUE'
-<script setup>
+<script setup lang="ts">
 import { useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
