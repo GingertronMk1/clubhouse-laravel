@@ -6,7 +6,8 @@
         "build": "npm run type-check && vite build && vite build --ssr",
         "eslint": "eslint resources/js/**/*.{vue,js,ts,jsx,tsx}",
         "eslint:fix": "npm run eslint -- --fix",
-        "type-check": "vue-tsc --strict --noEmit"
+        "type-check": "vue-tsc --strict --noEmit",
+        "check": "npm run eslint:fix; npm run type-check"
     },
     "devDependencies": {
         "@eslint/js": "^9.8.0",

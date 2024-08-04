@@ -26,6 +26,7 @@ export default tseslint.config(
             "no-console": "off",
             "no-magic-numbers": "off",
             "no-ternary": "off",
+            "no-use-before-define": "off",
             "no-useless-assignment": "off",
             "one-var": [
                 "error",
