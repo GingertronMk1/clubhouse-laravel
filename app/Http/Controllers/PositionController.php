@@ -20,7 +20,7 @@ class PositionController extends Controller
         return view(
             'position.index',
             [
-                'positions' => Position::all()
+                'positions' => Position::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class PositionController extends Controller
     public function store(StorePositionRequest $request): RedirectResponse
     {
         Position::create($request->all());
+
         return to_route('position.index');
     }
 
@@ -52,7 +53,7 @@ class PositionController extends Controller
         return view(
             'position.show',
             [
-                'position' => $position
+                'position' => $position,
             ]
         );
     }
@@ -65,7 +66,7 @@ class PositionController extends Controller
         return view(
             'position.edit',
             [
-                'position' => $position
+                'position' => $position,
             ]
         );
     }
@@ -76,6 +77,7 @@ class PositionController extends Controller
     public function update(UpdatePositionRequest $request, Position $position): RedirectResponse
     {
         $position->update($request->all());
+
         return to_route('position.index');
     }
 
@@ -85,6 +87,7 @@ class PositionController extends Controller
     public function destroy(Position $position): RedirectResponse
     {
         $position->delete();
+
         return to_route('position.index');
     }
 }

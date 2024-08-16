@@ -20,7 +20,7 @@ class PersonController extends Controller
         return view(
             'person.index',
             [
-                'persons' => Person::all()
+                'persons' => Person::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class PersonController extends Controller
     public function store(StorePersonRequest $request): RedirectResponse
     {
         Person::create($request->all());
+
         return to_route('person.index');
     }
 
@@ -52,7 +53,7 @@ class PersonController extends Controller
         return view(
             'person.show',
             [
-                'person' => $person
+                'person' => $person,
             ]
         );
     }
@@ -65,7 +66,7 @@ class PersonController extends Controller
         return view(
             'person.edit',
             [
-                'person' => $person
+                'person' => $person,
             ]
         );
     }
@@ -76,6 +77,7 @@ class PersonController extends Controller
     public function update(UpdatePersonRequest $request, Person $person): RedirectResponse
     {
         $person->update($request->all());
+
         return to_route('person.index');
     }
 
@@ -85,6 +87,7 @@ class PersonController extends Controller
     public function destroy(Person $person): RedirectResponse
     {
         $person->delete();
+
         return to_route('person.index');
     }
 }

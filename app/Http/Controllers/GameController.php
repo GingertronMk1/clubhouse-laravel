@@ -20,7 +20,7 @@ class GameController extends Controller
         return view(
             'game.index',
             [
-                'games' => Game::all()
+                'games' => Game::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class GameController extends Controller
     public function store(StoreGameRequest $request): RedirectResponse
     {
         Game::create($request->all());
+
         return to_route('game.index');
     }
 
@@ -52,7 +53,7 @@ class GameController extends Controller
         return view(
             'game.show',
             [
-                'game' => $game
+                'game' => $game,
             ]
         );
     }
@@ -65,7 +66,7 @@ class GameController extends Controller
         return view(
             'game.edit',
             [
-                'game' => $game
+                'game' => $game,
             ]
         );
     }
@@ -76,6 +77,7 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game): RedirectResponse
     {
         $game->update($request->all());
+
         return to_route('game.index');
     }
 
@@ -85,6 +87,7 @@ class GameController extends Controller
     public function destroy(Game $game): RedirectResponse
     {
         $game->delete();
+
         return to_route('game.index');
     }
 }

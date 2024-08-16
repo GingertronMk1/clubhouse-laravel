@@ -20,7 +20,7 @@ class SportController extends Controller
         return view(
             'sport.index',
             [
-                'sports' => Sport::all()
+                'sports' => Sport::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class SportController extends Controller
     public function store(StoreSportRequest $request): RedirectResponse
     {
         Sport::create($request->all());
+
         return to_route('sport.index');
     }
 
@@ -52,7 +53,7 @@ class SportController extends Controller
         return view(
             'sport.show',
             [
-                'sport' => $sport
+                'sport' => $sport,
             ]
         );
     }
@@ -65,7 +66,7 @@ class SportController extends Controller
         return view(
             'sport.edit',
             [
-                'sport' => $sport
+                'sport' => $sport,
             ]
         );
     }
@@ -76,6 +77,7 @@ class SportController extends Controller
     public function update(UpdateSportRequest $request, Sport $sport): RedirectResponse
     {
         $sport->update($request->all());
+
         return to_route('sport.index');
     }
 
@@ -85,6 +87,7 @@ class SportController extends Controller
     public function destroy(Sport $sport): RedirectResponse
     {
         $sport->delete();
+
         return to_route('sport.index');
     }
 }

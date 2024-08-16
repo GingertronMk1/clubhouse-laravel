@@ -20,7 +20,7 @@ class TeamController extends Controller
         return view(
             'team.index',
             [
-                'teams' => Team::all()
+                'teams' => Team::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class TeamController extends Controller
     public function store(StoreTeamRequest $request): RedirectResponse
     {
         Team::create($request->all());
+
         return to_route('team.index');
     }
 
@@ -52,7 +53,7 @@ class TeamController extends Controller
         return view(
             'team.show',
             [
-                'team' => $team
+                'team' => $team,
             ]
         );
     }
@@ -65,7 +66,7 @@ class TeamController extends Controller
         return view(
             'team.edit',
             [
-                'team' => $team
+                'team' => $team,
             ]
         );
     }
@@ -76,6 +77,7 @@ class TeamController extends Controller
     public function update(UpdateTeamRequest $request, Team $team): RedirectResponse
     {
         $team->update($request->all());
+
         return to_route('team.index');
     }
 
@@ -85,6 +87,7 @@ class TeamController extends Controller
     public function destroy(Team $team): RedirectResponse
     {
         $team->delete();
+
         return to_route('team.index');
     }
 }
