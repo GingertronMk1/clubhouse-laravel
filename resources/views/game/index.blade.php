@@ -1,3 +1,3 @@
-<div>
-    <!-- Well begun is half done. - Aristotle -->
-</div>
+<x-app-layout>
+
+</x-app-layout>

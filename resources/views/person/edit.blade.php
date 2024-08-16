@@ -1,3 +1,3 @@
-<div>
-    <!-- Walk as if you are kissing the Earth with your feet. - Thich Nhat Hanh -->
-</div>
+<x-app-layout>
+
+</x-app-layout>
