@@ -5,62 +5,86 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 
 class {{ class }} extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Application|Factory|View
     {
-        //
+        return view(
+            '{{ modelVariable }}.index',
+            [
+                '{{ modelVariable }}s' => {{ model }}::all()
+            ]
+        );
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Application|Factory|View
     {
-        //
+        return view(
+            '{{ modelVariable }}.create'
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store({{ storeRequest }} $request)
+    public function store({{ storeRequest }} $request): RedirectResponse
     {
-        //
+        {{ model }}::create($request->all());
+        return to_route('{{ modelVariable }}.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show({{ model }} ${{ modelVariable }})
+    public function show({{ model }} ${{ modelVariable }}): Application|Factory|View
     {
-        //
+        return view(
+            '{{ modelVariable }}.show',
+            [
+                '{{ modelVariable }}' => ${{ modelVariable }}
+            ]
+        );
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit({{ model }} ${{ modelVariable }})
+    public function edit({{ model }} ${{ modelVariable }}): Application|Factory|View
     {
-        //
+        return view(
+            '{{ modelVariable }}.edit',
+            [
+                '{{ modelVariable }}' => ${{ modelVariable }}
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): RedirectResponse
     {
-        //
+        ${{ modelVariable }}->update($request->all());
+        return to_route('{{ modelVariable }}.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy({{ model }} ${{ modelVariable }})
+    public function destroy({{ model }} ${{ modelVariable }}): RedirectResponse
     {
-        //
+        ${{ modelVariable }}->delete();
+        return to_route('{{ modelVariable }}.index');
     }
 }

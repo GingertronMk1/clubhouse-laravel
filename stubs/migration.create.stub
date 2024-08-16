@@ -6,14 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    private const TABLE_NAME = '{{ table }}';
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('{{ table }}', function (Blueprint $table) {
-            $table->id();
+        Schema::create(self::TABLE_NAME, function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('{{ table }}');
+        Schema::dropIfExists(self::TABLE_NAME);
     }
 };
