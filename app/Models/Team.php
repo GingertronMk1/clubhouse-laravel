@@ -34,6 +34,8 @@ class Team extends Model
      */
     protected function casts(): array
     {
-        return [];
+        return [
+            'colours' => 'array'
+        ];
     }
 }
