@@ -20,7 +20,7 @@ class CompetitionController extends Controller
         return view(
             'competition.index',
             [
-                'competitions' => Competition::all()
+                'competitions' => Competition::all(),
             ]
         );
     }
@@ -41,6 +41,7 @@ class CompetitionController extends Controller
     public function store(StoreCompetitionRequest $request): RedirectResponse
     {
         Competition::create($request->all());
+
         return to_route('competition.index');
     }
 
@@ -52,7 +53,7 @@ class CompetitionController extends Controller
         return view(
             'competition.show',
             [
-                'competition' => $competition
+                'competition' => $competition,
             ]
         );
     }
@@ -65,7 +66,7 @@ class CompetitionController extends Controller
         return view(
             'competition.edit',
             [
-                'competition' => $competition
+                'competition' => $competition,
             ]
         );
     }
@@ -76,6 +77,7 @@ class CompetitionController extends Controller
     public function update(UpdateCompetitionRequest $request, Competition $competition): RedirectResponse
     {
         $competition->update($request->all());
+
         return to_route('competition.index');
     }
 
@@ -85,6 +87,7 @@ class CompetitionController extends Controller
     public function destroy(Competition $competition): RedirectResponse
     {
         $competition->delete();
+
         return to_route('competition.index');
     }
 }

@@ -21,6 +21,13 @@ class Person extends Model
     protected $fillable = [];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array<int, string>
+     */
+    protected $with = [];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -29,12 +36,4 @@ class Person extends Model
     {
         return [];
     }
-
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    protected $with = [];
-
 }

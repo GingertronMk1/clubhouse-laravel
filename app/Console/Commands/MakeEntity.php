@@ -10,14 +10,6 @@ use Illuminate\Foundation\Console\ViewMakeCommand;
 
 class MakeEntity extends Command
 {
-    private readonly Inflector $inflector;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->inflector = InflectorFactory::create()->build();
-    }
-
     /**
      * The name and signature of the console command.
      *
@@ -31,6 +23,13 @@ class MakeEntity extends Command
      * @var string
      */
     protected $description = 'Command description';
+    private readonly Inflector $inflector;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->inflector = InflectorFactory::create()->build();
+    }
 
     /**
      * Execute the console command.
