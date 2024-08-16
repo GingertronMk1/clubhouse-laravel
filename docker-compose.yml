@@ -51,7 +51,6 @@ services:
             ADMINER_DESIGN: 'flat'
         volumes:
             - './_docker/plugins:/var/www/html/plugins-enabled:delegated'
-            - './database/database.sqlite:/var/www/html/database.sqlite:rw'
         networks:
             - clubhouse-laravel-network
         depends_on:
