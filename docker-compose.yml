@@ -1,0 +1,95 @@
+services:
+    nginx:
+        platform: linux/x86_64
+        build:
+            context: .
+            dockerfile: _docker/config/nginx.dockerfile
+        volumes:
+            - "./:/var/www:delegated"
+            - "./_docker/config/nginx/conf.d/:/etc/nginx/conf.d/:delegated"
+        depends_on:
+            - app
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - clubhouse-laravel-network
+
+    app:
+        platform: linux/x86_64
+        build:
+            context: .
+            dockerfile: _docker/config/app.dockerfile
+        volumes:
+            - '.:/var/www:delegated'
+            - './_docker/config/app/php.ini:/usr/local/etc/php/conf.d/zzz_app.ini'
+        ports:
+            - "9003:9003"
+        networks:
+            - clubhouse-laravel-network
+
+    node:
+        platform: linux/x86_64
+        build:
+            context: .
+            dockerfile: _docker/config/node.dockerfile
+        volumes:
+            - '.:/app:delegated'
+        ports:
+            - "5173:5173"
+        networks:
+            - clubhouse-laravel-network
+
+    adminer:
+        image: adminer:4-standalone
+        platform: linux/x86_64
+        ports:
+            - "8080:8080"
+        env_file:
+            - .env
+        environment:
+            ADMINER_DESIGN: 'flat'
+        volumes:
+            - './_docker/plugins:/var/www/html/plugins-enabled:delegated'
+            - './database/database.sqlite:/var/www/html/database.sqlite:rw'
+        networks:
+            - clubhouse-laravel-network
+        depends_on:
+            - db
+
+    mailhog:
+        image: mailhog/mailhog:v1.0.1
+        platform: linux/x86_64
+        working_dir: /home/mailhog
+        user: root
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        environment:
+            MH_STORAGE: maildir
+            MH_MAILDIR_PATH: /maildir
+        networks:
+            - clubhouse-laravel-network
+        volumes:
+            - "mailhog_maildir:/maildir"
+
+    db:
+        image: postgres:16
+        restart: on-failure
+        env_file:
+            - .env
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+        networks:
+            - clubhouse-laravel-network
+
+volumes:
+    mailhog_maildir:
+
+networks:
+    clubhouse-laravel-network:
+        driver: bridge
