@@ -23,7 +23,7 @@ class Person extends Model
         'name',
         'dob',
         'bio',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -32,8 +32,13 @@ class Person extends Model
      * @var array<int, string>
      */
     protected $with = [
-        'user'
+        'user',
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -43,10 +48,5 @@ class Person extends Model
     protected function casts(): array
     {
         return [];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }
