@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+php artisan app:make-entity \
+  Person \
+  Sport \
+  Position \
+  Team \
+  Competition \
+  Game
+
