@@ -14,6 +14,10 @@ return new class extends Migration
     {
         Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignIdFor(\App\Models\Competition::class, 'parent_id')->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->foreignIdFor(\App\Models\Sport::class)->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
