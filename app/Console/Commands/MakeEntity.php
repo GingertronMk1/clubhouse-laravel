@@ -48,7 +48,6 @@ class MakeEntity extends Command
             );
 
             $viewDir = $this->inflector->camelize($entityName);
-            $viewDir = str_replace('_', '-', $viewDir);
             foreach ($this->getCrudOperations() as $operation) {
                 $this->call(
                     ViewMakeCommand::class,
