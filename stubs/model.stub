@@ -2,10 +2,37 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class {{ class }} extends Model
 {
     use HasFactory;
+    use HasVersion7Uuids;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [];
+    }
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array<int, string>
+     */
+    protected $with = [];
+
 }
