@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->foreignIdFor(Competition::class, 'parent_id')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->foreignIdFor(Sport::class)->nullable()->constrained();
+            $table->foreignIdFor(Sport::class)->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
