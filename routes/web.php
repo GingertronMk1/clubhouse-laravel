@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SportController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,5 +22,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::resources([
+    'competition' => CompetitionController::class,
+    'game' => GameController::class,
+    'person' => PersonController::class,
+    'position' => PositionController::class,
+    'sport' => SportController::class,
+    'team' => TeamController::class,
+]);
 
 require __DIR__.'/auth.php';
