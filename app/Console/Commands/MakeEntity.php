@@ -47,7 +47,7 @@ class MakeEntity extends Command
                 ]
             );
 
-            $viewDir = $this->inflector->tableize($entityName);
+            $viewDir = $this->inflector->camelize($entityName);
             $viewDir = str_replace('_', '-', $viewDir);
             foreach ($this->getCrudOperations() as $operation) {
                 $this->call(
