@@ -1,4 +1,12 @@
 <x-app-layout>
+    @slot('header')
+        <h2 class="m-0">Teams</h2>
+        <a href="{{ route('team.create') }}" class="btn btn-primary">
+            Add
+            <i class="fa-solid fa-plus"></i>
+        </a>
+    @endslot
+
     @foreach($teams as $team)
         <div class="card mt-3 {{ $loop->last ? 'mb-3' : '' }}">
             <div class="card-header d-flex flex-row justify-content-between">
