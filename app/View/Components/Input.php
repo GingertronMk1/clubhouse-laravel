@@ -19,11 +19,12 @@ class Input extends Component
     public function __construct(
         public readonly string $name,
         public readonly string $type = 'text',
-        public readonly array $options = [],
+        public readonly iterable $options = [],
         ?\Closure $valueFn = null,
         ?\Closure $textFn = null,
         public readonly bool $canBeNull = false,
         ?string $label = null,
+        public readonly ?string $value = null,
     ) {
         $this->valueFn = $valueFn ?? fn ($input) => $input->id;
         $this->textFn = $textFn ?? fn ($input) => $input->name;
