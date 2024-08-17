@@ -1,6 +1,17 @@
-<x-guest-layout>
+<x-app-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    @env('local')
+        <form method="POST" class="card" action="{{ route('local_login_as_user') }}">
+            @csrf
+            <div class="card-header">(DEV) Log In As User</div>
+            <div class="card-body">
+                <x-input type="select" name="user_id" :options="\App\Models\User::all()" />
+                <button type="submit" class="btn btn-primary">Log In As User</button>
+            </div>
+        </form>
+    @endenv
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -44,4 +55,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-app-layout>
