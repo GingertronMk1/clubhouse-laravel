@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 cp .env.example .env \
-    && docker-compose up -d --build \
+    && docker compose up -d --build \
     && ./bin/util/exec app composer install \
     && ./bin/util/exec node npm install \
     && ./bin/util/exec node npm run build \
