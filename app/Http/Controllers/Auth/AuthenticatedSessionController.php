@@ -22,6 +22,7 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     *
      * @throws ValidationException
      */
     public function store(LoginRequest $request): RedirectResponse

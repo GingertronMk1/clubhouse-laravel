@@ -17,10 +17,12 @@ class LocalLoginAsUserController extends Controller
         $user = User::find($userId);
         if ($user) {
             Auth::login($user);
+
             return to_route('dashboard');
         }
 
         $request->session()->flash('error', 'User not found');
+
         return to_route('login');
     }
 }

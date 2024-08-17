@@ -27,8 +27,13 @@ class Position extends Model
      * @var array<int, string>
      */
     protected $with = [
-        'sport'
+        'sport',
     ];
+
+    public function sport(): BelongsTo
+    {
+        return $this->belongsTo(Sport::class);
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -38,10 +43,5 @@ class Position extends Model
     protected function casts(): array
     {
         return [];
-    }
-
-    public function sport(): BelongsTo
-    {
-        return $this->belongsTo(Sport::class);
     }
 }

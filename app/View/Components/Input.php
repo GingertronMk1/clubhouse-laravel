@@ -34,11 +34,11 @@ class Input extends Component
             $this->label = $label;
         } else {
             $spacedName = preg_replace('/[^A-Za-z0-9]/', ' ', $name);
-            $this->label = ucwords($spacedName ?? "Error getting name");
+            $this->label = ucwords($spacedName ?? 'Error getting name');
         }
         $this->id = new UuidV7();
 
-        $this->inputClass = match($type) {
+        $this->inputClass = match ($type) {
             'color' => 'form-control-color',
             'select' => 'form-select',
             default => 'form-control',

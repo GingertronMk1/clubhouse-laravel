@@ -29,18 +29,8 @@ class Game extends Model
     protected $with = [
         'team1',
         'team2',
-        'competition'
+        'competition',
     ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [];
-    }
 
     public function team1(): BelongsTo
     {
@@ -55,5 +45,15 @@ class Game extends Model
     public function competition(): BelongsTo
     {
         return $this->belongsTo(Competition::class);
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [];
     }
 }

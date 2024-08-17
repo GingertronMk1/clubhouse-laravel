@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\LocalLoginAsUserController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -44,9 +45,10 @@ Route::middleware('guest')->group(function () {
     if (App::environment('local')) {
         Route::post(
             'local_login_as_user',
-            \App\Http\Controllers\LocalLoginAsUserController::class
+            LocalLoginAsUserController::class
         )
-        ->name('local_login_as_user');
+            ->name('local_login_as_user')
+        ;
     }
 });
 
