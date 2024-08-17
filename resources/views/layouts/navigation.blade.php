@@ -8,7 +8,55 @@ $links = [
     'sport.index' => 'Sport',
     'team.index' => 'Team',
 ];
+
+$bootstrapNav = true;
 @endphp
+
+@if($bootstrapNav)
+<nav x-data="{ open: false }" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button @click="open = ! open" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+            class="collapse navbar-collapse"
+            :class="{ show: open }"
+            id="navbarSupportedContent"
+        >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @foreach($links as $route => $text)
+                    <li class="nav-item">
+                        <a
+                            class="nav-link {{ request()->routeIs($route) ? 'active' : '' }}"
+                            href="{{ route($route) }}"
+                        >
+                            {{ __($text) }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
+            @auth
+            <div x-data="{ profileMenuOpen: false }" class="dropdown" @click.outside="profileMenuOpen = false">
+                <a class="nav-link dropdown-toggle" href="#" @click="profileMenuOpen = ! profileMenuOpen">
+                    Dropdown
+                </a>
+                <ul class="dropdown-menu end-0" :class="{ show: profileMenuOpen }">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+            @endauth
+            @guest
+                <a href="{{ route('login') }}" class="nav-link">Log In</a>
+            @endguest
+        </div>
+    </div>
+</nav>
+@else
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,3 +161,4 @@ $links = [
         </div>
     </div>
 </nav>
+@endif
