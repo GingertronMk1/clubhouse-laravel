@@ -7,7 +7,7 @@
         <x-input name="default_order" type="number" />
         <x-input name="preview_x" type="range" value="0" min="0" max="100" />
         <x-input name="preview_y" type="range" value="0" min="0" max="100" />
-        <x-input name="sport_id" type="select" :options="\App\Models\Sport::all()" />
+        <x-input name="sport_id" type="select" :options="\App\Models\Sport::get()" />
         <button type="submit">Create</button>
     </form>
 

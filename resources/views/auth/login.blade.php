@@ -7,7 +7,7 @@
             @csrf
             <div class="card-header">(DEV) Log In As User</div>
             <div class="card-body">
-                <x-input type="select" name="user_id" :options="\App\Models\User::all()" />
+                <x-input type="select" name="user_id" :options="\App\Models\User::get()" />
                 <button type="submit" class="btn btn-primary">Log In As User</button>
             </div>
         </form>

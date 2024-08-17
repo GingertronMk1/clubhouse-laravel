@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,7 +17,25 @@ class PositionFactory extends Factory
      */
     public function definition(): array
     {
+        $leftRightOrMiddle = $this->faker->numberBetween(0, 2) % 3;
+        $prefix = match($leftRightOrMiddle) {
+            0 => 'Left',
+            1 => $this->faker->boolean() ? 'Full' : 'Middle',
+            2 => 'Right'
+        };
+
         return [
+            'name' => $prefix . ' ' . $this->faker->word(),
+            'description' => $this->faker->text(),
+            'preview_x' => $this->faker->numberBetween(0, 100),
+            'preview_y' => match($leftRightOrMiddle) {
+                0 => $this->faker->numberBetween(0, 33),
+                1 => $this->faker->numberBetween(34, 66),
+                2 => $this->faker->numberBetween(67, 100),
+            },
+            'sort_order' => $this->faker->numberBetween(0, 100),
+            'default_number' => $this->faker->numberBetween(0, 100),
+            'sport_id' => Sport::count() < 10 ? Sport::factory() : Sport::get()->random()
         ];
     }
 }

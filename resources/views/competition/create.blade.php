@@ -3,7 +3,7 @@
         @csrf
         <x-input name="name" />
         <x-input name="description" type="textarea" />
-        <x-input name="sport_id" type="select" :options="\App\Models\Sport::all()" />
+        <x-input name="sport_id" type="select" :options="\App\Models\Sport::get()" />
         <button type="submit">Create</button>
     </form>
 

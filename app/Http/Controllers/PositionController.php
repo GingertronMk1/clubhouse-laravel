@@ -20,7 +20,7 @@ class PositionController extends Controller
         return view(
             'position.index',
             [
-                'positions' => Position::all(),
+                'positions' => Position::get(),
             ]
         );
     }

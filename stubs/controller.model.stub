@@ -20,7 +20,7 @@ class {{ class }} extends Controller
         return view(
             '{{ modelVariable }}.index',
             [
-                '{{ modelVariable }}s' => {{ model }}::all()
+                '{{ modelVariable }}s' => {{ model }}::get()
             ]
         );
     }

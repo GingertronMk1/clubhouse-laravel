@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
@@ -25,7 +26,11 @@ class Game extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [];
+    protected $with = [
+        'team1',
+        'team2',
+        'competition'
+    ];
 
     /**
      * Get the attributes that should be cast.
@@ -35,5 +40,20 @@ class Game extends Model
     protected function casts(): array
     {
         return [];
+    }
+
+    public function team1(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_1_id');
+    }
+
+    public function team2(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_2_id');
+    }
+
+    public function competition(): BelongsTo
+    {
+        return $this->belongsTo(Competition::class);
     }
 }
