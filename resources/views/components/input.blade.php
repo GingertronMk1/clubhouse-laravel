@@ -1,4 +1,4 @@
-<div class="mb-3 d-flex flex-col">
+<div class="mb-3 d-flex flex-column">
     <label class="form-label" for="{{ $id }}">
         @if ($slot->isEmpty())
             {{ $label }}

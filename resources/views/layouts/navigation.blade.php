@@ -40,13 +40,20 @@ $bootstrapNav = true;
             @auth
             <div x-data="{ profileMenuOpen: false }" class="dropdown" @click.outside="profileMenuOpen = false">
                 <a class="nav-link dropdown-toggle" href="#" @click="profileMenuOpen = ! profileMenuOpen">
-                    Dropdown
+                    {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu end-0" :class="{ show: profileMenuOpen }">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                            {{ __('Profile') }}
+                        </a>
+                    </li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li>
+                        <form class="dropdown-item" action="{{ route('logout') }}" method="post">
+                            <button type="submit" class="btn btn-danger">Log Out</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             @endauth
