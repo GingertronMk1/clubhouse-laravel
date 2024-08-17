@@ -37,7 +37,7 @@ jobs:
               run: ./bin/util/exec app composer cs:check
               if: always()
             - name: Stan
-              run: ./bin/util/exec composer stan
+              run: ./bin/util/exec app composer stan
               if: always()
 #            - name: PHPUnit
 #              run: ./_docker/bin/app/phpunit-with-coverage
