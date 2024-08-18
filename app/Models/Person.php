@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\PersonFactory;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
+    /** @use HasFactory<PersonFactory> */
     use HasFactory;
     use HasVersion7Uuids;
     use SoftDeletes;
@@ -35,6 +37,9 @@ class Person extends Model
         'user',
     ];
 
+    /**
+     * @return BelongsTo<User, self>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

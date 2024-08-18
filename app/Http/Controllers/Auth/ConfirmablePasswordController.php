@@ -24,6 +24,12 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (!$request->user()) {
+            $request->session()->flash('status', __('auth.failed'));
+
+            return redirect()->route('login');
+        }
+
         if (!Auth::guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,

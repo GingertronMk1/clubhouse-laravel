@@ -17,7 +17,8 @@ class PositionFactory extends Factory
      */
     public function definition(): array
     {
-        $leftRightOrMiddle = $this->faker->numberBetween(0, 2) % 3;
+        /** @var int<0,2> $leftRightOrMiddle */
+        $leftRightOrMiddle = $this->faker->numberBetween(0, 2);
         $prefix = match ($leftRightOrMiddle) {
             0 => 'Left',
             1 => $this->faker->boolean() ? 'Full' : 'Middle',

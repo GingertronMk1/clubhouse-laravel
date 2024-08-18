@@ -15,6 +15,12 @@ class PasswordController extends Controller
      */
     public function update(Request $request): RedirectResponse
     {
+        if (!$request->user()) {
+            $request->session()->flash('error', __('auth.failed'));
+
+            return redirect()->route('login');
+        }
+
         $validated = $request->validateWithBag('updatePassword', [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],

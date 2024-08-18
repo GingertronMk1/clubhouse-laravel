@@ -65,6 +65,9 @@ class MakeEntity extends Command
         return self::SUCCESS;
     }
 
+    /**
+     * @return array<string>
+     */
     private function getCrudOperations(): array
     {
         return [

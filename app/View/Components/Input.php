@@ -15,7 +15,7 @@ class Input extends Component
     public readonly string $inputClass;
 
     /**
-     * Create a new component instance.
+     * @param iterable<mixed> $options
      */
     public function __construct(
         public readonly string $name,
@@ -26,7 +26,6 @@ class Input extends Component
         public readonly bool $canBeNull = false,
         ?string $label = null,
         public readonly ?string $value = null,
-        array|string $inputClass = [],
     ) {
         $this->valueFn = $valueFn ?? fn ($input) => $input->id;
         $this->textFn = $textFn ?? fn ($input) => $input->name;
