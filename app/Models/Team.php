@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Team extends Model
 {
+    /** @use HasFactory<TeamFactory> */
     use HasFactory;
     use HasVersion7Uuids;
     use SoftDeletes;
@@ -35,7 +37,7 @@ class Team extends Model
     protected function casts(): array
     {
         return [
-            'colours' => 'array'
+            'colours' => 'array',
         ];
     }
 }

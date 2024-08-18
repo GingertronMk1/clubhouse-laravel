@@ -49,10 +49,11 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
-        "fix": "./vendor/bin/php-cs-fixer fix",
-        "check": [
-            "@stan",
-            "@fix"
+        "cs:fix": "./vendor/bin/php-cs-fixer fix",
+        "cs:check": "./vendor/bin/php-cs-fixer check",
+        "preflight": [
+            "@cs:fix",
+            "@stan"
         ]
     },
     "extra": {

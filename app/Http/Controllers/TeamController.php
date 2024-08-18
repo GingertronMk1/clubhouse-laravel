@@ -20,7 +20,7 @@ class TeamController extends Controller
         return view(
             'team.index',
             [
-                'teams' => Team::all(),
+                'teams' => Team::get(),
             ]
         );
     }

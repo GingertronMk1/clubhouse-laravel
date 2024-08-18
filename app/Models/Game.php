@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Database\Factories\GameFactory;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
+    /** @use HasFactory<GameFactory> */
     use HasFactory;
     use HasVersion7Uuids;
     use SoftDeletes;
@@ -25,7 +28,35 @@ class Game extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [];
+    protected $with = [
+        'team1',
+        'team2',
+        'competition',
+    ];
+
+    /**
+     * @return BelongsTo<Team, self>
+     */
+    public function team1(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_1_id');
+    }
+
+    /**
+     * @return BelongsTo<Team, self>
+     */
+    public function team2(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_2_id');
+    }
+
+    /**
+     * @return BelongsTo<Competition, self>
+     */
+    public function competition(): BelongsTo
+    {
+        return $this->belongsTo(Competition::class);
+    }
 
     /**
      * Get the attributes that should be cast.

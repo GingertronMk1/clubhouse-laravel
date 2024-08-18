@@ -2,6 +2,7 @@
 
 namespace {{ namespace }};
 
+use Database\Factories\{{ class }}Factory;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class {{ class }} extends Model
 {
+    /** @use HasFactory<{{ class }}Factory> */
     use HasFactory;
     use HasVersion7Uuids;
     use SoftDeletes;

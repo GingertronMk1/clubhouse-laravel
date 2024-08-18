@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\PersonFactory;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
+    /** @use HasFactory<PersonFactory> */
     use HasFactory;
     use HasVersion7Uuids;
     use SoftDeletes;
@@ -23,7 +25,7 @@ class Person extends Model
         'name',
         'dob',
         'bio',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -32,8 +34,16 @@ class Person extends Model
      * @var array<int, string>
      */
     protected $with = [
-        'user'
+        'user',
     ];
+
+    /**
+     * @return BelongsTo<User, self>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -43,10 +53,5 @@ class Person extends Model
     protected function casts(): array
     {
         return [];
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }

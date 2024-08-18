@@ -20,7 +20,7 @@ class PersonController extends Controller
         return view(
             'person.index',
             [
-                'people' => Person::all(),
+                'people' => Person::get(),
             ]
         );
     }

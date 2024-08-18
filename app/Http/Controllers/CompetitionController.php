@@ -20,7 +20,7 @@ class CompetitionController extends Controller
         return view(
             'competition.index',
             [
-                'competitions' => Competition::all(),
+                'competitions' => Competition::get(),
             ]
         );
     }

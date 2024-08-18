@@ -16,7 +16,15 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
+        $colours = [];
+        for ($n = 0; $n < $this->faker->numberBetween(1, 10); ++$n) {
+            $colours[] = $this->faker->hexColor();
+        }
+
         return [
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            'colours' => $colours,
         ];
     }
 }

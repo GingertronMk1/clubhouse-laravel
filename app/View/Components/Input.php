@@ -12,9 +12,10 @@ class Input extends Component
     public readonly \Closure $textFn;
     public readonly string $label;
     public readonly UuidV7 $id;
+    public readonly string $inputClass;
 
     /**
-     * Create a new component instance.
+     * @param iterable<mixed> $options
      */
     public function __construct(
         public readonly string $name,
@@ -28,8 +29,19 @@ class Input extends Component
     ) {
         $this->valueFn = $valueFn ?? fn ($input) => $input->id;
         $this->textFn = $textFn ?? fn ($input) => $input->name;
-        $this->label = $label ?? ucwords(preg_replace('/[^A-Za-z0-9]/', ' ', $name));
+        if (!is_null($label)) {
+            $this->label = $label;
+        } else {
+            $spacedName = preg_replace('/[^A-Za-z0-9]/', ' ', $name);
+            $this->label = ucwords($spacedName ?? 'Error getting name');
+        }
         $this->id = new UuidV7();
+
+        $this->inputClass = match ($type) {
+            'color' => 'form-control-color',
+            'select' => 'form-select',
+            default => 'form-control',
+        };
     }
 
     /**
