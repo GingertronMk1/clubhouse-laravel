@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Database\Factories\TeamFactory;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @mixin Builder */
 class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */

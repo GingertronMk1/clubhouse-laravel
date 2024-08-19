@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Database\Factories\CompetitionFactory;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @mixin Builder */
 class Competition extends Model
 {
     /** @use HasFactory<CompetitionFactory> */

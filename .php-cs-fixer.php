@@ -11,7 +11,8 @@ return (new PhpCsFixer\Config())
     ->setParallelConfig(ParallelConfigFactory::detect())
     ->setRules([
         '@PER-CS2.0' => true,
-        '@PhpCsFixer' => true
+        '@PhpCsFixer' => true,
+        '@PHP84Migration' => true,
     ])
     ->setFinder($finder)
 ;
