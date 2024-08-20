@@ -1,6 +1,6 @@
 <x-app-layout>
     <table>
-        @foreach($people as $person)
+        @foreach ($people as $person)
             <tr>
                 <td>{{ $person->name }}</td>
                 <td>{{ $person->bio }}</td>
