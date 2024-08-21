@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\ColourArray;
 use Database\Factories\TeamFactory;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
@@ -39,7 +40,7 @@ class Team extends Model
     protected function casts(): array
     {
         return [
-            'colours' => 'array',
+            'colours' => ColourArray::class,
         ];
     }
 }
