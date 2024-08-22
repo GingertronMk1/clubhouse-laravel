@@ -1,5 +1,6 @@
-<div class="mb-3 d-flex flex-column">
-    <label class="form-label" for="{{ $id }}">
+<div class="d-flex flex-column mb-3">
+    <label class="form-label"
+           for="{{ $id }}">
         @if ($slot->isEmpty())
             {{ $label }}
         @else
@@ -13,21 +14,35 @@
 
     @switch($type)
         @case('textarea')
-            <textarea name="{{ $name }}" id="{{ $id }}" class="{{ $inputClass }}" {{ $attributes }}>{{ $value }}</textarea>
-            @break
+            <textarea class="{{ $inputClass }}"
+                      id="{{ $id }}"
+                      name="{{ $name }}"
+                      {{ $attributes }}>{{ $value }}</textarea>
+        @break
+
         @case('select')
-            <select id="{{ $id }}" name="{{ $name }}" class="{{ $inputClass }}" {{ $attributes }}>
-                @if($canBeNull)
+            <select class="{{ $inputClass }}"
+                    id="{{ $id }}"
+                    name="{{ $name }}"
+                    {{ $attributes }}>
+                @if ($canBeNull)
                     <option value="">---</option>
                 @endif
-                @foreach($options as $option)
-                    <option value="{{ $valueFn($option) }}" @selected($valueFn($option) === $value)>
+                @foreach ($options as $option)
+                    <option value="{{ $valueFn($option) }}"
+                            @selected($valueFn($option) === $value)>
                         {{ $textFn($option) }}
                     </option>
                 @endforeach
             </select>
-            @break
+        @break
+
         @default
-            <input name="{{ $name }}" type="{{ $type }}" id="{{ $id }}" class="{{ $inputClass }}" value="{{ $value }}" {{ $attributes }}/>
+            <input class="{{ $inputClass }}"
+                   id="{{ $id }}"
+                   name="{{ $name }}"
+                   type="{{ $type }}"
+                   value="{{ $value }}"
+                   {{ $attributes }} />
     @endswitch
 </div>

@@ -2,22 +2,63 @@
 
 namespace Database\Seeders;
 
+use App\Models\Competition;
+use App\Models\Game;
+use App\Models\Person;
+use App\Models\Sport;
+use App\Models\Team;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Seeder;
+use InvalidArgumentException;
+use ReflectionException;
 
 class DatabaseSeeder extends Seeder
 {
+    public function __construct(
+        private readonly Filesystem $filesystem
+    ) {}
+
     /**
      * Seed the application's database.
+     *
+     * @throws ReflectionException
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            SportSeeder::class,
+            TeamSeeder::class,
+            UserSeeder::class,
+            PersonSeeder::class,
+            CompetitionSeeder::class,
+            GameSeeder::class,
         ]);
+
+        $seededClasses = [
+            Sport::class,
+            Team::class,
+            User::class,
+            Person::class,
+            Competition::class,
+            Game::class,
+        ];
+
+        /** @var class-string $class */
+        foreach ($seededClasses as $key => $class) {
+            $all = [];
+            foreach ($class::with([])->get() as $item) {
+                $all[] = $item->toArray();
+            }
+            $className = str_replace('\\', '_', $class);
+
+            $exportedData = json_encode($all, JSON_PRETTY_PRINT);
+
+            if (!$exportedData) {
+                throw new InvalidArgumentException('Invalid JSON');
+            }
+
+            $this->filesystem->put("temp_seeds/{$className}.json", $exportedData);
+        }
     }
 }

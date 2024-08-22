@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Casts\ColourArray;
 use Database\Factories\TeamFactory;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @mixin Builder */
 class Team extends Model
 {
     /** @use HasFactory<TeamFactory> */
@@ -23,13 +26,6 @@ class Team extends Model
     protected $fillable = [];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    protected $with = [];
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -37,7 +33,7 @@ class Team extends Model
     protected function casts(): array
     {
         return [
-            'colours' => 'array',
+            'colours' => ColourArray::class,
         ];
     }
 }

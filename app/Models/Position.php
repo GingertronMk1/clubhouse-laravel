@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Database\Factories\PositionFactory;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @mixin Builder */
 class Position extends Model
 {
     /** @use HasFactory<PositionFactory> */
@@ -22,15 +24,6 @@ class Position extends Model
      * @var array<int, string>
      */
     protected $fillable = [];
-
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    protected $with = [
-        'sport',
-    ];
 
     /**
      * @return BelongsTo<Sport, self>

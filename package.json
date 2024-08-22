@@ -3,13 +3,15 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "blade-formatter": "blade-formatter -wdep ./resources/views/**/*.blade.php"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.6.4",
+        "blade-formatter": "^1.41.1",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "sass": "^1.77.8",

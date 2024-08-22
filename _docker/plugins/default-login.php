@@ -44,15 +44,15 @@ class DefaultLogin
         $nameAttr = "auth[{$name}]";
 
         return <<<HTML
-            <tr>
-                <td>
-                    {$name}
-                </td>
-                <td>
-                    <input name="{$nameAttr}" value="{$inputValue}" />
-                </td>
-            </tr>
-        HTML;
+                <tr>
+                    <td>
+                        {$name}
+                    </td>
+                    <td>
+                        <input name="{$nameAttr}" value="{$inputValue}" />
+                    </td>
+                </tr>
+            HTML;
     }
 }
 

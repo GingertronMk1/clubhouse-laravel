@@ -5,4 +5,4 @@ cp .env.example .env \
     && ./bin/util/exec app composer install \
     && ./bin/util/exec node npm install \
     && ./bin/util/exec node npm run build \
-    && ./bin/util/exec app php artisan migrate:fresh
+    && ./bin/util/exec app php artisan migrate:fresh --seed

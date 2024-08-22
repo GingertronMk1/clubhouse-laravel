@@ -1,7 +1,7 @@
 <x-app-layout>
-    @foreach($positions as $position)
+    @foreach ($positions as $position)
         <div class="card mt-3">
-            <div class="card-header d-flex flex-row justify-content-between">
+            <div class="card-header d-flex justify-content-between flex-row">
                 <span>{{ $position->name }}</span>
                 <span>{{ $position->sport->name }}</span>
             </div>
@@ -13,7 +13,8 @@
                 <div class="list-group-item">Default Number: {{ $position->default_number }}</div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('position.edit', ['position' => $position]) }}" class="btn btn-primary">Edit</a>
+                <a class="btn btn-primary"
+                   href="{{ route('position.edit', ['position' => $position]) }}">Edit</a>
             </div>
         </div>
     @endforeach

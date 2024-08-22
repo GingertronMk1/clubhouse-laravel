@@ -1,0 +1,17 @@
+{
+    "endOfLine": "LF",
+    "endWithNewLine": true,
+    "extraLiners": [],
+    "indentInnerHtml": true,
+    "indentSize": 4,
+    "noMultipleEmptyLines": true,
+    "noSingleQuote": false,
+    "noTrailingCommaPhp": false,
+    "progress": true,
+    "sortHtmlAttributes": "code-guide",
+    "sortTailwindcssClasses": true,
+    "useTabs": false,
+    "wrapAttributes": "force-aligned",
+    "wrapAttributesMinAttrs": 1,
+    "wrapLineLength": 120
+}
