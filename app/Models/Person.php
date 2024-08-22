@@ -31,15 +31,6 @@ class Person extends Model
     ];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    //    protected $with = [
-    //        'user',
-    //    ];
-
-    /**
      * @return BelongsTo<User, self>
      */
     public function user(): BelongsTo

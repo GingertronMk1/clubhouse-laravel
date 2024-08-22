@@ -26,17 +26,6 @@ class Game extends Model
     protected $fillable = [];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    //    protected $with = [
-    //        'team1',
-    //        'team2',
-    //        'competition',
-    //    ];
-
-    /**
      * @return BelongsTo<Team, self>
      */
     public function team1(): BelongsTo

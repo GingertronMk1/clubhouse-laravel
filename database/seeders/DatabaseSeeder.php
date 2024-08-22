@@ -10,7 +10,7 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Seeder;
-use ReflectionClass;
+use InvalidArgumentException;
 use ReflectionException;
 
 class DatabaseSeeder extends Seeder
@@ -50,17 +50,15 @@ class DatabaseSeeder extends Seeder
             foreach ($class::with([])->get() as $item) {
                 $all[] = $item->toArray();
             }
-            $exportedData = var_export($all, true);
-            $shortClassName = (new ReflectionClass($class))->getShortName();
-            $this->filesystem->put(
-                "seeds/{$key}_{$shortClassName}.php",
-                <<<PHP
-                    <?php
+            $className = str_replace('\\', '_', $class);
 
-                    return {$exportedData};
+            $exportedData = json_encode($all, JSON_PRETTY_PRINT);
 
-                    PHP
-            );
+            if (!$exportedData) {
+                throw new InvalidArgumentException('Invalid JSON');
+            }
+
+            $this->filesystem->put("temp_seeds/{$className}.json", $exportedData);
         }
     }
 }

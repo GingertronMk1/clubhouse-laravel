@@ -26,13 +26,6 @@ class Sport extends Model
     protected $fillable = [];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    protected $with = [];
-
-    /**
      * @return HasMany<Competition>
      */
     public function competitions(): HasMany

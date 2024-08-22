@@ -32,13 +32,6 @@ class Competition extends Model
     ];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    //    protected $with = ['parent', 'sport'];
-
-    /**
      * @return BelongsTo<self, self>
      */
     public function parent(): BelongsTo

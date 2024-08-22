@@ -28,6 +28,10 @@ class ColourArray implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
+        if (is_null($value)) {
+            return json_encode([]);
+        }
+
         if (!is_array($value)) {
             throw new InvalidArgumentException('Expected an array');
         }

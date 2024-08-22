@@ -26,15 +26,6 @@ class Position extends Model
     protected $fillable = [];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
-    //    protected $with = [
-    //        'sport',
-    //    ];
-
-    /**
      * @return BelongsTo<Sport, self>
      */
     public function sport(): BelongsTo
