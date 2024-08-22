@@ -23,7 +23,10 @@ class Sport extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
     /**
      * @return HasMany<Competition>

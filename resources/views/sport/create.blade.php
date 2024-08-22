@@ -1,6 +1,7 @@
 <x-app-layout>
     <form action="{{ route('sport.store') }}"
-          method="post">
+          method="post"
+          id="create-sport-form">
         @csrf
         <x-input name="name" />
         <x-input name="description"

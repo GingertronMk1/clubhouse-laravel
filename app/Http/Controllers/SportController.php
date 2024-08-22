@@ -40,7 +40,7 @@ class SportController extends Controller
      */
     public function store(StoreSportRequest $request): RedirectResponse
     {
-        Sport::create($request->all());
+        Sport::create($request->all(['name', 'description']));
 
         return to_route('sport.index');
     }
@@ -76,7 +76,7 @@ class SportController extends Controller
      */
     public function update(UpdateSportRequest $request, Sport $sport): RedirectResponse
     {
-        $sport->update($request->all());
+        $sport->update($request->all(['name', 'description']));
 
         return to_route('sport.index');
     }

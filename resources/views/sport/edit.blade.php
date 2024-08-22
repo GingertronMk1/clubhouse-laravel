@@ -1,6 +1,8 @@
 <x-app-layout>
     <form action="{{ route('sport.update', ['sport' => $sport]) }}"
-          method="post">
+          method="post"
+          id="edit-sport-form"
+    >
         @csrf
         @method('PUT')
         <x-input name="name"
