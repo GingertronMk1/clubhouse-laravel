@@ -4,6 +4,7 @@ namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
 /**
  * @implements CastsAttributes<array<int, string>, array<int, string|array<int|string>>>
@@ -28,7 +29,7 @@ class ColourArray implements CastsAttributes
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
         if (!is_array($value)) {
-            throw new \InvalidArgumentException('Expected an array');
+            throw new InvalidArgumentException('Expected an array');
         }
 
         return json_encode(array_map(fn ($item) => $this->transformColour($item), $value));
@@ -41,7 +42,7 @@ class ColourArray implements CastsAttributes
     {
         if (is_array($colour)) {
             if (3 !== count($colour)) {
-                throw new \InvalidArgumentException('Invalid colour array');
+                throw new InvalidArgumentException('Invalid colour array');
             }
 
             $returnVal = '#';
@@ -54,7 +55,7 @@ class ColourArray implements CastsAttributes
 
             foreach ($colours as $colourKey => $colourValue) {
                 if ($colourValue < 0 || $colourValue > 255) {
-                    throw new \InvalidArgumentException("Invalid colour value - {$colourKey} not in range (0, 255)");
+                    throw new InvalidArgumentException("Invalid colour value - {$colourKey} not in range (0, 255)");
                 }
 
                 $returnVal .= str_pad(dechex($colourValue), 2, '0', STR_PAD_LEFT);

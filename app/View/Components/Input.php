@@ -2,14 +2,15 @@
 
 namespace App\View\Components;
 
+use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Symfony\Component\Uid\UuidV7;
 
 class Input extends Component
 {
-    public readonly \Closure $valueFn;
-    public readonly \Closure $textFn;
+    public readonly Closure $valueFn;
+    public readonly Closure $textFn;
     public readonly string $label;
     public readonly UuidV7 $id;
     public readonly string $inputClass;
@@ -21,8 +22,8 @@ class Input extends Component
         public readonly string $name,
         public readonly string $type = 'text',
         public readonly iterable $options = [],
-        ?\Closure $valueFn = null,
-        ?\Closure $textFn = null,
+        ?Closure $valueFn = null,
+        ?Closure $textFn = null,
         public readonly bool $canBeNull = false,
         ?string $label = null,
         public readonly ?string $value = null,
@@ -47,7 +48,7 @@ class Input extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): \Closure|string|View
+    public function render(): Closure|string|View
     {
         return view('components.input');
     }
