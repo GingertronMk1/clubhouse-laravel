@@ -20,7 +20,7 @@ class GameController extends Controller
         return view(
             'game.index',
             [
-                'games' => Game::get(),
+                'games' => Game::with(['team1', 'team2', 'competition'])->get(),
             ]
         );
     }

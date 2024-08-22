@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::shouldBeStrict(true);
 
-        if (App::hasDebugModeEnabled()) {
+        if (App::hasDebugModeEnabled() && App::environment('local')) {
             DB::listen(function (QueryExecuted $query) {
                 Log::info($query->toRawSql());
             });

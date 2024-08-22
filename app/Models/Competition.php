@@ -36,7 +36,7 @@ class Competition extends Model
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(self::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id')->with('parent');
     }
 
     /**
@@ -44,7 +44,7 @@ class Competition extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(self::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id')->with('children');
     }
 
     /**
