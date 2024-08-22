@@ -33,6 +33,9 @@ jobs:
 #            - name: Deptrac
 #              run: ./_docker/bin/app/composer deptrac
 #              if: always()
+            - name: Check Blade
+              if: always()
+              run: ./bin/node/npm run blade-formatter -- -c
             - name: ECS
               run: ./bin/util/exec app composer cs:check
               if: always()

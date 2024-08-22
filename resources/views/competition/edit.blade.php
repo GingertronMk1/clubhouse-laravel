@@ -1,5 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('competition.update', ['competition' => $competition]) }}"
+    <form id="edit-competition-form"
+          action="{{ route('competition.update', ['competition' => $competition]) }}"
           method="post">
         @csrf
         @method('PUT')

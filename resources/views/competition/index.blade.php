@@ -1,7 +1,7 @@
 <x-app-layout>
     @foreach ($competitions as $competition)
         <div class="card mt-3">
-            <div class="card-header d-flex flex-row justify-content-between">
+            <div class="card-header d-flex justify-content-between flex-row">
                 <span>{{ $competition->name }}</span>
                 <span>{{ $competition->sport->name }}</span>
             </div>

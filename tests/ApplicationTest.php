@@ -34,7 +34,10 @@ abstract class ApplicationTest extends TestCase
         $checkedValues = [];
 
         foreach ($inputValues as $inputName => $value) {
-            $inputNameSelector = "//*[local-name() = 'input' or local-name() = 'textarea' or local-name = 'select'][@name=\"{$inputName}\"]";
+            $possibleLocalNames = ['input', 'textarea', 'select'];
+            $possibleLocalNames = array_map(fn (string $str) => "local-name() = '{$str}'", $possibleLocalNames);
+            $possibleLocalNames = implode(' or ', $possibleLocalNames);
+            $inputNameSelector = "//*[{$possibleLocalNames}][@name=\"{$inputName}\"]";
             $inputElement = $crawler->filterXPath($inputNameSelector);
             $this->assertGreaterThan(
                 0,
