@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Person;
 use App\Models\Sport;
 use App\Models\Team;
 use App\Models\User;
@@ -20,23 +21,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         $this->call([
             SportSeeder::class,
             TeamSeeder::class,
+            UserSeeder::class,
+            PersonSeeder::class,
         ]);
 
         $seededClasses = [
             Sport::class,
             Team::class,
+            User::class,
+            Person::class,
         ];
 
+        /** @var class-string $class */
         foreach ($seededClasses as $class) {
             $all = [];
             foreach ($class::all() as $item) {
