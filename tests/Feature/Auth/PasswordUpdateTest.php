@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 /**
  * @internal
- *
- * @coversNothing
  */
 class PasswordUpdateTest extends TestCase
 {

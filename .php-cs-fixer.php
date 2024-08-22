@@ -18,6 +18,7 @@ return (new PhpCsFixer\Config())
             'import_constants' => true,
             'import_functions' => true
         ],
+        'php_unit_test_class_requires_covers' => false,
     ])
     ->setFinder($finder)
 ;

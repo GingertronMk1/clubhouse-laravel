@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 /**
  * @internal
- *
- * @coversNothing
  */
 class PasswordResetTest extends TestCase
 {
