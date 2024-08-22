@@ -13,7 +13,7 @@ class ColourArray implements CastsAttributes
     /**
      * Cast the given value.
      *
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
@@ -23,24 +23,24 @@ class ColourArray implements CastsAttributes
     /**
      * Prepare the given value for storage.
      *
-     * @param  array<string, mixed>  $attributes
+     * @param array<string, mixed> $attributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
         if (!is_array($value)) {
             throw new \InvalidArgumentException('Expected an array');
         }
+
         return json_encode(array_map(fn ($item) => $this->transformColour($item), $value));
     }
 
     /**
-     * @param string|array<int|string, int|string> $colour
-     * @return string
+     * @param array<int|string, int|string>|string $colour
      */
-    private function transformColour(string|array $colour): string
+    private function transformColour(array|string $colour): string
     {
         if (is_array($colour)) {
-            if (count($colour) !== 3) {
+            if (3 !== count($colour)) {
                 throw new \InvalidArgumentException('Invalid colour array');
             }
 
@@ -52,7 +52,7 @@ class ColourArray implements CastsAttributes
                 'blue' => intval($colour['blue'] ?? $colour['b'] ?? $colour[2]),
             ];
 
-            foreach($colours as $colourKey => $colourValue) {
+            foreach ($colours as $colourKey => $colourValue) {
                 if ($colourValue < 0 || $colourValue > 255) {
                     throw new \InvalidArgumentException("Invalid colour value - {$colourKey} not in range (0, 255)");
                 }
@@ -66,6 +66,7 @@ class ColourArray implements CastsAttributes
                 $returnVal = $colour;
             }
         }
+
         return strtoupper($returnVal);
     }
 }
