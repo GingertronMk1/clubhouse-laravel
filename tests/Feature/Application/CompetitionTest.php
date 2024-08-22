@@ -33,7 +33,7 @@ class CompetitionTest extends ApplicationTest
             [
                 'name' => self::class,
                 'description' => self::class,
-                'sport_id' => '019169e3-e100-7449-926f-c544764b069f'
+                'sport_id' => '019169e3-e100-7449-926f-c544764b069f',
             ],
         );
 
@@ -53,7 +53,7 @@ class CompetitionTest extends ApplicationTest
         $response = $this->get(route(
             'competition.edit',
             [
-                'competition' => $competitionId
+                'competition' => $competitionId,
             ]
         ));
 
@@ -68,14 +68,14 @@ class CompetitionTest extends ApplicationTest
             ],
             [
                 'name' => 'World Championship',
-                'description' => <<<EOF
-Cupiditate odio tempore assumenda modi aut. Qui atque facere eos aut mollitia esse. Omnis sit ipsam accusantium voluptatem.
+                'description' => <<<'EOF'
+                    Cupiditate odio tempore assumenda modi aut. Qui atque facere eos aut mollitia esse. Omnis sit ipsam accusantium voluptatem.
 
-Fugiat harum nihil qui suscipit. Dignissimos dolorem numquam molestiae provident. Perspiciatis cupiditate illo ea fugit commodi nostrum quia.
+                    Fugiat harum nihil qui suscipit. Dignissimos dolorem numquam molestiae provident. Perspiciatis cupiditate illo ea fugit commodi nostrum quia.
 
-Nemo nihil architecto sequi aut. Ut delectus laudantium autem excepturi voluptas cum magni. Aspernatur porro aut voluptatem vel ad officiis laudantium laboriosam. Non id vitae laudantium quas consectetur voluptatem.
-EOF,
-                'sport_id' => '019169e3-e100-7449-926f-c544764b069f'
+                    Nemo nihil architecto sequi aut. Ut delectus laudantium autem excepturi voluptas cum magni. Aspernatur porro aut voluptatem vel ad officiis laudantium laboriosam. Non id vitae laudantium quas consectetur voluptatem.
+                    EOF,
+                'sport_id' => '019169e3-e100-7449-926f-c544764b069f',
             ]
         );
 
