@@ -41,7 +41,16 @@ class DatabaseSeeder extends Seeder
             foreach ($class::all() as $item) {
                 $all[] = $item->toArray();
             }
-            $this->filesystem->put("{$class}.txt", var_export($all, true));
+            $exportedData = var_export($all, true);
+            $this->filesystem->put(
+                "{$class}.php",
+                <<<PHP
+                    <?php
+
+                    return {$exportedData};
+
+                    PHP
+            );
         }
     }
 }
