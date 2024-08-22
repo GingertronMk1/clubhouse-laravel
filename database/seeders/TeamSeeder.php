@@ -17,6 +17,9 @@ class TeamSeeder extends Seeder
         }
     }
 
+    /**
+     * @return array<int, array<string|array<string>>>
+     */
     private function getTeams(): array
     {
         return [

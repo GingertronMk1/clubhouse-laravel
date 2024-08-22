@@ -17,6 +17,9 @@ class SportSeeder extends Seeder
         }
     }
 
+    /**
+     * @return array<int, array<string, string>>
+     */
     private function getSports(): array
     {
         return [

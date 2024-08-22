@@ -5,6 +5,9 @@ namespace App\Casts;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @implements CastsAttributes<array<int, string>, array<int, string|array<int|string>>>
+ */
 class ColourArray implements CastsAttributes
 {
     /**
@@ -30,6 +33,10 @@ class ColourArray implements CastsAttributes
         return json_encode(array_map(fn ($item) => $this->transformColour($item), $value));
     }
 
+    /**
+     * @param string|array<int|string, int|string> $colour
+     * @return string
+     */
     private function transformColour(string|array $colour): string
     {
         if (is_array($colour)) {
