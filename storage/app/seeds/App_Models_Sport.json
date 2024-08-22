@@ -1,0 +1,82 @@
+[
+    {
+        "id": "019169e3-e100-7449-926f-c544764b069f",
+        "name": "Rugby League",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-7ff6-a406-6b6ad85ba7d0",
+        "name": "Rugby Union",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-7dee-8b24-7ca573f1e85e",
+        "name": "Touch Rugby",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-7ac7-8d5c-c547ac373320",
+        "name": "American Football",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-7b2d-8f8e-f799136b2da5",
+        "name": "Canadian Football",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-7784-a3ae-8adfe9451a1b",
+        "name": "Epee",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-79e2-9210-9b8c2aae10f8",
+        "name": "Foil",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-74df-a5c5-a6bee1816a4a",
+        "name": "Sabre",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-77c5-bece-ada3c3c73c9f",
+        "name": "Snooker",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    },
+    {
+        "id": "019169e3-e100-73f5-8f96-85b84c5f286e",
+        "name": "Pool",
+        "description": null,
+        "created_at": "2024-08-22T13:22:33.000000Z",
+        "updated_at": "2024-08-22T13:22:33.000000Z",
+        "deleted_at": null
+    }
+]
