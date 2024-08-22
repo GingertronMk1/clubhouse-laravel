@@ -30,9 +30,9 @@ class Position extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [
-        'sport',
-    ];
+    //    protected $with = [
+    //        'sport',
+    //    ];
 
     /**
      * @return BelongsTo<Sport, self>

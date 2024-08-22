@@ -35,9 +35,9 @@ class Person extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [
-        'user',
-    ];
+    //    protected $with = [
+    //        'user',
+    //    ];
 
     /**
      * @return BelongsTo<User, self>

@@ -2,13 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Competition;
+use App\Models\Game;
 use App\Models\Person;
 use App\Models\Sport;
 use App\Models\Team;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Seeder;
+use ReflectionClass;
+use ReflectionException;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +21,8 @@ class DatabaseSeeder extends Seeder
 
     /**
      * Seed the application's database.
+     *
+     * @throws ReflectionException
      */
     public function run(): void
     {
@@ -26,6 +31,8 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             UserSeeder::class,
             PersonSeeder::class,
+            CompetitionSeeder::class,
+            GameSeeder::class,
         ]);
 
         $seededClasses = [
@@ -33,17 +40,20 @@ class DatabaseSeeder extends Seeder
             Team::class,
             User::class,
             Person::class,
+            Competition::class,
+            Game::class,
         ];
 
         /** @var class-string $class */
-        foreach ($seededClasses as $class) {
+        foreach ($seededClasses as $key => $class) {
             $all = [];
-            foreach ($class::all() as $item) {
+            foreach ($class::with([])->get() as $item) {
                 $all[] = $item->toArray();
             }
             $exportedData = var_export($all, true);
+            $shortClassName = (new ReflectionClass($class))->getShortName();
             $this->filesystem->put(
-                "{$class}.php",
+                "seeds/{$key}_{$shortClassName}.php",
                 <<<PHP
                     <?php
 

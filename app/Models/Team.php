@@ -30,7 +30,7 @@ class Team extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [];
+    //    protected $with = [];
 
     /**
      * Get the attributes that should be cast.

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasVersion7Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /** @mixin Builder */
@@ -30,6 +31,14 @@ class Sport extends Model
      * @var array<int, string>
      */
     protected $with = [];
+
+    /**
+     * @return HasMany<Competition>
+     */
+    public function competitions(): HasMany
+    {
+        return $this->hasMany(Competition::class);
+    }
 
     /**
      * Get the attributes that should be cast.

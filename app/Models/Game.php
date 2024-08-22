@@ -30,11 +30,11 @@ class Game extends Model
      *
      * @var array<int, string>
      */
-    protected $with = [
-        'team1',
-        'team2',
-        'competition',
-    ];
+    //    protected $with = [
+    //        'team1',
+    //        'team2',
+    //        'competition',
+    //    ];
 
     /**
      * @return BelongsTo<Team, self>
