@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $fileName = str_replace('\\', '_', User::class);
-        $all = File::json(__DIR__ ."/seeds/{$fileName}.json") ?? [];
+        $all = File::json(__DIR__."/seeds/{$fileName}.json");
         $password = Hash::make('password');
         $this->command->withProgressBar(
             $all,

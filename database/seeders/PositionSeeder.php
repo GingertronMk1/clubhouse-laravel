@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Position;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class PositionSeeder extends Seeder
@@ -15,7 +14,7 @@ class PositionSeeder extends Seeder
     public function run(): void
     {
         $fileName = str_replace('\\', '_', Position::class);
-        $all = File::json(__DIR__ ."/seeds/{$fileName}.json") ?? [];
+        $all = File::json(__DIR__."/seeds/{$fileName}.json");
         $this->command->withProgressBar(
             $all,
             function (array $item) {
