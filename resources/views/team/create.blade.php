@@ -1,6 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('team.store') }}"
-          id="create-team-form"
+    <form id="create-team-form"
+          action="{{ route('team.store') }}"
           method="post">
         @csrf
         <x-input name="name" />

@@ -1,6 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('team.update', ['team' => $team]) }}"
-          id="edit-team-form"
+    <form id="edit-team-form"
+          action="{{ route('team.update', ['team' => $team]) }}"
           method="post">
         @csrf
         @method('PUT')

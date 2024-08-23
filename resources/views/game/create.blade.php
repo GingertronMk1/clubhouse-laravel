@@ -1,8 +1,7 @@
 <x-app-layout>
-    <form action="{{ route('game.store') }}"
-          method="post"
-          id="create-game-form"
-    >
+    <form id="create-game-form"
+          action="{{ route('game.store') }}"
+          method="post">
         @csrf
         <x-input name="name" />
         <x-input name="start"

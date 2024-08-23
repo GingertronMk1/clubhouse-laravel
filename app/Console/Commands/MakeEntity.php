@@ -61,7 +61,7 @@ class MakeEntity extends Command
                 TestMakeCommand::class,
                 [
                     'name' => "Application/{$entityName}Test",
-                    '--phpunit' => true
+                    '--phpunit' => true,
                 ]
             );
 
@@ -69,7 +69,6 @@ class MakeEntity extends Command
                 $this->output->info('Sleeping for a second to make migrations order right');
                 sleep(1);
             }
-
         }
 
         return self::SUCCESS;

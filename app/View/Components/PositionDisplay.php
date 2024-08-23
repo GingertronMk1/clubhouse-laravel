@@ -10,23 +10,23 @@ use Illuminate\View\Component;
 class PositionDisplay extends Component
 {
     public readonly Sport $sport;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
         Sport $sport
-    )
-    {
+    ) {
         $this->sport = $sport->load('positions');
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): Closure|string|View
     {
         return view('components.position-display')
-            ->with('sport', $this->sport);
-            ;
+            ->with('sport', $this->sport)
+        ;
     }
 }

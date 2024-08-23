@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             CompetitionSeeder::class,
             GameSeeder::class,
-            PositionSeeder::class
+            PositionSeeder::class,
         ]);
 
         $seededClasses = [

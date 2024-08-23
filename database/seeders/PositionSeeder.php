@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Position;
-use App\Models\Sport;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +23,5 @@ class PositionSeeder extends Seeder
                 $model->save();
             }
         );
-
     }
 }

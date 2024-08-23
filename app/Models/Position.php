@@ -30,7 +30,7 @@ class Position extends Model
         'preview_y',
         'sort_order',
         'default_number',
-        'sport_id'
+        'sport_id',
     ];
 
     /**
