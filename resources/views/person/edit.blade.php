@@ -1,5 +1,6 @@
 <x-app-layout>
     <form action="{{ route('person.update', ['person' => $person]) }}"
+          id="edit-person-form"
           method="post">
         @csrf
         @method('PUT')

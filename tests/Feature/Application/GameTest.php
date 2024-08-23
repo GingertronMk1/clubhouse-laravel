@@ -36,7 +36,7 @@ class GameTest extends ApplicationTest
                 'competition_id' => '01917a02-df3d-73cc-97e2-149abace7445',
                 'team_1_id' => '019169fb-9074-71e6-b455-f35854f9b70a',
                 'team_2_id' => '019169fb-9078-70d8-9ea2-5e14e52cb760',
-                'start' => '2024-04-15 19:30:00'
+                'start' => '2024-04-15 19:30:00',
             ],
         );
 

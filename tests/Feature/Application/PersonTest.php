@@ -33,7 +33,7 @@ class PersonTest extends ApplicationTest
             [
                 'name' => self::class,
                 'bio' => self::class,
-                'user_id' => '019179ea-20b5-72d5-8268-4231713e7dae'
+                'user_id' => '019179ea-20b5-72d5-8268-4231713e7dae',
             ],
         );
 
@@ -64,17 +64,17 @@ class PersonTest extends ApplicationTest
             'edit-person-form',
             [
                 'name' => self::class,
-                'description' => self::class,
+                'bio' => self::class,
             ],
             [
                 'name' => 'Test User 0',
-                'description' => <<<'EOF'
-Similique aut vel qui qui voluptatem. Aperiam quaerat eaque facilis expedita.
+                'bio' => <<<'EOF'
+                    Similique aut vel qui qui voluptatem. Aperiam quaerat eaque facilis expedita.
 
-Dolorem aliquam ratione assumenda et veritatis odio reprehenderit totam. Qui sed velit consequatur sit. Est dicta ipsa et doloribus. Nihil harum similique et.
+                    Dolorem aliquam ratione assumenda et veritatis odio reprehenderit totam. Qui sed velit consequatur sit. Est dicta ipsa et doloribus. Nihil harum similique et.
 
-Dolor expedita ipsa non fuga eos iste soluta et. Animi vel sit accusantium odit dolores. Totam dolor maiores reprehenderit ad.
-EOF,
+                    Dolor expedita ipsa non fuga eos iste soluta et. Animi vel sit accusantium odit dolores. Totam dolor maiores reprehenderit ad.
+                    EOF,
                 'user_id' => '019179ea-20b5-72d5-8268-4231713e7dae',
             ]
         );
