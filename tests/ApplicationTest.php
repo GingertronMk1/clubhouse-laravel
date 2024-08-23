@@ -37,7 +37,7 @@ abstract class ApplicationTest extends TestCase
             $possibleLocalNames = ['input', 'textarea', 'select'];
             $possibleLocalNames = array_map(fn (string $str) => "local-name() = '{$str}'", $possibleLocalNames);
             $possibleLocalNames = implode(' or ', $possibleLocalNames);
-            $inputNameSelector = "//*[{$possibleLocalNames}][@name=\"{$inputName}\"]";
+            $inputNameSelector = "//*[{$possibleLocalNames}][@name='{$inputName}']";
             $inputElement = $crawler->filterXPath($inputNameSelector);
             $this->assertGreaterThan(
                 0,
