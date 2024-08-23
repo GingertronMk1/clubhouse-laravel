@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\ModelMakeCommand;
 use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Foundation\Console\ViewMakeCommand;
+use Illuminate\Support\Facades\Artisan;
 
 class MakeEntity extends Command
 {
@@ -39,7 +40,7 @@ class MakeEntity extends Command
     {
         $entityNames = $this->argument('entityName');
         foreach ($entityNames as $entityKey => $entityName) {
-            $this->call(
+            Artisan::call(
                 ModelMakeCommand::class,
                 [
                     'name' => $entityName,
@@ -49,7 +50,7 @@ class MakeEntity extends Command
 
             $viewDir = $this->inflector->camelize($entityName);
             foreach ($this->getCrudOperations() as $operation) {
-                $this->call(
+                Artisan::call(
                     ViewMakeCommand::class,
                     [
                         'name' => "{$viewDir}/{$operation}",
@@ -57,7 +58,7 @@ class MakeEntity extends Command
                 );
             }
 
-            $this->call(
+            Artisan::call(
                 TestMakeCommand::class,
                 [
                     'name' => "Application/{$entityName}Test",
