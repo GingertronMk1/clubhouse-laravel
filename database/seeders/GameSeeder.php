@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Game;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class GameSeeder extends Seeder
@@ -14,7 +15,7 @@ class GameSeeder extends Seeder
     public function run(): void
     {
         $fileName = str_replace('\\', '_', Game::class);
-        $all = Storage::json("seeds/{$fileName}.json") ?? [];
+        $all = File::json(__DIR__ ."/seeds/{$fileName}.json") ?? [];
         $this->command->withProgressBar(
             $all,
             function (array $item) {

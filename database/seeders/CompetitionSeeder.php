@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Competition;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class CompetitionSeeder extends Seeder
@@ -14,7 +15,7 @@ class CompetitionSeeder extends Seeder
     public function run(): void
     {
         $fileName = str_replace('\\', '_', Competition::class);
-        $all = Storage::json("seeds/{$fileName}.json") ?? [];
+        $all = File::json(__DIR__ . "/seeds/{$fileName}.json") ?? [];
         $this->command->withProgressBar(
             $all,
             function (array $item) {
