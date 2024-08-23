@@ -1,5 +1,6 @@
 <x-app-layout>
     <form action="{{ route('person.store') }}"
+          id="create-person-form"
           method="post">
         @csrf
         <x-input name="name" />

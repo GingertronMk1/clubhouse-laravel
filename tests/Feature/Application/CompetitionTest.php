@@ -83,4 +83,14 @@ class CompetitionTest extends ApplicationTest
         $this->assertNotNull($createdCompetition);
         $this->assertEquals(self::class, $createdCompetition->name);
     }
+
+    public function testDelete(): void
+    {
+        $id = '01917a02-df3d-73cc-97e2-149abace7445';
+        $competition = Competition::find($id);
+        $this->assertNull($competition->deleted_at);
+        $this->delete(route('competition.destroy', $id));
+        $competition->refresh();
+        $this->assertNotNull($competition->deleted_at);
+    }
 }

@@ -23,7 +23,15 @@ class Game extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'start',
+        'description',
+        'summary',
+        'competition_id',
+        'team_1_id',
+        'team_2_id',
+    ];
 
     /**
      * @return BelongsTo<Team, self>

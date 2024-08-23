@@ -40,7 +40,15 @@ class GameController extends Controller
      */
     public function store(StoreGameRequest $request): RedirectResponse
     {
-        Game::create($request->all());
+        Game::create($request->all([
+            'name',
+            'start',
+            'description',
+            'summary',
+            'competition_id',
+            'team_1_id',
+            'team_2_id',
+        ]));
 
         return to_route('game.index');
     }
@@ -76,7 +84,15 @@ class GameController extends Controller
      */
     public function update(UpdateGameRequest $request, Game $game): RedirectResponse
     {
-        $game->update($request->all());
+        $game->update($request->all([
+            'name',
+            'start',
+            'description',
+            'summary',
+            'competition_id',
+            'team_1_id',
+            'team_2_id',
+        ]));
 
         return to_route('game.index');
     }

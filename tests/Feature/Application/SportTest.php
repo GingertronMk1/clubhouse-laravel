@@ -48,7 +48,8 @@ class SportTest extends ApplicationTest
 
     public function testEditAndUpdate(): void
     {
-        $response = $this->get(route('sport.edit', ['sport' => '019169e3-e100-7449-926f-c544764b069f']));
+        $id = '019169e3-e100-7449-926f-c544764b069f';
+        $response = $this->get(route('sport.edit', ['sport' => $id]));
 
         $response->assertStatus(200);
         $response->assertViewIs('sport.edit');
@@ -65,8 +66,18 @@ class SportTest extends ApplicationTest
             ]
         );
 
-        $createdSport = Sport::find('019169e3-e100-7449-926f-c544764b069f');
+        $createdSport = Sport::find($id);
         $this->assertNotNull($createdSport);
         $this->assertEquals(self::class, $createdSport->name);
+    }
+
+    public function testDelete(): void
+    {
+        $id = '019169e3-e100-7449-926f-c544764b069f';
+        $sport = Sport::find($id);
+        $this->assertNull($sport->deleted_at);
+        $this->delete(route('sport.destroy', $id));
+        $sport->refresh();
+        $this->assertNotNull($sport->deleted_at);
     }
 }
