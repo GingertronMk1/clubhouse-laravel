@@ -23,7 +23,15 @@ class Position extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'preview_x',
+        'preview_y',
+        'sort_order',
+        'default_number',
+        'sport_id'
+    ];
 
     /**
      * @return BelongsTo<Sport, self>

@@ -36,6 +36,11 @@ class Sport extends Model
         return $this->hasMany(Competition::class);
     }
 
+    public function positions(): HasMany
+    {
+        return $this->hasMany(Position::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

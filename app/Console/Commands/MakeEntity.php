@@ -6,6 +6,7 @@ use Doctrine\Inflector\Inflector;
 use Doctrine\Inflector\InflectorFactory;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Console\ModelMakeCommand;
+use Illuminate\Foundation\Console\TestMakeCommand;
 use Illuminate\Foundation\Console\ViewMakeCommand;
 
 class MakeEntity extends Command
@@ -56,10 +57,19 @@ class MakeEntity extends Command
                 );
             }
 
+            $this->call(
+                TestMakeCommand::class,
+                [
+                    'name' => "Application/{$entityName}Test",
+                    '--phpunit' => true
+                ]
+            );
+
             if ($entityKey !== array_key_last($entityNames)) {
                 $this->output->info('Sleeping for a second to make migrations order right');
                 sleep(1);
             }
+
         }
 
         return self::SUCCESS;

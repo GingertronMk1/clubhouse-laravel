@@ -13,3 +13,16 @@ $primary: #a54499;
 $secondary: #ffc425;
 
 @import "bootstrap/scss/bootstrap";
+
+.position-display {
+    aspect-ratio: 1;
+    width: 100%;
+    position: relative;
+    background-color: green;
+
+    & > i {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+    }
+}

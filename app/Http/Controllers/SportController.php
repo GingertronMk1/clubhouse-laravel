@@ -53,7 +53,7 @@ class SportController extends Controller
         return view(
             'sport.show',
             [
-                'sport' => $sport,
+                'sport' => $sport->load('positions'),
             ]
         );
     }
