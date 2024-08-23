@@ -1,5 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('position.store') }}"
+    <form id="create-position-form"
+          action="{{ route('position.store') }}"
           method="post">
         @csrf
         <x-input name="name" />
@@ -7,7 +8,7 @@
                  type="textarea" />
         <x-input name="sort_order"
                  type="number" />
-        <x-input name="default_order"
+        <x-input name="default_number"
                  type="number" />
         <x-input name="preview_x"
                  type="range"

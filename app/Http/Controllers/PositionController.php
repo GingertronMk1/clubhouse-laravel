@@ -20,7 +20,7 @@ class PositionController extends Controller
         return view(
             'position.index',
             [
-                'positions' => Position::get(),
+                'positions' => Position::with('sport')->get(),
             ]
         );
     }
@@ -40,7 +40,15 @@ class PositionController extends Controller
      */
     public function store(StorePositionRequest $request): RedirectResponse
     {
-        Position::create($request->all());
+        Position::create($request->all([
+            'name',
+            'description',
+            'preview_x',
+            'preview_y',
+            'sort_order',
+            'default_number',
+            'sport_id',
+        ]));
 
         return to_route('position.index');
     }
@@ -76,7 +84,15 @@ class PositionController extends Controller
      */
     public function update(UpdatePositionRequest $request, Position $position): RedirectResponse
     {
-        $position->update($request->all());
+        $position->update($request->all([
+            'name',
+            'description',
+            'preview_x',
+            'preview_y',
+            'sort_order',
+            'default_number',
+            'sport_id',
+        ]));
 
         return to_route('position.index');
     }

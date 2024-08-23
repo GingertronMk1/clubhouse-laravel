@@ -53,8 +53,7 @@ class PositionTest extends ApplicationTest
 
     public function testEditAndUpdate(): void
     {
-        $this->markTestSkipped('Not doing this one until we\'ve got seeds');
-        $positionId = '01917a02-df3d-73cc-97e2-149abace7445';
+        $positionId = '01917f7d-e01b-707f-981a-97172121b38b';
         $response = $this->get(route(
             'position.edit',
             [
@@ -72,15 +71,14 @@ class PositionTest extends ApplicationTest
                 'description' => self::class,
             ],
             [
-                'name' => 'World Championship',
-                'description' => <<<'EOF'
-                    Cupiditate odio tempore assumenda modi aut. Qui atque facere eos aut mollitia esse. Omnis sit ipsam accusantium voluptatem.
-
-                    Fugiat harum nihil qui suscipit. Dignissimos dolorem numquam molestiae provident. Perspiciatis cupiditate illo ea fugit commodi nostrum quia.
-
-                    Nemo nihil architecto sequi aut. Ut delectus laudantium autem excepturi voluptas cum magni. Aspernatur porro aut voluptatem vel ad officiis laudantium laboriosam. Non id vitae laudantium quas consectetur voluptatem.
-                    EOF,
+                'name' => 'Fullback',
+                'description' => null,
                 'sport_id' => '019169e3-e100-7449-926f-c544764b069f',
+
+                'preview_x' => 50,
+                'preview_y' => 20,
+                'sort_order' => 1,
+                'default_number' => 1,
             ]
         );
 
@@ -91,7 +89,7 @@ class PositionTest extends ApplicationTest
 
     public function testDelete(): void
     {
-        $id = '01917a02-df3d-73cc-97e2-149abace7445';
+        $id = '01917f7d-e01b-707f-981a-97172121b38b';
         $position = Position::find($id);
         $this->assertNull($position->deleted_at);
         $this->delete(route('position.destroy', $id));
