@@ -41,7 +41,7 @@ class Sport extends Model
      */
     public function positions(): HasMany
     {
-        return $this->hasMany(Position::class);
+        return $this->hasMany(Position::class)->orderBy('sort_order');
     }
 
     /**
