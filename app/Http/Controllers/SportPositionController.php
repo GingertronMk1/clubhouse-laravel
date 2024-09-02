@@ -16,6 +16,7 @@ class SportPositionController extends Controller
         return view(
             'position.index',
             [
+                'sport' => $sport,
                 'positions' => $sport->positions,
             ]
         );
@@ -27,7 +28,8 @@ class SportPositionController extends Controller
     public function create(Sport $sport)
     {
         return view(
-            'position.create'
+            'position.create',
+            [ 'sport' => $sport ]
         );
     }
 
@@ -58,6 +60,7 @@ class SportPositionController extends Controller
             'position.show',
             [
                 'position' => $position,
+                'sport' => $sport
             ]
         );
     }
@@ -71,6 +74,7 @@ class SportPositionController extends Controller
             'position.edit',
             [
                 'position' => $position,
+                'sport' => $sport
             ]
         );
     }

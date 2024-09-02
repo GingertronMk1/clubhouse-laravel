@@ -1,6 +1,6 @@
 <x-app-layout>
     <form id="create-position-form"
-          action="{{ route('position.store') }}"
+          action="{{ route('sport.position.store', ['sport' => $sport]) }}"
           method="post">
         @csrf
         <x-input name="name" />
@@ -20,9 +20,6 @@
                  value="0"
                  min="0"
                  max="100" />
-        <x-input name="sport_id"
-                 type="select"
-                 :options="\App\Models\Sport::get()" />
         <button type="submit">Create</button>
     </form>
 

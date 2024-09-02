@@ -4,7 +4,6 @@
         'competition.index' => 'Competition',
         'game.index' => 'Game',
         'person.index' => 'Person',
-        'position.index' => 'Position',
         'sport.index' => 'Sport',
         'team.index' => 'Team',
     ];

@@ -46,7 +46,6 @@ class PositionTest extends ApplicationTest
             [
                 'name' => self::class,
                 'description' => self::class,
-                'sport_id' => '019169e3-e100-7449-926f-c544764b069f',
                 'preview_x' => 1,
                 'preview_y' => 1,
                 'default_number' => 1,
@@ -68,7 +67,7 @@ class PositionTest extends ApplicationTest
     {
         $positionId = '01917f7d-e01b-707f-981a-97172121b38b';
         $response = $this->get(route(
-            'position.edit',
+            'sport.position.edit',
             [
                 'position' => $positionId,
                 'sport' => '019169e3-e100-7449-926f-c544764b069f'
@@ -87,7 +86,6 @@ class PositionTest extends ApplicationTest
             [
                 'name' => 'Fullback',
                 'description' => null,
-                'sport_id' => '019169e3-e100-7449-926f-c544764b069f',
 
                 'preview_x' => 50,
                 'preview_y' => 20,
@@ -105,8 +103,15 @@ class PositionTest extends ApplicationTest
     {
         $id = '01917f7d-e01b-707f-981a-97172121b38b';
         $position = Position::find($id);
+        $this->assertNotNull($position);
         $this->assertNull($position->deleted_at);
-        $this->delete(route('sport.position.destroy', ['sport' => '01917f7d-e01b-707f-981a-97172121b38b', 'position' => $id]));
+        $this->delete(route(
+            'sport.position.destroy',
+            [
+                'sport' => '01917f7d-e01b-707f-981a-97172121b38b',
+                'position' => $id
+            ]
+        ));
         $position->refresh();
         $this->assertNotNull($position->deleted_at);
     }

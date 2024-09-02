@@ -1,6 +1,6 @@
 <x-app-layout>
     <form id="edit-position-form"
-          action="{{ route('position.update', ['position' => $position]) }}"
+          action="{{ route('sport.position.update', ['position' => $position, 'sport' => $sport]) }}"
           method="post">
         @csrf
         @method('PUT')
