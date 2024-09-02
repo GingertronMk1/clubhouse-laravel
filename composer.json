@@ -50,6 +50,7 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "test": "@php artisan test --parallel --coverage --min=90",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "cs:fix": "./vendor/bin/php-cs-fixer fix",
         "cs:check": "./vendor/bin/php-cs-fixer check",

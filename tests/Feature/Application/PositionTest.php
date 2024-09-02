@@ -21,6 +21,16 @@ class PositionTest extends ApplicationTest
         $response->assertViewIs('position.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'position.show',
+            ['position' => '01917f7d-e01b-707f-981a-97172121b38b']
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('position.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('position.create'));

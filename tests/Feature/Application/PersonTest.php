@@ -21,6 +21,16 @@ class PersonTest extends ApplicationTest
         $response->assertViewIs('person.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'person.show',
+            ['person' => '019179ea-21b8-7078-aea2-9b3313535065']
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('person.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('person.create'));

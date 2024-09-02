@@ -21,6 +21,16 @@ class GameTest extends ApplicationTest
         $response->assertViewIs('game.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'game.show',
+            ['game' => '01917a40-d448-715e-9b0e-614a99ae195c']
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('game.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('game.create'));

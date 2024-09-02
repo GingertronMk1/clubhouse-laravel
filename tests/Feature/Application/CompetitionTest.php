@@ -21,6 +21,16 @@ class CompetitionTest extends ApplicationTest
         $response->assertViewIs('competition.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'competition.show',
+            ['competition' => '01917a02-df3d-73cc-97e2-149abace7445']
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('competition.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('competition.create'));

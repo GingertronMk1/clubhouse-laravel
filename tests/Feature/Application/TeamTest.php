@@ -21,6 +21,16 @@ class TeamTest extends ApplicationTest
         $response->assertViewIs('team.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'team.show',
+            ['team' => '019169fb-9074-71e6-b455-f35854f9b70a']
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('team.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('team.create'));

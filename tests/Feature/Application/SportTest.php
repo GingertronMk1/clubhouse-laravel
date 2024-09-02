@@ -21,6 +21,18 @@ class SportTest extends ApplicationTest
         $response->assertViewIs('sport.index');
     }
 
+    public function testShow(): void
+    {
+        $response = $this->get(route(
+            'sport.show',
+            [
+                'sport' => '019169e3-e100-7449-926f-c544764b069f',
+            ]
+        ));
+        $response->assertStatus(200);
+        $response->assertViewIs('sport.show');
+    }
+
     public function testCreateAndStore(): void
     {
         $response = $this->get(route('sport.create'));
