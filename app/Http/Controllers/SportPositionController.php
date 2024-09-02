@@ -17,6 +17,8 @@ class SportPositionController extends Controller
      */
     public function index(Sport $sport): Application|Factory|View
     {
+        $sport->load('positions');
+
         return view(
             'position.index',
             [

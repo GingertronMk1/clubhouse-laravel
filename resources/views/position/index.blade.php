@@ -1,8 +1,10 @@
 @props(['positions', 'sport'])
 <x-app-layout>
     <x-slot name="header">
-        {{ $sport->name }}
+        Positions for {{ $sport->name }}
     </x-slot>
+
+    <x-position-display :$sport />
     @foreach ($positions as $position)
         <div class="card mt-3">
             <div class="card-header d-flex justify-content-between flex-row">
