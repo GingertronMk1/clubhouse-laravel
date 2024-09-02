@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePositionRequest;
+use App\Http\Requests\UpdatePositionRequest;
 use App\Models\Position;
 use App\Models\Sport;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class SportPositionController extends Controller
 {
@@ -42,7 +43,7 @@ class SportPositionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Sport $sport): RedirectResponse
+    public function store(StorePositionRequest $request, Sport $sport): RedirectResponse
     {
         $sport->positions()->create($request->all([
             'name',
@@ -88,7 +89,7 @@ class SportPositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sport $sport, Position $position): RedirectResponse
+    public function update(UpdatePositionRequest $request, Sport $sport, Position $position): RedirectResponse
     {
         $position->update($request->all([
             'name',
