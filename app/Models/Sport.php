@@ -23,7 +23,10 @@ class Sport extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
     /**
      * @return HasMany<Competition>
@@ -31,6 +34,14 @@ class Sport extends Model
     public function competitions(): HasMany
     {
         return $this->hasMany(Competition::class);
+    }
+
+    /**
+     * @return HasMany<Position>
+     */
+    public function positions(): HasMany
+    {
+        return $this->hasMany(Position::class);
     }
 
     /**

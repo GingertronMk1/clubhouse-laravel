@@ -7,8 +7,6 @@ use Tests\TestCase;
 
 /**
  * @internal
- *
- * @coversNothing
  */
 class RegistrationTest extends TestCase
 {

@@ -20,7 +20,7 @@ class PersonController extends Controller
         return view(
             'person.index',
             [
-                'people' => Person::get(),
+                'people' => Person::with('user')->get(),
             ]
         );
     }
@@ -40,7 +40,12 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request): RedirectResponse
     {
-        Person::create($request->all());
+        Person::create($request->all([
+            'name',
+            'dob',
+            'bio',
+            'user_id',
+        ]));
 
         return to_route('person.index');
     }
@@ -76,7 +81,12 @@ class PersonController extends Controller
      */
     public function update(UpdatePersonRequest $request, Person $person): RedirectResponse
     {
-        $person->update($request->all());
+        $person->update($request->all([
+            'name',
+            'dob',
+            'bio',
+            'user_id',
+        ]));
 
         return to_route('person.index');
     }

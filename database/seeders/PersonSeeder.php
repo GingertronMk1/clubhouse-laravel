@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Person;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PersonSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class PersonSeeder extends Seeder
     public function run(): void
     {
         $fileName = str_replace('\\', '_', Person::class);
-        $all = Storage::json("seeds/{$fileName}.json") ?? [];
+        $all = File::json(__DIR__."/seeds/{$fileName}.json");
         $this->command->withProgressBar(
             $all,
             function (array $item) {

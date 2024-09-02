@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 /**
  * @internal
- *
- * @coversNothing
  */
 class PasswordConfirmationTest extends TestCase
 {

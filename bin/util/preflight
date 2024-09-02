@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+./bin/app/composer cs:fix
+./bin/node/npm run blade-formatter
+./bin/app/composer stan

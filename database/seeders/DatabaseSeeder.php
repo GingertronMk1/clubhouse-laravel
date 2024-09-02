@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Competition;
 use App\Models\Game;
 use App\Models\Person;
+use App\Models\Position;
 use App\Models\Sport;
 use App\Models\Team;
 use App\Models\User;
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             CompetitionSeeder::class,
             GameSeeder::class,
+            PositionSeeder::class,
         ]);
 
         $seededClasses = [
@@ -42,6 +44,7 @@ class DatabaseSeeder extends Seeder
             Person::class,
             Competition::class,
             Game::class,
+            Position::class,
         ];
 
         /** @var class-string $class */

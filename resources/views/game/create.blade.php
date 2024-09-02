@@ -1,5 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('game.store') }}"
+    <form id="create-game-form"
+          action="{{ route('game.store') }}"
           method="post">
         @csrf
         <x-input name="name" />
@@ -9,8 +10,6 @@
                  type="textarea" />
         <x-input name="summary"
                  type="textarea" />
-        <x-input name="default_order"
-                 type="number" />
         <x-input name="competition_id"
                  type="select"
                  :options="\App\Models\Competition::get()" />

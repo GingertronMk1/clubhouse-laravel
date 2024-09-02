@@ -7,9 +7,11 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "symfony/dom-crawler": "^7.1"
     },
     "require-dev": {
+        "brianium/paratest": "^7.5",
         "fakerphp/faker": "^1.23",
         "friendsofphp/php-cs-fixer": "^3.62",
         "larastan/larastan": "^2.0",
@@ -48,6 +50,7 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "test": "@php artisan test --parallel --coverage --min=90",
         "stan": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "cs:fix": "./vendor/bin/php-cs-fixer fix",
         "cs:check": "./vendor/bin/php-cs-fixer check",

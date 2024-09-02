@@ -20,7 +20,7 @@ class CompetitionController extends Controller
         return view(
             'competition.index',
             [
-                'competitions' => Competition::get(),
+                'competitions' => Competition::with('sport')->get(),
             ]
         );
     }
@@ -40,7 +40,7 @@ class CompetitionController extends Controller
      */
     public function store(StoreCompetitionRequest $request): RedirectResponse
     {
-        Competition::create($request->all());
+        Competition::create($request->all(['name', 'description', 'sport_id']));
 
         return to_route('competition.index');
     }
@@ -76,7 +76,7 @@ class CompetitionController extends Controller
      */
     public function update(UpdateCompetitionRequest $request, Competition $competition): RedirectResponse
     {
-        $competition->update($request->all());
+        $competition->update($request->all(['name', 'description', 'sport_id']));
 
         return to_route('competition.index');
     }

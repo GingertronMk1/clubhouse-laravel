@@ -23,7 +23,11 @@ class Team extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'colours',
+    ];
 
     /**
      * Get the attributes that should be cast.

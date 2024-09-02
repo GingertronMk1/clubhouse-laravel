@@ -1,5 +1,6 @@
 <x-app-layout>
-    <form action="{{ route('competition.store') }}"
+    <form id="create-competition-form"
+          action="{{ route('competition.store') }}"
           method="post">
         @csrf
         <x-input name="name" />

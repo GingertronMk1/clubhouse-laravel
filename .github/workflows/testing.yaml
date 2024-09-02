@@ -33,12 +33,15 @@ jobs:
 #            - name: Deptrac
 #              run: ./_docker/bin/app/composer deptrac
 #              if: always()
+            - name: Check Blade
+              if: always()
+              run: ./bin/node/npm run blade-formatter -- -c
             - name: ECS
               run: ./bin/util/exec app composer cs:check
               if: always()
             - name: Stan
               run: ./bin/util/exec app composer stan
               if: always()
-#            - name: PHPUnit
-#              run: ./_docker/bin/app/phpunit-with-coverage
-#              if: always()
+            - name: PHPUnit
+              run: ./bin/app/test
+              if: always()

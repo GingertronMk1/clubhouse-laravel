@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 /**
  * @internal
- *
- * @coversNothing
  */
 class ProfileTest extends TestCase
 {
@@ -88,7 +86,7 @@ class ProfileTest extends TestCase
         ;
 
         $this->assertGuest();
-        $this->assertNull($user->fresh());
+        $this->assertNotNull($user->fresh()->deleted_at);
     }
 
     public function testCorrectPasswordMustBeProvidedToDeleteAccount(): void

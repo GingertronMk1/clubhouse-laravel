@@ -40,7 +40,11 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request): RedirectResponse
     {
-        Team::create($request->all());
+        Team::create($request->all([
+            'name',
+            'description',
+            'colours',
+        ]));
 
         return to_route('team.index');
     }
@@ -76,7 +80,11 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team): RedirectResponse
     {
-        $team->update($request->all());
+        $team->update($request->all([
+            'name',
+            'description',
+            'colours',
+        ]));
 
         return to_route('team.index');
     }
