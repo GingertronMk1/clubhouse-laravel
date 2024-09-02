@@ -6,6 +6,7 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\SportPositionController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::resources([
     'competition' => CompetitionController::class,
     'game' => GameController::class,
     'person' => PersonController::class,
-    'position' => PositionController::class,
+    'sport.position' => SportPositionController::class,
     'sport' => SportController::class,
     'team' => TeamController::class,
 ]);

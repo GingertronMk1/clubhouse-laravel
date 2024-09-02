@@ -15,7 +15,7 @@ class PositionTest extends ApplicationTest
 
     public function testIndex(): void
     {
-        $response = $this->get(route('position.index'));
+        $response = $this->get(route('sport.position.index', ['sport' => '019169e3-e100-7449-926f-c544764b069f']));
 
         $response->assertStatus(200);
         $response->assertViewIs('position.index');
@@ -24,8 +24,11 @@ class PositionTest extends ApplicationTest
     public function testShow(): void
     {
         $response = $this->get(route(
-            'position.show',
-            ['position' => '01917f7d-e01b-707f-981a-97172121b38b']
+            'sport.position.show',
+            [
+                'sport' => '019169e3-e100-7449-926f-c544764b069f',
+                'position' => '01917f7d-e01b-707f-981a-97172121b38b'
+            ]
         ));
         $response->assertStatus(200);
         $response->assertViewIs('position.show');
@@ -33,7 +36,7 @@ class PositionTest extends ApplicationTest
 
     public function testCreateAndStore(): void
     {
-        $response = $this->get(route('position.create'));
+        $response = $this->get(route('sport.position.create', ['sport' => '019169e3-e100-7449-926f-c544764b069f']));
 
         $response->assertStatus(200);
         $response->assertViewIs('position.create');
@@ -68,6 +71,7 @@ class PositionTest extends ApplicationTest
             'position.edit',
             [
                 'position' => $positionId,
+                'sport' => '019169e3-e100-7449-926f-c544764b069f'
             ]
         ));
 
@@ -102,7 +106,7 @@ class PositionTest extends ApplicationTest
         $id = '01917f7d-e01b-707f-981a-97172121b38b';
         $position = Position::find($id);
         $this->assertNull($position->deleted_at);
-        $this->delete(route('position.destroy', $id));
+        $this->delete(route('sport.position.destroy', ['sport' => '01917f7d-e01b-707f-981a-97172121b38b', 'position' => $id]));
         $position->refresh();
         $this->assertNotNull($position->deleted_at);
     }
