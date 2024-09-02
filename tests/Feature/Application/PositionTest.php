@@ -27,7 +27,7 @@ class PositionTest extends ApplicationTest
             'sport.position.show',
             [
                 'sport' => '019169e3-e100-7449-926f-c544764b069f',
-                'position' => '01917f7d-e01b-707f-981a-97172121b38b'
+                'position' => '01917f7d-e01b-707f-981a-97172121b38b',
             ]
         ));
         $response->assertStatus(200);
@@ -70,7 +70,7 @@ class PositionTest extends ApplicationTest
             'sport.position.edit',
             [
                 'position' => $positionId,
-                'sport' => '019169e3-e100-7449-926f-c544764b069f'
+                'sport' => '019169e3-e100-7449-926f-c544764b069f',
             ]
         ));
 
@@ -102,14 +102,14 @@ class PositionTest extends ApplicationTest
     public function testDelete(): void
     {
         $id = '01917f7d-e01b-707f-981a-97172121b38b';
-        $position = Position::find($id);
+        $position = Position::with('sport')->find($id);
         $this->assertNotNull($position);
         $this->assertNull($position->deleted_at);
         $this->delete(route(
             'sport.position.destroy',
             [
-                'sport' => '01917f7d-e01b-707f-981a-97172121b38b',
-                'position' => $id
+                'sport' => $position->sport,
+                'position' => $position,
             ]
         ));
         $position->refresh();

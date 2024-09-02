@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Position;
 use App\Models\Sport;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SportPositionController extends Controller
@@ -11,7 +15,7 @@ class SportPositionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Sport $sport)
+    public function index(Sport $sport): Application|Factory|View
     {
         return view(
             'position.index',
@@ -25,18 +29,18 @@ class SportPositionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Sport $sport)
+    public function create(Sport $sport): Application|Factory|View
     {
         return view(
             'position.create',
-            [ 'sport' => $sport ]
+            ['sport' => $sport]
         );
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Sport $sport)
+    public function store(Request $request, Sport $sport): RedirectResponse
     {
         $sport->positions()->create($request->all([
             'name',
@@ -54,13 +58,13 @@ class SportPositionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Sport $sport, Position $position)
+    public function show(Sport $sport, Position $position): Application|Factory|View
     {
         return view(
             'position.show',
             [
                 'position' => $position,
-                'sport' => $sport
+                'sport' => $sport,
             ]
         );
     }
@@ -68,13 +72,13 @@ class SportPositionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sport $sport, Position $position)
+    public function edit(Sport $sport, Position $position): Application|Factory|View
     {
         return view(
             'position.edit',
             [
                 'position' => $position,
-                'sport' => $sport
+                'sport' => $sport,
             ]
         );
     }
@@ -82,7 +86,7 @@ class SportPositionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sport $sport, Position $position)
+    public function update(Request $request, Sport $sport, Position $position): RedirectResponse
     {
         $position->update($request->all([
             'name',
@@ -99,7 +103,7 @@ class SportPositionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sport $sport, Position $position)
+    public function destroy(Sport $sport, Position $position): RedirectResponse
     {
         $position->delete();
 

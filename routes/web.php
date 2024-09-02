@@ -3,7 +3,6 @@
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PersonController;
-use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportPositionController;

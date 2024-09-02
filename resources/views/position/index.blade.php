@@ -1,7 +1,4 @@
-@props([
-    'positions',
-    'sport'
-])
+@props(['positions', 'sport'])
 <x-app-layout>
     <x-slot name="header">
         {{ $sport->name }}
