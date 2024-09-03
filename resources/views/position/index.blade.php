@@ -2,6 +2,8 @@
 <x-app-layout>
     <x-slot name="header">
         Positions for {{ $sport->name }}
+        <a class="btn btn-primary"
+           href="{{ route('sport.position.create', ['sport' => $sport]) }}">Add Position</a>
     </x-slot>
 
     <x-position-display :$sport />

@@ -36,7 +36,7 @@ class SportPositionController extends Controller
     {
         return view(
             'position.create',
-            ['sport' => $sport]
+            ['sport' => $sport->load('positions')]
         );
     }
 
@@ -81,7 +81,7 @@ class SportPositionController extends Controller
             'position.edit',
             [
                 'position' => $position,
-                'sport' => $sport,
+                'sport' => $sport->load('positions'),
             ]
         );
     }
