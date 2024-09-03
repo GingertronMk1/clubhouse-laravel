@@ -1,9 +1,16 @@
+@props(['positions', 'sport'])
 <x-app-layout>
+    <x-slot name="header">
+        Positions for {{ $sport->name }}
+        <a class="btn btn-primary"
+           href="{{ route('sport.position.create', ['sport' => $sport]) }}">Add Position</a>
+    </x-slot>
+
+    <x-position-display :$sport />
     @foreach ($positions as $position)
         <div class="card mt-3">
             <div class="card-header d-flex justify-content-between flex-row">
                 <span>{{ $position->name }}</span>
-                <span>{{ $position->sport->name }}</span>
             </div>
             <div class="card-body">{{ $position->description }}</div>
             <div class="list-group list-group-flush">
@@ -14,7 +21,7 @@
             </div>
             <div class="card-footer">
                 <a class="btn btn-primary"
-                   href="{{ route('position.edit', ['position' => $position]) }}">Edit</a>
+                   href="{{ route('sport.position.edit', ['position' => $position, 'sport' => $sport]) }}">Edit</a>
             </div>
         </div>
     @endforeach

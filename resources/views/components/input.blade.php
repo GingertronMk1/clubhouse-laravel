@@ -1,5 +1,5 @@
-<div class="d-flex flex-column mb-3">
-    <label class="form-label"
+<div class="{{ $type === 'checkbox' ? 'form-check' : 'd-flex flex-column' }} mb-3">
+    <label class="{{ $type === 'checkbox' ? 'form-check-label' : 'form-label' }}"
            for="{{ $id }}">
         @if ($slot->isEmpty())
             {{ $label }}
@@ -10,6 +10,9 @@
         @error($name)
             <span class="error">{{ $message }}</span>
         @enderror
+        @if ($type === 'range')
+            <small data-range-id="{{ $id }}">{{ $value }}</small>
+        @endif
     </label>
 
     @switch($type)
@@ -46,3 +49,19 @@
                    {{ $attributes }} />
     @endswitch
 </div>
+
+<script>
+    document
+        ?.querySelector('input[id=\'{{ $id }}\']')
+        ?.addEventListener(
+            "input",
+            function(e) {
+                if (e?.target?.value ?? false) {
+                    const rangeValueElement = document?.querySelector('[data-range-id=\'{{ $id }}\']');
+                    if (rangeValueElement) {
+                        rangeValueElement.textContent = e.target.value;
+                    }
+                }
+            }
+        )
+</script>

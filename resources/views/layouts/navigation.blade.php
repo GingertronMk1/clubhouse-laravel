@@ -4,7 +4,6 @@
         'competition.index' => 'Competition',
         'game.index' => 'Game',
         'person.index' => 'Person',
-        'position.index' => 'Position',
         'sport.index' => 'Sport',
         'team.index' => 'Team',
     ];
@@ -14,7 +13,7 @@
      x-data="{ open: false }">
     <div class="container-fluid">
         <a class="navbar-brand"
-           href="#"><i class="fa-solid fa-football"></i></a>
+           href="{{ route('dashboard') }}"><i class="fa-solid fa-football"></i></a>
         <button class="navbar-toggler"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent"

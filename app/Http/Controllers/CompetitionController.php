@@ -20,7 +20,12 @@ class CompetitionController extends Controller
         return view(
             'competition.index',
             [
-                'competitions' => Competition::with('sport')->get(),
+                'competitions' => Competition::with(
+                    'sport',
+                    'parent',
+                    'children',
+                    'games'
+                )->get(),
             ]
         );
     }

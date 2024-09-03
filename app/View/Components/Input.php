@@ -41,6 +41,7 @@ class Input extends Component
         $this->inputClass = match ($type) {
             'color' => 'form-control-color',
             'select' => 'form-select',
+            'checkbox' => 'form-check-input',
             default => 'form-control',
         };
     }

@@ -34,7 +34,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="container">
+            <main class="container py-3">
                 {{ $slot }}
             </main>
         </div>
