@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+    private const PASSWORD = 'password';
+
     /**
      * Run the database seeds.
      */
@@ -16,7 +18,7 @@ class UserSeeder extends Seeder
     {
         $fileName = str_replace('\\', '_', User::class);
         $all = File::json(__DIR__."/seeds/{$fileName}.json");
-        $password = Hash::make('password');
+        $password = Hash::make(self::PASSWORD);
         $this->command->withProgressBar(
             $all,
             function (array $item) use ($password) {

@@ -1,5 +1,5 @@
-<div class="d-flex flex-column mb-3">
-    <label class="form-label"
+<div class="{{ $type === 'checkbox' ? 'form-check' : 'd-flex flex-column' }} mb-3">
+    <label class="{{ $type === 'checkbox' ? 'form-check-label' : 'form-label' }}"
            for="{{ $id }}">
         @if ($slot->isEmpty())
             {{ $label }}
