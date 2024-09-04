@@ -4,6 +4,7 @@
           method="post">
         @csrf
         @method('PUT')
+        <input name="id" type="hidden" value="{{ $position->id }}" disabled/>
         <x-input name="name"
                  :value="$position->name" />
         <x-input name="description"
@@ -41,41 +42,4 @@
         <button class="btn btn-primary"
                 type="submit">Update</button>
     </form>
-
-    @push('scripts')
-        <script>
-            const positionIcon = document.querySelector('i[data-position-id=\'{{ $position->id }}\']');
-            positionIcon.classList.remove('fa-solid');
-            positionIcon.classList.add('fa-regular')
-            document.querySelector('input[type=\'range\'][name=\'preview_x\']').addEventListener(
-                'input',
-                function(e) {
-                    if (!e?.target?.value) {
-                        return;
-                    }
-
-                    if (!positionIcon) {
-                        return;
-                    }
-
-                    positionIcon.style.left = `${e.target.value}%`;
-                }
-            )
-            document.querySelector('input[type=\'range\'][name=\'preview_y\']').addEventListener(
-                'input',
-                function(e) {
-                    if (!e?.target?.value) {
-                        return;
-                    }
-
-                    if (!positionIcon) {
-                        return;
-                    }
-
-                    positionIcon.style.bottom = `${e.target.value}%`;
-                }
-            )
-        </script>
-    @endpush
-
 </x-app-layout>
