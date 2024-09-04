@@ -8,12 +8,10 @@ import Alpine from 'alpinejs';
 declare global {
     interface Window {
         Alpine: typeof Alpine;
-        userFunctions: Record<string, Function>;
     }
 }
 
 window.Alpine = Alpine;
-window.userFunctions = {};
 
 Alpine.start();
 
@@ -50,13 +48,12 @@ if (document.getElementById('create-position-form')) {
 }
 
 if (document.getElementById('edit-position-form')) {
-    console.log(window.userFunctions);
-    const positionIdInput: HTMLInputElement = document.querySelector('#edit-position-form > input[name=id]');
+    const positionIdInput: HTMLInputElement | null = document.querySelector('#edit-position-form > input[name=id]');
     const positionId = positionIdInput.value;
-    const positionIcon: HTMLElement = document.querySelector(`i[data-position-id='${positionId}']`);
+    const positionIcon: HTMLElement | null = document.querySelector(`i[data-position-id='${positionId}']`);
     positionIcon.classList.remove('fa-solid');
     positionIcon.classList.add('fa-regular')
-    document.querySelector('input[type=\'range\'][name=\'preview_x\']').addEventListener(
+    document.querySelector('input[type=\'range\'][name=\'preview_x\']')?.addEventListener(
         'input',
         function (e: InputEvent) {
             if (e.target instanceof HTMLInputElement) {
@@ -68,7 +65,7 @@ if (document.getElementById('edit-position-form')) {
             }
         }
     )
-    document.querySelector('input[type=\'range\'][name=\'preview_y\']').addEventListener(
+    document.querySelector('input[type=\'range\'][name=\'preview_y\']')?.addEventListener(
         'input',
         function (e: InputEvent) {
 

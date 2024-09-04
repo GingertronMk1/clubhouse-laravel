@@ -2,4 +2,5 @@
 
 ./bin/app/composer cs:fix
 ./bin/node/npm run blade-formatter
+./bin/node/npm run lint:fix
 ./bin/app/composer stan

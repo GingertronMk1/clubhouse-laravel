@@ -30,9 +30,9 @@ jobs:
               run: ./bin/util/install
             - name: Start
               run: ./bin/util/start
-#            - name: Deptrac
-#              run: ./_docker/bin/app/composer deptrac
-#              if: always()
+            - name: ESLint
+              run: ./bin/node/npm run lint
+              if: always()
             - name: Check Blade
               if: always()
               run: ./bin/node/npm run blade-formatter -- -c
