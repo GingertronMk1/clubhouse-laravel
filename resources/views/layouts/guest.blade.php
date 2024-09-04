@@ -17,7 +17,7 @@
               rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/js/app.js'])
+        @vite(['resources/ts/app.ts'])
     </head>
 
     <body class="font-sans text-gray-900 antialiased">
