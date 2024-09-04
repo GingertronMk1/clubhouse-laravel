@@ -4,7 +4,10 @@
           method="post">
         @csrf
         @method('PUT')
-        <input name="id" type="hidden" value="{{ $position->id }}" disabled/>
+        <input name="id"
+               type="hidden"
+               value="{{ $position->id }}"
+               disabled />
         <x-input name="name"
                  :value="$position->name" />
         <x-input name="description"
@@ -35,10 +38,6 @@
                 <x-position-display :$sport />
             </div>
         </div>
-        <x-input name="sport_id"
-                 type="select"
-                 :options="\App\Models\Sport::get()"
-                 :value="$position->sport_id" />
         <button class="btn btn-primary"
                 type="submit">Update</button>
     </form>
