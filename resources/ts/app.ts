@@ -1,9 +1,9 @@
-import './bootstrap';
+import "./bootstrap";
 
-import '../scss/app.scss';
+import "../scss/app.scss";
 
 // import * as bootstrap from 'bootstrap';
-import Alpine from 'alpinejs';
+import Alpine from "alpinejs";
 
 declare global {
     interface Window {
@@ -15,68 +15,79 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-if (document.getElementById('create-position-form')) {
-    const newPositionIcon = document.createElement('i', {});
-    newPositionIcon.classList.add('fa-regular', 'fa-user');
-    newPositionIcon.setAttribute('title', 'New Position');
-    newPositionIcon.style.left = '50%';
-    newPositionIcon.style.bottom = '50%';
-    newPositionIcon.id = 'NEW POSITION';
-    const positionDisplay = document.querySelector('[data-sport-id=\'{{ $sport->id }}\']');
-    positionDisplay.appendChild(newPositionIcon);
+if (document.getElementById("create-position-form")) {
+    (function () {
+        const newPositionIcon = document.createElement("i", {});
+        newPositionIcon.classList.add("fa-regular", "fa-user");
+        newPositionIcon.setAttribute("title", "New Position");
+        newPositionIcon.style.left = "50%";
+        newPositionIcon.style.bottom = "50%";
+        newPositionIcon.id = "NEW POSITION";
+        const positionDisplay: HTMLElement | null = document.querySelector(
+            "[data-sport-id='{{ $sport->id }}']",
+        );
+        if (!positionDisplay) {
+            console.error("No position display");
+            return;
+        }
+        positionDisplay.appendChild(newPositionIcon);
 
-    const previewX: HTMLInputElement = document.querySelector('input[type=\'range\'][name=\'preview_x\']');
+        const previewX: HTMLInputElement | null = document.querySelector(
+            "input[type='range'][name='preview_x']",
+        );
+        const previewY: HTMLInputElement | null = document.querySelector(
+            "input[type='range'][name='preview_y']",
+        );
 
-    previewX.addEventListener(
-        'input',
-        function (e: InputEvent) {
+        if (!(previewX && previewY)) {
+            console.error("No preview position");
+            return;
+        }
+
+        previewX.addEventListener("input", function (e: InputEvent) {
             if (e.target instanceof HTMLInputElement) {
                 newPositionIcon.style.left = `${e.target.value}%`;
             }
-        }
-    );
+        });
 
-    const previewY: HTMLInputElement = document.querySelector('input[type=\'range\'][name=\'preview_y\']');
-    previewY.addEventListener(
-        'input',
-        function (e) {
+        previewY.addEventListener("input", function (e) {
             if (e.target instanceof HTMLInputElement) {
                 newPositionIcon.style.bottom = `${e.target.value}%`;
             }
-        }
-    );
+        });
+    })();
 }
 
-if (document.getElementById('edit-position-form')) {
-    const positionIdInput: HTMLInputElement | null = document.querySelector('#edit-position-form > input[name=id]');
-    const positionId = positionIdInput.value;
-    const positionIcon: HTMLElement | null = document.querySelector(`i[data-position-id='${positionId}']`);
-    positionIcon.classList.remove('fa-solid');
-    positionIcon.classList.add('fa-regular')
-    document.querySelector('input[type=\'range\'][name=\'preview_x\']')?.addEventListener(
-        'input',
-        function (e: InputEvent) {
-            if (e.target instanceof HTMLInputElement) {
-                if (!positionIcon) {
-                    return;
-                }
-
-                positionIcon.style.left = `${e.target.value}%`;
-            }
+if (document.getElementById("edit-position-form")) {
+    (function () {
+        const positionIdInput: HTMLInputElement | null = document.querySelector(
+            "#edit-position-form > input[name=id]",
+        );
+        if (!positionIdInput) {
+            console.error("No position ID found");
+            return;
         }
-    )
-    document.querySelector('input[type=\'range\'][name=\'preview_y\']')?.addEventListener(
-        'input',
-        function (e: InputEvent) {
-
-            if (e.target instanceof HTMLInputElement) {
-                if (!positionIcon) {
-                    return;
-                }
-
-                positionIcon.style.bottom = `${e.target.value}%`;
-            }
-
+        const positionId = positionIdInput.value;
+        const positionIcon: HTMLElement | null = document.querySelector(
+            `i[data-position-id='${positionId}']`,
+        );
+        if (!positionIcon) {
+            console.error("No position icon found");
+            return;
         }
-    )
+        positionIcon.classList.remove("fa-solid");
+        positionIcon.classList.add("fa-regular");
+        document
+            .querySelector("input[type='range'][name='preview_x']")
+            ?.addEventListener("input", function (e: InputEvent) {
+                const { value } = e.target as HTMLInputElement;
+                positionIcon.style.left = `${value}%`;
+            });
+        document
+            .querySelector("input[type='range'][name='preview_y']")
+            ?.addEventListener("input", function (e: InputEvent) {
+                const { value } = e.target as HTMLInputElement;
+                positionIcon.style.bottom = `${value}%`;
+            });
+    })();
 }
