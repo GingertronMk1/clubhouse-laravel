@@ -30,38 +30,4 @@
         <button class="btn btn-primary"
                 type="submit">Create</button>
     </form>
-
-    @push('scripts')
-        <script>
-            const newPositionIcon = document.createElement('i', {});
-            newPositionIcon.classList.add('fa-regular', 'fa-user');
-            newPositionIcon.setAttribute('title', 'New Position');
-            newPositionIcon.style.left = '50%';
-            newPositionIcon.style.bottom = '50%';
-            newPositionIcon.id = 'NEW POSITION';
-            const positionDisplay = document.querySelector('[data-sport-id=\'{{ $sport->id }}\']');
-            positionDisplay.appendChild(newPositionIcon);
-
-            document.querySelector('input[type=\'range\'][name=\'preview_x\']').addEventListener(
-                'input',
-                function(e) {
-                    if (!e?.target?.value) {
-                        return;
-                    }
-                    newPositionIcon.style.left = `${e.target.value}%`;
-                }
-            )
-            document.querySelector('input[type=\'range\'][name=\'preview_y\']').addEventListener(
-                'input',
-                function(e) {
-                    if (!e?.target?.value) {
-                        return;
-                    }
-
-                    newPositionIcon.style.bottom = `${e.target.value}%`;
-                }
-            )
-        </script>
-    @endpush
-
 </x-app-layout>
