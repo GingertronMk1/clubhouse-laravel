@@ -21,7 +21,7 @@
         "blade-formatter": "^1.42.0",
         "eslint": "^9.18.0",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.2",
+        "eslint-plugin-prettier": "^5.2.3",
         "globals": "^15.14.0",
         "laravel-vite-plugin": "^1.1",
         "postcss": "^8.5.1",
