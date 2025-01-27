@@ -18,7 +18,7 @@
         "alpinejs": "^3.14.3",
         "autoprefixer": "^10.4.2",
         "axios": "^1.7.9",
-        "blade-formatter": "^1.42.0",
+        "blade-formatter": "^1.42.1",
         "eslint": "^9.19.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.3",
