@@ -17,7 +17,7 @@
         "@typescript-eslint/parser": "^8.26.1",
         "alpinejs": "^3.14.3",
         "autoprefixer": "^10.4.21",
-        "axios": "^1.8.3",
+        "axios": "^1.8.4",
         "blade-formatter": "^1.42.2",
         "eslint": "^9.22.0",
         "eslint-config-prettier": "^9.1.0",
