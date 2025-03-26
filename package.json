@@ -12,10 +12,10 @@
     "devDependencies": {
         "@eslint/js": "^9.23.0",
         "@tailwindcss/forms": "^0.5.10",
-        "@types/alpinejs": "^3.13.10",
+        "@types/alpinejs": "^3.13.11",
         "@typescript-eslint/eslint-plugin": "^8.28.0",
         "@typescript-eslint/parser": "^8.27.0",
-        "alpinejs": "^3.14.3",
+        "alpinejs": "^3.14.9",
         "autoprefixer": "^10.4.21",
         "axios": "^1.8.4",
         "blade-formatter": "^1.42.2",
